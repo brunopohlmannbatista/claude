@@ -177,6 +177,7 @@ kbd{font-family:var(--body);font-size:11px;font-weight:700;border:2px solid var(
 .sheet input,.sheet textarea,#entry input{user-select:text;-webkit-user-select:text}
 .cod{text-transform:uppercase;letter-spacing:.35em;font-family:var(--display)!important;font-weight:900!important;font-size:30px!important;text-align:center;max-width:260px}
  #eForm.s2 .sub{display:none}
+#eCropCv{display:block;width:100%;max-width:440px;height:auto;border:2.5px solid var(--ink);border-radius:12px;background:#fff;touch-action:none;cursor:crosshair}
 #eForm.s2 .title{font-size:clamp(28px,4.4vw,38px)}
 #eForm.s2 .chars{grid-template-columns:repeat(auto-fill,minmax(78px,1fr))}
 .hint{font-size:14px;color:var(--ink-soft);margin:-2px 0 0;max-width:46ch}
@@ -272,6 +273,12 @@ kbd{font-family:var(--body);font-size:11px;font-weight:700;border:2px solid var(
       <div class="chars" id="eChars"></div>
       <input type="file" id="eFile" accept="image/*" hidden>
       <div class="prev"><canvas id="ePrev" width="192" height="240"></canvas><div class="note" id="eNote">Escolha um desenho do seu livro para ser o seu personagem.</div></div>
+      <div class="row" id="eCropRow" hidden style="margin:-2px 0 8px"><button class="btn plain sm" type="button" id="eCropBt">✂️ Escolher só o personagem</button><span class="hint" id="eCropTx"></span></div>
+      <div id="eCrop" hidden>
+        <canvas id="eCropCv" width="440" height="520"></canvas>
+        <p class="hint" style="margin:6px 0">Arraste o dedo (ou o mouse) em volta do seu personagem.</p>
+        <div class="row" style="margin-bottom:10px"><button class="btn leaf sm" type="button" id="eCropOk" disabled>✔ Usar este pedaço</button><button class="btn plain sm" type="button" id="eCropAll">Usar o desenho inteiro</button></div>
+      </div>
       <label class="check"><input type="checkbox" id="eCut" checked> Recortar o fundo do papel</label>
       <div class="row" style="margin-top:14px"><button class="btn" type="button" id="eGo">Entrar na Vila ▸</button><button class="btn plain sm" type="button" id="eBack">◂ Voltar</button></div>
       <div id="eMsg" role="alert" class="emsg"></div>
@@ -316,7 +323,7 @@ function defSave() {
   return { v: 2, nome: '', turma: '', charKey: 'lia', inv: {}, seen: {}, tut: 0, flags: {}, found: {}, visited: {}, selos: {},
     ideas: [], placed: [], season: 'auto', mute: false, voz: false, area: 'vila', x: 0, z: 25, coletiva: { flor: 0, fita: 0, graveto: 0 },
     cartas: [], wearing: null, nomePers: '', crafts: 0, cd: {},
-    titulo: '', frase: '', hist: {}, missoes: {}, codigo: '', vid: '', turmaId: '', colegio: '', tituloLivro: '', livroDesenhos: [], desenhoSlot: null, figSig: '', figV: 0, figAprov: '', salvoEm: 0 };
+    titulo: '', frase: '', hist: {}, missoes: {}, codigo: '', vid: '', turmaId: '', colegio: '', tituloLivro: '', livroDesenhos: [], desenhoSlot: null, desenhoCrop: null, figSig: '', figV: 0, figAprov: '', salvoEm: 0 };
 }
 function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
@@ -2446,7 +2453,7 @@ function resumoProfessora() {
 }
 function figurinhaNova() {
   if (S.charKey !== 'img' || !PLAYER_CANVAS) return null;
-  const sig = S.desenhoSlot != null ? 'livro:' + S.desenhoSlot : 'foto:' + hash32(DRAWING || '');
+  const sig = S.desenhoSlot != null ? 'livro:' + S.desenhoSlot + (S.desenhoCrop ? ':' + hash32(JSON.stringify(S.desenhoCrop)) : '') : 'foto:' + hash32(DRAWING || '');
   if (sig === S.figSig) return null;
   try {
     const c = fitCanvas(PLAYER_CANVAS, 132, 164);
@@ -2468,7 +2475,7 @@ const Srv = {
     if (keepalive && progresso.length > 58000) { this.busy = false; return; }
     try {
       const r = await apiPost('vila-salvar', body, { keepalive });
-      if (r && r.ok) { this.last = Date.now(); this.erro = false; if (fig) { S.figSig = fig.sig; S.figV = r.fig_v || Date.now(); S.figAprov = 'PENDENTE'; lsSet(SAVE_KEY, JSON.stringify(S)); } }
+      if (r && r.ok) { this.last = Date.now(); this.erro = false; if (fig) { S.figSig = fig.sig; S.figV = r.fig_v || Date.now(); S.figAprov = 'PENDENTE'; lsSet(SAVE_KEY, JSON.stringify(S)); this.dirty = true; clearTimeout(this._a); this._a = setTimeout(() => this.enviar(), 1500); } }
       else { this.dirty = true; this.erro = true; }
     } catch (e) { this.dirty = true; this.erro = true; }
     this.busy = false;
@@ -2624,18 +2631,19 @@ function showStep2() {
   } else $('#eNome').value = S.nome || '';
   ENTRY.desenhos = cod ? (Array.isArray(S.livroDesenhos) ? S.livroDesenhos.slice(0, 8) : []) : [];
   ENTRY.pick = S.charKey || 'lia'; ENTRY.canvas = null; ENTRY.slot = S.desenhoSlot != null ? S.desenhoSlot : null;
+  ENTRY.src = null; ENTRY.crop = null; $('#eCrop').hidden = true; $('#eCropRow').hidden = true;
   const grid = $('#eChars'); grid.innerHTML = '';
   for (const d of ENTRY.desenhos) {
-    grid.append(h('button', { type: 'button', class: 'ch livro', 'data-s': d.s, onclick: () => pickLivro(d.s) }, h('img', { src: apiURL('vila-desenho', { c: S.codigo, s: d.s }), alt: '', loading: 'lazy', decoding: 'async' }), String(d.r || 'Desenho').slice(0, 14)));
+    grid.append(h('button', { type: 'button', class: 'ch livro', 'data-s': d.s, onclick: () => pickLivro(d.s, false) }, h('img', { src: apiURL('vila-desenho', { c: S.codigo, s: d.s }), alt: '', loading: 'lazy', decoding: 'async' }), String(d.r || 'Desenho').slice(0, 14)));
   }
   const up = h('button', { type: 'button', class: 'ch', id: 'eUp', 'data-k': 'foto', onclick: () => $('#eFile').click() }, h('span', { class: 'up' }, '📷'), 'Foto');
   grid.append(up);
-  for (const k of Object.keys(SAMPLES)) grid.append(h('button', { type: 'button', class: 'ch', 'data-k': k, onclick: () => { ENTRY.pick = k; ENTRY.slot = null; ENTRY.carregando = null; markPick(); drawPreview(sampleSticker(k)); $('#eNote').textContent = `${SAMPLES[k].nome} é um personagem de exemplo. O melhor é usar um desenho do seu livro!`; } }, h('img', { src: sampleSticker(k).toDataURL(), alt: '' }), SAMPLES[k].nome));
+  for (const k of Object.keys(SAMPLES)) grid.append(h('button', { type: 'button', class: 'ch', 'data-k': k, onclick: () => { ENTRY.pick = k; ENTRY.slot = null; ENTRY.carregando = null; ENTRY.src = null; $('#eCrop').hidden = true; $('#eCropRow').hidden = true; markPick(); drawPreview(sampleSticker(k)); $('#eNote').textContent = `${SAMPLES[k].nome} é um personagem de exemplo. O melhor é usar um desenho do seu livro!`; } }, h('img', { src: sampleSticker(k).toDataURL(), alt: '' }), SAMPLES[k].nome));
   $('#eNote').textContent = ENTRY.desenhos.length ? 'Escolha um desenho do seu livro para ser o seu personagem.' : (cod ? 'Seu livro ainda não tem desenhos digitalizados. Envie uma foto do desenho ou escolha um exemplo.' : 'Envie uma foto do desenho do seu livro. A vila recorta o fundo do papel e cola um contorno de figurinha.');
   if (ENTRY.pick === 'img' && DRAWING) { loadImgCanvas(DRAWING).then((c) => { ENTRY.canvas = c; drawPreview(c); }).catch(() => {}); }
-  else if (ENTRY.pick === 'img' && cod && ENTRY.slot != null && ENTRY.desenhos.some((d) => d.s === ENTRY.slot)) { pickLivro(ENTRY.slot); }
+  else if (ENTRY.pick === 'img' && cod && ENTRY.slot != null && ENTRY.desenhos.some((d) => d.s === ENTRY.slot)) { pickLivro(ENTRY.slot, true); }
   else if (ENTRY.pick === 'img' && cod && S.figV) { $('#eNote').textContent = 'Buscando o seu personagem…'; loadImgCanvas(apiURL('vila-fig', { v: S.vid, c: S.codigo, fv: S.figV })).then((c) => { ENTRY.canvas = c; ENTRY.pre = true; drawPreview(c); markPick(); $('#eNote').textContent = 'Este é o seu personagem. Pode trocar se quiser.'; }).catch(() => { ENTRY.pick = 'lia'; markPick(); drawPreview(sampleSticker('lia')); }); }
-  else if (cod && S.tut === 0 && ENTRY.desenhos.length && ENTRY.pick !== 'img' && !S.flags.escolheu) { pickLivro(ENTRY.desenhos[0].s); }
+  else if (cod && S.tut === 0 && ENTRY.desenhos.length && ENTRY.pick !== 'img' && !S.flags.escolheu) { pickLivro(ENTRY.desenhos[0].s, false); }
   else { if (ENTRY.pick === 'img') ENTRY.pick = 'lia'; drawPreview(sampleSticker(SAMPLES[ENTRY.pick] ? ENTRY.pick : 'lia')); }
   markPick();
 }
@@ -2647,8 +2655,9 @@ function markPick() {
   });
 }
 function drawPreview(c) { const pv = $('#ePrev'), g = pv.getContext('2d'); g.clearRect(0, 0, pv.width, pv.height); if (!c) return; const k = Math.min((pv.width - 16) / c.width, (pv.height - 16) / c.height); g.drawImage(c, (pv.width - c.width * k) / 2, (pv.height - c.height * k) / 2, c.width * k, c.height * k); }
-async function pickLivro(s) {
+async function pickLivro(s, manterCorte) {
   ENTRY.pick = 'img'; ENTRY.slot = s; ENTRY.carregando = s; ENTRY.canvas = null; markPick();
+  ENTRY.crop = manterCorte && S.desenhoSlot === s && S.desenhoCrop ? S.desenhoCrop : null; $('#eCrop').hidden = true;
   $('#eNote').textContent = 'Recortando o desenho do papel…';
   try {
     const im = await loadImg(apiURL('vila-desenho', { c: S.codigo, s }));
@@ -2656,10 +2665,18 @@ async function pickLivro(s) {
     ENTRY.src = im; processDrawing(true);
   } catch (e) { if (ENTRY.carregando === s) { $('#eNote').textContent = 'Não consegui abrir esse desenho agora. Tente outro ou um personagem de exemplo.'; ENTRY.pick = 'lia'; ENTRY.slot = null; markPick(); drawPreview(sampleSticker('lia')); } }
 }
+function fonteRecortada() {
+  const src = ENTRY.src, cr = ENTRY.crop; if (!cr) return src;
+  const W = src.naturalWidth || src.width, H = src.naturalHeight || src.height;
+  const x = Math.round(cr.x * W), y = Math.round(cr.y * H), w = Math.max(8, Math.round(cr.w * W)), hh = Math.max(8, Math.round(cr.h * H));
+  const c = mkCanvas(w, hh); c.getContext('2d').drawImage(src, x, y, w, hh, 0, 0, w, hh); return c;
+}
 function processDrawing(doLivro) {
   if (!ENTRY.src) return;
+  $('#eCropRow').hidden = false; $('#eCropTx').textContent = ENTRY.crop ? 'Usando só um pedaço do desenho.' : '';
   try {
-    let base = $('#eCut').checked ? cutDrawing(ENTRY.src) : fitCanvas(ENTRY.src, 340, 400);
+    const fonte = fonteRecortada();
+    let base = $('#eCut').checked ? cutDrawing(fonte) : fitCanvas(fonte, 340, 400);
     if (!base) {
       $('#eNote').textContent = doLivro ? 'Esse desenho parece estar em branco. Escolha outro desenho ou um personagem de exemplo.' : 'Não achei o desenho nessa foto. Tente outra, bem iluminada, ou desmarque "Recortar o fundo do papel".';
       ENTRY.pick = 'lia'; ENTRY.slot = null; markPick(); drawPreview(sampleSticker('lia')); return;
@@ -2674,7 +2691,7 @@ function aplicarAluno(r) {
   const srv = r.progresso ? parseJSON(r.progresso, null) : null;
   if (srv && typeof srv === 'object' && (+srv.salvoEm || 0) > (+S.salvoEm || 0) + 2000) {
     S = Object.assign(defSave(), srv);
-    if (S.charKey === 'img' && DRAWING && S.figSig && S.figSig.startsWith('livro:') && String(S.desenhoSlot) !== S.figSig.slice(6)) DRAWING = null;
+    if (S.charKey === 'img' && DRAWING && S.figSig && S.figSig.startsWith('livro:') && String(S.desenhoSlot) !== S.figSig.slice(6).split(':')[0]) DRAWING = null;
   }
   Object.assign(S, { codigo: r.codigo, vid: r.vid, nome: String(r.primeiro || 'Autor').slice(0, 16), turma: String(r.turma_nome || ''), turmaId: String(r.turma_id || ''), colegio: String(r.colegio_nome || ''), tituloLivro: String(r.titulo_livro || ''), livroDesenhos: Array.isArray(r.desenhos) ? r.desenhos : [] });
   lsSet(SAVE_KEY, JSON.stringify(S)); lsSet(ULTIMO_KEY, r.codigo);
@@ -2699,7 +2716,8 @@ function bindEntry() {
   cod.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); entrarCodigo(); } });
   $('#eVisit').addEventListener('click', () => { Snd.ensure(); useSlot(null); ENTRY.modo = 'visitante'; showStep2(); setTimeout(() => $('#eNome').focus(), 60); });
   $('#eBack').addEventListener('click', () => showEntry(1));
-  $('#eFile').addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => loadImg(rd.result).then((im) => { ENTRY.src = im; ENTRY.slot = null; ENTRY.carregando = null; processDrawing(false); }).catch(() => { $('#eNote').textContent = 'Não consegui abrir essa imagem.'; }); rd.readAsDataURL(f); e.target.value = ''; });
+  $('#eFile').addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => loadImg(rd.result).then((im) => { ENTRY.src = im; ENTRY.slot = null; ENTRY.carregando = null; ENTRY.crop = null; $('#eCrop').hidden = true; processDrawing(false); }).catch(() => { $('#eNote').textContent = 'Não consegui abrir essa imagem.'; }); rd.readAsDataURL(f); e.target.value = ''; });
+  bindCorte();
   $('#eCut').addEventListener('change', () => { if (ENTRY.src && ENTRY.pick === 'img' && !ENTRY.pre) processDrawing(ENTRY.slot != null); });
   let entering = false;
   const enter = async () => {
@@ -2711,7 +2729,7 @@ function bindEntry() {
       S.nome = nome; S.turma = ''; S.codigo = ''; S.vid = '';
     }
     if (ENTRY.pick === 'img') {
-      if (ENTRY.canvas) { const url = ENTRY.canvas.toDataURL('image/png'); saveDrawing(url); S.desenhoSlot = ENTRY.slot != null ? ENTRY.slot : null; }
+      if (ENTRY.canvas) { const url = ENTRY.canvas.toDataURL('image/png'); saveDrawing(url); S.desenhoSlot = ENTRY.slot != null ? ENTRY.slot : null; S.desenhoCrop = ENTRY.slot != null && ENTRY.crop ? ENTRY.crop : null; }
       else if (!DRAWING) ENTRY.pick = 'lia';
     }
     S.charKey = ENTRY.pick; S.flags.escolheu = 1; save();
@@ -2722,6 +2740,32 @@ function bindEntry() {
   $('#eGo').addEventListener('click', enter);
   $('#eNome').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); enter(); } });
 }
+// recorte manual: a criança marca só o personagem numa página com cenário
+function bindCorte() {
+  const cv = $('#eCropCv'), g = cv.getContext('2d'); let fit = null, sel = null, drag = null;
+  const desenha = () => {
+    g.clearRect(0, 0, cv.width, cv.height); if (!fit) return;
+    g.drawImage(ENTRY.src, fit.x, fit.y, fit.w, fit.h);
+    if (sel && sel.w > 4 && sel.h > 4) {
+      g.fillStyle = 'rgba(34,26,43,.45)'; g.beginPath(); g.rect(0, 0, cv.width, cv.height); g.rect(sel.x, sel.y, sel.w, sel.h); g.fill('evenodd');
+      g.setLineDash([10, 7]); g.lineWidth = 4; g.strokeStyle = '#ffc93c'; g.strokeRect(sel.x, sel.y, sel.w, sel.h); g.setLineDash([]);
+    }
+  };
+  const pos = (e) => { const r = cv.getBoundingClientRect(); return { x: ((e.clientX - r.left) / r.width) * cv.width, y: ((e.clientY - r.top) / r.height) * cv.height }; };
+  $('#eCropBt').addEventListener('click', () => {
+    if (!ENTRY.src) return; const W = ENTRY.src.naturalWidth || ENTRY.src.width, H = ENTRY.src.naturalHeight || ENTRY.src.height;
+    const k = Math.min(cv.width / W, cv.height / H); fit = { w: W * k, h: H * k }; fit.x = (cv.width - fit.w) / 2; fit.y = (cv.height - fit.h) / 2;
+    sel = ENTRY.crop ? { x: fit.x + ENTRY.crop.x * fit.w, y: fit.y + ENTRY.crop.y * fit.h, w: ENTRY.crop.w * fit.w, h: ENTRY.crop.h * fit.h } : null;
+    $('#eCrop').hidden = false; $('#eCropOk').disabled = !sel; desenha(); cv.scrollIntoView({ block: 'nearest' });
+  });
+  cv.addEventListener('pointerdown', (e) => { if (!fit) return; drag = pos(e); sel = { x: drag.x, y: drag.y, w: 0, h: 0 }; try { cv.setPointerCapture(e.pointerId); } catch (er) {} desenha(); });
+  cv.addEventListener('pointermove', (e) => { if (!drag) return; const p = pos(e); const x0 = clamp(Math.min(drag.x, p.x), fit.x, fit.x + fit.w), y0 = clamp(Math.min(drag.y, p.y), fit.y, fit.y + fit.h), x1 = clamp(Math.max(drag.x, p.x), fit.x, fit.x + fit.w), y1 = clamp(Math.max(drag.y, p.y), fit.y, fit.y + fit.h); sel = { x: x0, y: y0, w: x1 - x0, h: y1 - y0 }; desenha(); });
+  const fim = () => { if (!drag) return; drag = null; $('#eCropOk').disabled = !(sel && sel.w > 24 && sel.h > 24); };
+  cv.addEventListener('pointerup', fim); cv.addEventListener('pointercancel', fim);
+  $('#eCropOk').addEventListener('click', () => { if (!sel || !fit) return; ENTRY.crop = { x: (sel.x - fit.x) / fit.w, y: (sel.y - fit.y) / fit.h, w: sel.w / fit.w, h: sel.h / fit.h }; $('#eCrop').hidden = true; Snd.pop(); processDrawing(ENTRY.slot != null); });
+  $('#eCropAll').addEventListener('click', () => { ENTRY.crop = null; sel = null; $('#eCrop').hidden = true; processDrawing(ENTRY.slot != null); });
+}
+
 // aplica o progresso escolhido ao mundo já montado (itens colocados, folhas douradas, lareira, Pena)
 function aplicarSave() {
   for (const e of PLACED_MESH.values()) { scene.remove(e.m); if (e.it) e.it.dead = true; } PLACED_MESH.clear();
