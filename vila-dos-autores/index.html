@@ -2323,7 +2323,7 @@ async function boot() {
   applySeason(S.season === 'auto' || !SEASONS[S.season] ? seasonByDate() : S.season);
   for (let i = 0; i < 10 && SPAWN_PTS.length; i++) { const p = SPAWN_PTS[(i * 7) % SPAWN_PTS.length]; spawnWorldItem(pickSpawnItem(), 'vila', p.x, p.z); }
   applyFire(); bindInput(); bindEntry(); addEventListener('resize', onResize);
-  if (window.__vilaTest) window.__vila = { get S() { return S; }, GAME, P, Srv, Voz, openAlbum, openMissao, openCaderno, MISSOES, cutDrawing, API, HOUSES, ROOMS, Net, REMOTES, postMural, coletivaTotals, advance, startPlace, confirmPlace, openBau, PENA, WITEMS, enterHouse, exitHouse, startGame, openCraft, openMochila, applySeason, addItem, award, renderer, scene, get ENGINE() { return ENGINE; } };
+  if (window.__vilaTest) window.__vila = { get S() { return S; }, GAME, P, Srv, Voz, iconURL, ITEMS, RECIPES, SELOS, SEASONS, drawPena, sampleSticker, coverCanvas, pageCanvas, openSelos, openMural, openColetiva, openCaderno, say, refreshQuest, applyFire, drawChalk, startPlace, openAlbum, openMissao, openCaderno, MISSOES, cutDrawing, API, HOUSES, ROOMS, Net, REMOTES, postMural, coletivaTotals, advance, startPlace, confirmPlace, openBau, PENA, WITEMS, enterHouse, exitHouse, startGame, openCraft, openMochila, applySeason, addItem, award, renderer, scene, get ENGINE() { return ENGINE; } };
   renderer.setAnimationLoop(loop);
   $('#loading').hidden = true; showEntry(1);
 }
@@ -2391,7 +2391,7 @@ function falaTexto(l) { return typeof l === 'number' ? VOZES[l] || '' : String(l
 
 // ---------- recorte do desenho do livro (tira papel, moldura e textinhos) ----------
 function cutDrawing(src) {
-  const c = fitCanvas(src, 420, 520), g = c.getContext('2d', { willReadFrequently: true }), W = c.width, H = c.height, N = W * H;
+  const c = fitCanvas(src, 560, 700), g = c.getContext('2d', { willReadFrequently: true }), W = c.width, H = c.height, N = W * H;
   const id = g.getImageData(0, 0, W, H), d = id.data;
   const rs = [], gs = [], bs = [];
   const take = (x, y) => { const i = (y * W + x) * 4; rs.push(d[i]); gs.push(d[i + 1]); bs.push(d[i + 2]); };
@@ -2455,12 +2455,16 @@ function figurinhaNova() {
   if (S.charKey !== 'img' || !PLAYER_CANVAS) return null;
   const sig = S.desenhoSlot != null ? 'livro:' + S.desenhoSlot + (S.desenhoCrop ? ':' + hash32(JSON.stringify(S.desenhoCrop)) : '') : 'foto:' + hash32(DRAWING || '');
   if (sig === S.figSig) return null;
+  // o próprio aparelho diminui: 300x360 em WebP; se o navegador não fizer WebP (Safari), PNG cada vez menor até caber
+  const LIMITE = 88000;
   try {
-    const c = fitCanvas(PLAYER_CANVAS, 132, 164);
-    let url = c.toDataURL('image/webp', 0.86); if (!url.startsWith('data:image/webp')) url = c.toDataURL('image/png');
-    if (url.length > 88000) url = fitCanvas(PLAYER_CANVAS, 96, 120).toDataURL('image/png');
-    return url.length < 88000 ? { url, sig } : null;
-  } catch (e) { return null; }
+    for (const [w, hh] of [[300, 360], [260, 312], [220, 264], [180, 216], [132, 164]]) {
+      const c = fitCanvas(PLAYER_CANVAS, w, hh);
+      for (const q of [0.88, 0.78, 0.66]) { const u = c.toDataURL('image/webp', q); if (!u.startsWith('data:image/webp')) break; if (u.length < LIMITE) return { url: u, sig }; }
+      const png = c.toDataURL('image/png'); if (png.length < LIMITE) return { url: png, sig };
+    }
+  } catch (e) {}
+  return null;
 }
 const Srv = {
   dirty: false, busy: false, last: 0, t: 0, erro: false,
@@ -2631,7 +2635,7 @@ function showStep2() {
   } else $('#eNome').value = S.nome || '';
   ENTRY.desenhos = cod ? (Array.isArray(S.livroDesenhos) ? S.livroDesenhos.slice(0, 8) : []) : [];
   ENTRY.pick = S.charKey || 'lia'; ENTRY.canvas = null; ENTRY.slot = S.desenhoSlot != null ? S.desenhoSlot : null;
-  ENTRY.src = null; ENTRY.crop = null; $('#eCrop').hidden = true; $('#eCropRow').hidden = true;
+  ENTRY.src = null; ENTRY.crop = null; ENTRY.pre = false; $('#eCrop').hidden = true; $('#eCropRow').hidden = true;
   const grid = $('#eChars'); grid.innerHTML = '';
   for (const d of ENTRY.desenhos) {
     grid.append(h('button', { type: 'button', class: 'ch livro', 'data-s': d.s, onclick: () => pickLivro(d.s, false) }, h('img', { src: apiURL('vila-desenho', { c: S.codigo, s: d.s }), alt: '', loading: 'lazy', decoding: 'async' }), String(d.r || 'Desenho').slice(0, 14)));
@@ -2729,7 +2733,7 @@ function bindEntry() {
       S.nome = nome; S.turma = ''; S.codigo = ''; S.vid = '';
     }
     if (ENTRY.pick === 'img') {
-      if (ENTRY.canvas) { const url = ENTRY.canvas.toDataURL('image/png'); saveDrawing(url); S.desenhoSlot = ENTRY.slot != null ? ENTRY.slot : null; S.desenhoCrop = ENTRY.slot != null && ENTRY.crop ? ENTRY.crop : null; }
+      if (ENTRY.canvas) { const url = ENTRY.canvas.toDataURL('image/png'); saveDrawing(url); S.desenhoSlot = ENTRY.slot != null ? ENTRY.slot : null; S.desenhoCrop = ENTRY.slot != null && ENTRY.crop ? ENTRY.crop : null; if (ENTRY.pre && S.desenhoSlot == null) S.figSig = 'foto:' + hash32(DRAWING || ''); }
       else if (!DRAWING) ENTRY.pick = 'lia';
     }
     S.charKey = ENTRY.pick; S.flags.escolheu = 1; save();

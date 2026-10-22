@@ -1,8 +1,40 @@
 # Vila dos Autores (Fábrica de Autores)
 
-Jogo 2.5D da Fase 1 ("Chegada na Vila") e painel da professora.
+Jogo 2.5D da Fase 1 ("Chegada na Vila"), painel da professora e servidor no n8n.
 
-- `index.html`: o jogo. Servido pelo n8n em `/webhook/vila`.
-- `painel.html`: painel da professora. Servido pelo n8n em `/webhook/vila-professora`.
+## O que tem aqui
 
-O n8n busca estes arquivos por um commit fixo (jsDelivr), então mudar este branch não muda o que as crianças veem até o fluxo "Vila — páginas, vozes e imagens" apontar para o commit novo. Para testar um commit antes: `/webhook/vila?v=<sha>`.
+| Pasta / arquivo | O que é |
+| --- | --- |
+| `index.html` | O jogo pronto. Servido pelo n8n em `/webhook/vila`. |
+| `painel.html` | Painel da professora. Servido pelo n8n em `/webhook/vila-professora`. |
+| `guia/Vila-dos-Autores-Guia-de-jogo.pdf` | Guia ilustrado: como funciona e como jogar (crianças, professoras e famílias). |
+| `fonte/src/` | Código do jogo em partes (`01-core.js` até `07-escola.js`, `99-inicio.js`, `head.html`). |
+| `fonte/build.sh` | Junta as partes e gera o `index.html`. |
+| `servidor/` | Os três fluxos do n8n escritos com o Workflow SDK (`paginas.js`, `api.js`, `salas.js`) e o `gen.mjs`, que expande os atalhos para o formato que o validador do n8n aceita. |
+
+## Como mudar o jogo
+
+1. Edite os arquivos em `fonte/src/`.
+2. Rode `fonte/build.sh` para gerar o `index.html`.
+3. Faça o commit e o push.
+4. Teste o commit novo em `/webhook/vila?v=<sha>` (e `/webhook/vila-professora?v=<sha>`).
+5. Troque o commit fixo no fluxo "Vila — páginas, vozes e imagens" (nós "Baixar o jogo" e "Baixar o painel") e publique o fluxo.
+
+O n8n busca os arquivos por um commit fixo (jsDelivr). Por isso, mudar este branch não muda o que as crianças veem até o passo 5.
+
+## Servidor (n8n)
+
+- **Vila — páginas, vozes e imagens**: `/vila`, `/vila-professora`, `/vila-voz`, `/vila-desenho`, `/vila-fig`.
+- **Vila — API**: `vila-entrar`, `vila-salvar`, `vila-turma`, `vila-presente`, `vila-prof-login`, `vila-prof-turma`, `vila-prof-aprovar`.
+- **Vila — salas da turma (sync)**: `vila-sync` (presença, mural, baú da turma, figurinhas aprovadas, presentes).
+
+Os fluxos só leem a planilha da Bia e gravam nas tabelas da Vila. Nenhum fluxo da Bia é alterado.
+
+**Segredos:** em `servidor/api.js` o segredo que gera o identificador das crianças aparece como `TROQUE-POR-UM-SEGREDO` e a planilha como `ID-DA-PLANILHA`. Os valores verdadeiros ficam só dentro do n8n. Não coloque códigos de alunos, códigos de acesso de colégio nem o segredo neste repositório (ele é público).
+
+## Privacidade
+
+- Os colegas veem só o primeiro nome.
+- A figurinha de cada criança só aparece para a turma depois que a professora aprova no painel.
+- Nada fica guardado no aparelho da criança: o progresso fica no servidor.
