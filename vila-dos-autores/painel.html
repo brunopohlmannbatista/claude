@@ -137,8 +137,8 @@ dd{margin:0}
     finally { clearTimeout(t); }
   }
   function toast(m) { const el = h('div', { class: 'toast', role: 'status' }, m); document.body.append(el); setTimeout(() => el.remove(), 2600); }
-  const SELO_IC = { autor: '🏅', explorador: '🧭', douradas: '🍂', artesao: '🔨', livro: '📚', historia: '📜', album: '📒' };
-  const SELO_NM = { autor: 'Autor(a) da Vila', explorador: 'Explorador(a)', douradas: 'Folhas douradas', artesao: 'Artesã(o)', livro: 'Mini-livro', historia: 'História completa', album: 'Álbum completo' };
+  const SELO_IC = { autor: '🏅', explorador: '🧭', douradas: '🍂', artesao: '🔨', livro: '📚', historia: '📜', album: '📒', cantinho: '🏡' };
+  const SELO_NM = { autor: 'Autor(a) da Vila', explorador: 'Explorador(a)', douradas: 'Folhas douradas', artesao: 'Artesã(o)', livro: 'Mini-livro', historia: 'História completa', album: 'Álbum completo', cantinho: 'Cantinho decorado' };
   const MISS = { biblioteca: 'Personagem', atelie: 'Cenário', grafica: 'Problema', correio: 'Final' };
   let SES = ss.get('vila-prof'), TURMA = null, DATA = null;
 
@@ -149,7 +149,7 @@ dd{margin:0}
     const hh = Math.round(m / 60); if (hh < 24) return `visto há ${hh} h`;
     return 'visto em ' + new Date(ms).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
   }
-  function progresso(r) { const tut = Math.min(7, +r.tut || 0), mi = (r.missoes || []).length; return { n: tut + mi, tot: 11, txt: tut < 7 ? `Tutorial ${tut}/7` : `Tutorial completo · missões ${mi}/4` }; }
+  function progresso(r) { const tut = Math.min(7, +r.tut || 0), mi = (r.missoes || []).length; return { n: tut + mi, tot: 11, txt: (tut < 7 ? `Tutorial ${tut}/7` : `Tutorial completo · missões ${mi}/4`) + ((r.selos || []).includes('cantinho') ? ' · cantinho 🏡' : '') }; }
 
   function showLogin(msg) { $('#vLogin').hidden = false; $('#vPainel').hidden = true; $('#bSair').hidden = true; $('#eLogin').textContent = msg || ''; setTimeout(() => $('#iAcesso').focus(), 50); }
   async function login() {
@@ -220,6 +220,7 @@ dd{margin:0}
     if (hist.problema) add('Problema', `${hist.problema.oque} (quem ajuda: ${hist.problema.ajuda})`);
     if (hist.final) add('Final', `Final ${hist.final.tipo}: “${hist.final.frase}” · para ${hist.final.para}`);
     add('Selos', (r.selos || []).map((s) => SELO_NM[s] || s).join(', '));
+    if (r.cantinho) add('Meu Cantinho', `${r.cantinho.enfeites || 0} enfeite(s) · ${r.cantinho.flores || 0} flor(es) no canteiro`);
     add('Na vila', [r.album != null ? `álbum ${r.album}/31` : '', r.douradas != null ? `${r.douradas} folhas douradas` : '', r.criacoes != null ? `${r.criacoes} criações` : '', r.casas != null ? `${r.casas}/5 casas` : ''].filter(Boolean).join(' · '));
     return h('article', { class: 'card kid' },
       h('div', { class: 'fig' }, figBox, h('div', { style: 'display:grid;gap:4px;justify-items:center' }, st, acts)),

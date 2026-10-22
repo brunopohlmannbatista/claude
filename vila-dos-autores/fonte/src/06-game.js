@@ -100,7 +100,7 @@ function updatePlayer(dt, t) {
   }
   const len = Math.hypot(ix, iz); if (len > 1) { ix /= len; iz /= len; }
   if (P.sitting) { if (len > 0.1) standUp(); else { P.pos.set(P.sitting.x, 0, P.sitting.z); } }
-  const sp = GAME.area === 'vila' ? 6.2 : 4.4, kk = 1 - Math.exp(-dt * 12);
+  const sp = GAME.area === 'vila' ? 6.2 : GAME.area === 'cantinho' ? 5.2 : 4.4, kk = 1 - Math.exp(-dt * 12);
   if (!P.sitting) {
     P.vel.x = lerp(P.vel.x, ix * sp, kk); P.vel.z = lerp(P.vel.z, iz * sp, kk);
     const ox = P.pos.x, oz = P.pos.z;
@@ -121,7 +121,8 @@ function updateCamera(dt) { camTarget(_ct, _cl); const k = 1 - Math.exp(-dt * 5)
 function aspectZoom() { const a = innerWidth / innerHeight; return a < 1.25 ? Math.pow(clamp(1.25 / a, 1, 2.4), 0.55) : 1; }
 function camTarget(out, look) {
   const az = aspectZoom();
-  if (GAME.area === 'vila') { const z = CAM.zoom * az; out.set(P.pos.x, 17 * z, P.pos.z + 16.5 * z); look.set(P.pos.x, 0.9, P.pos.z); camFocus.x = P.pos.x; camFocus.z = P.pos.z; }
+  if (GAME.area === 'cantinho') { const z = CAM.zoom * az, lx = lerp(P.pos.x, CANT_X, 0.35), lz = lerp(P.pos.z, CANT_Z - 1.5, 0.5); out.set(lx, 1 + 15.5 * z, lz + 18 * z); look.set(lx, 1.0, lz); camFocus.x = lx; camFocus.z = lz; }
+  else if (areaExterna(GAME.area)) { const z = CAM.zoom * az; out.set(P.pos.x, 17 * z, P.pos.z + 16.5 * z); look.set(P.pos.x, 0.9, P.pos.z); camFocus.x = P.pos.x; camFocus.z = P.pos.z; }
   else { const R = ROOMS[GAME.area], lx = R.ox + (P.pos.x - R.ox) * 0.35, lz = P.pos.z * 0.22 + 0.4; out.set(lx, 8.6 * az, lz + 11.4 * az); look.set(lx, 1.3, lz - 0.9); }
 }
 function snapCam() { camTarget(CAM_POS, CAM_LOOK); camera.position.copy(CAM_POS); camera.lookAt(CAM_LOOK); }
@@ -129,9 +130,9 @@ function snapCam() { camTarget(CAM_POS, CAM_LOOK); camera.position.copy(CAM_POS)
 // ---------- áreas: entrar e sair das casas ----------
 function setArea(a) {
   if (ROOMS[GAME.area]) ROOMS[GAME.area].g.visible = false;
-  GAME.area = a; VILLAGE.group.visible = a === 'vila';
+  GAME.area = a; VILLAGE.group.visible = a === 'vila'; if (CANT.group) CANT.group.visible = a === 'cantinho';
   if (ROOMS[a]) ROOMS[a].g.visible = true;
-  if (a === 'vila') { const s = SEASONS[GAME.season]; scene.background.setHex(s.sky); scene.fog.color.setHex(s.sky); scene.fog.near = 48; scene.fog.far = 120; }
+  if (areaExterna(a)) { const s = SEASONS[GAME.season]; scene.background.setHex(s.sky); scene.fog.color.setHex(s.sky); scene.fog.near = 48; scene.fog.far = 120; }
   else { scene.background.setHex(0x3a2b4a); scene.fog.color.setHex(0x3a2b4a); scene.fog.near = 80; scene.fog.far = 220; }
   S.area = a; save(); updatePenaArea(); Net.sendPresence(true);
 }
@@ -224,6 +225,7 @@ function talkPena() {
     'Quando seus colegas da turma entram com o código deles, vocês se encontram aqui na vila.',
     'O Baú da Turma, aqui na praça, junta doações de todo mundo para montar o Arco da Turma.',
     'Dica de autora: ' + pick(DICAS),
+    'Seu cantinho fica no fim do caminho de flores que sai da praça. Lá você planta, decora e recebe visitas da turma!',
   ];
   say([pick(pool)]);
 }
@@ -273,12 +275,14 @@ function questData() {
     case 4: return ['A surpresa da Pena', [['Entre na Casa da Pena, a amarela com "!"', 0]]];
     case 5: case 6: { const g = ['p1', 'p2', 'p3'].filter((k) => S.found[k]).length; return ['Tarefas da Casa da Pena', [['Guardar uma ideia no Caderno de Ideias', !!S.flags.idea], ['Escrever o título e a primeira frase (no Caderno)', escritaOk()], ['Acender a lareira', !!S.flags.fogo], [`Achar folhas douradas aqui dentro ${g}/3`, g >= 3], ['Abrir o Baú de Conquistas', 0]]]; }
     default: {
-      if (missoesFeitas() < 4) { const m = (id) => !!(S.missoes && S.missoes[id]); return ['Missões da história', [['Biblioteca: quem é o personagem', m('biblioteca')], ['Ateliê: onde a história acontece', m('atelie')], ['Gráfica: o problema', m('grafica')], ['Correio: o final', m('correio')]]]; } const v = Object.keys(S.visited).length, c = S.crafts || 0; return ['Explore a vila', [[`Visitar as 5 casas ${Math.min(v, 5)}/5`, v >= 5], [`Folhas douradas ${goldCount()}/${GOLD_SPOTS.length}`, goldCount() >= GOLD_SPOTS.length], [`Criar coisas ${Math.min(c, 5)}/5`, c >= 5], ['Encadernar um Mini-livro na Gráfica', !!S.selos.livro], [`Álbum ${albumCount()}/${Object.keys(ITEMS).length}`, albumCount() >= Object.keys(ITEMS).length]]]; }
+      if (CANT_AREAS.has(GAME.area) && CANT.dono) return [`Casa de ${CANT.dono.n}`, [['Você está visitando 👋', 1], ['Volte pela caixa de correio ou pelo caminho', 0]]];
+      if (CANT_AREAS.has(GAME.area) && !S.selos.cantinho) return ['Decore seu cantinho', Cantinho.tarefas()];
+      if (missoesFeitas() < 4) { const m = (id) => !!(S.missoes && S.missoes[id]); return ['Missões da história', [['Biblioteca: quem é o personagem', m('biblioteca')], ['Ateliê: onde a história acontece', m('atelie')], ['Gráfica: o problema', m('grafica')], ['Correio: o final', m('correio')]]]; } const v = Object.keys(S.visited).length, c = S.crafts || 0; return ['Explore a vila', [[`Visitar as 5 casas ${Math.min(v, 5)}/5`, v >= 5], [`Folhas douradas ${goldCount()}/${GOLD_SPOTS.length}`, goldCount() >= GOLD_SPOTS.length], [`Criar coisas ${Math.min(c, 5)}/5`, c >= 5], ['Encadernar um Mini-livro na Gráfica', !!S.selos.livro], ['Decorar o Meu Cantinho', !!S.selos.cantinho], [`Álbum ${albumCount()}/${Object.keys(ITEMS).length}`, albumCount() >= Object.keys(ITEMS).length]]]; }
   }
 }
 function refreshQuest() {
   if (!$('#qTitle')) return;
-  const q = questData(); $('#qEyebrow').textContent = S.tut >= 7 ? (missoesFeitas() < 4 ? `Missões da história · ${missoesFeitas()}/4` : 'Livre para explorar') : `Missão ${Math.min(S.tut + 1, 7)} de 7`; $('#qTitle').textContent = q[0];
+  const q = questData(); $('#qEyebrow').textContent = S.tut >= 7 ? (CANT_AREAS.has(GAME.area) ? (CANT.dono ? 'Rua dos Cantinhos · visita' : S.selos.cantinho ? 'Meu Cantinho' : 'Meu Cantinho · missão opcional') : missoesFeitas() < 4 ? `Missões da história · ${missoesFeitas()}/4` : 'Livre para explorar') : `Missão ${Math.min(S.tut + 1, 7)} de 7`; $('#qTitle').textContent = q[0];
   const ul = $('#qList'); ul.innerHTML = ''; q[1].forEach(([tx, d]) => ul.append(h('li', { class: d ? 'done' : '' }, h('span', { class: 'ck' }, d ? '✓' : ''), h('span', {}, tx))));
 }
 const SELOS = {
@@ -289,6 +293,7 @@ const SELOS = {
   livro: { nome: 'Primeiro Mini-livro', ic: '📚', desc: 'Encadernou um mini-livro na Gráfica.' },
   historia: { nome: 'História Completa', ic: '📜', desc: 'Personagem, cenário, problema e final.' },
   album: { nome: 'Colecionador(a)', ic: '📒', desc: 'Encontrou os 31 itens do álbum.' },
+  cantinho: { nome: 'Cantinho Decorado', ic: '🏡', desc: 'Decorou o cantinho e plantou uma flor.' },
 };
 function award(id) { if (S.selos[id]) return; S.selos[id] = Date.now(); save(); Srv.agora(); Snd.fanfare(); confetti(innerWidth / 2, innerHeight / 2, 170); toast(`${SELOS[id].ic} Novo selo: ${SELOS[id].nome}!`); if (id === 'autor') checkDiscoveries(); refreshQuest(); }
 function updateBadges() {
@@ -548,27 +553,29 @@ async function refreshVaral() {
 
 // ---------- decorar: colocar itens no mundo ----------
 const PLACED_MESH = new Map();
-function plantStage(rec) { if (rec.item !== 'florPlantada') return 0; const min = (Date.now() - rec.t) / 60000; return min < 2 ? 0 : min < 5 ? 1 : 2; }
+function plantStage(rec) { if (rec.item !== 'florPlantada') return 0; const min = (Date.now() - rec.t) / 60000; return min < 2 ? 0 : min < 5 ? 1 : rec.slot != null && min >= 30 ? 3 : 2; }
+function placedModel(rec, stage) { const m = rec.item === 'florPlantada' ? MODEL.florPlantada({ stage, c: rec.c, solo: rec.slot != null }) : MODEL[rec.item](); if (rec.slot != null) m.scale.setScalar(1.6); return decorSazonal(m, rec.item); }
 function spawnPlaced(rec) {
   if (!MODEL[rec.item]) return;
-  const stage = plantStage(rec);
-  const m = rec.item === 'florPlantada' ? MODEL.florPlantada({ stage, c: rec.c }) : MODEL[rec.item]();
+  const stage = plantStage(rec), m = placedModel(rec, stage);
   m.position.set(rec.x, rec.y || 0, rec.z); m.rotation.y = rec.r || 0; scene.add(m);
-  const it = rec.door ? null : inter({ area: rec.area, x: rec.x, z: rec.z, r: 1.3, y: 1.6, prio: -1, label: () => `✋ Guardar ${ITEMS[rec.item].nome}`, act: () => pickUpPlaced(rec) });
+  const cant = CANT_AREAS.has(rec.area);
+  const it = rec.door || rec.fach ? null : inter({ area: rec.area, x: rec.x, z: rec.z, r: 1.3, y: 1.6, prio: -1, label: () => (cant && CANT.dono ? null : `✋ Guardar ${ITEMS[rec.item].nome}`), act: () => pickUpPlaced(rec) });
   PLACED_MESH.set(rec.id, { m, it, stage, rec });
 }
-function pickUpPlaced(rec) { const e = PLACED_MESH.get(rec.id); if (e) { scene.remove(e.m); if (e.it) e.it.dead = true; PLACED_MESH.delete(rec.id); } S.placed = S.placed.filter((p) => p.id !== rec.id); save(); addItem(rec.item, 1); Snd.pop(); }
+function pickUpPlaced(rec) { const e = PLACED_MESH.get(rec.id); if (e) { scene.remove(e.m); if (e.it) e.it.dead = true; PLACED_MESH.delete(rec.id); } S.placed = S.placed.filter((p) => p.id !== rec.id); save(); addItem(rec.item, 1); Snd.pop(); if (CANT_AREAS.has(rec.area)) Cantinho.aoMudar(); }
 let plantT = 0;
 function updatePlaced(dt, t) {
   plantT += dt; const check = plantT > 3; if (check) plantT = 0;
   for (const e of PLACED_MESH.values()) {
-    e.m.visible = e.rec.area === GAME.area;
+    e.m.visible = e.rec.area === GAME.area && !(CANT.dono && CANT_AREAS.has(e.rec.area));
     if (e.rec.item === 'enfeiteJanela' && e.m.visible) e.m.children.forEach((c) => { if (c.userData.sw !== undefined) c.rotation.z = Math.sin(t * 2 + c.userData.sw) * 0.25; });
-    if (check && e.rec.item === 'florPlantada') { const s = plantStage(e.rec); if (s !== e.stage) { scene.remove(e.m); e.m = MODEL.florPlantada({ stage: s, c: e.rec.c }); e.m.position.set(e.rec.x, 0, e.rec.z); scene.add(e.m); e.stage = s; if (s === 2 && GAME.area === e.rec.area) toast('🌼 Sua flor plantada desabrochou!'); } }
+    if (check && e.rec.item === 'florPlantada') { const s = plantStage(e.rec); if (s !== e.stage) { scene.remove(e.m); e.m = placedModel(e.rec, s); e.m.position.set(e.rec.x, 0, e.rec.z); scene.add(e.m); e.stage = s; if (s === 2 && GAME.area === e.rec.area) toast('🌼 Sua flor plantada desabrochou!'); if (s === 3 && GAME.area === e.rec.area) toast('🌸 A flor do canteiro deu mais flores!'); } }
   }
 }
 function startPlace(item) {
   closePanel(); if (!(S.inv[item] > 0)) return;
+  if (CANT_AREAS.has(GAME.area) && CANT.dono) { toast('Você está visitando: decore o seu próprio cantinho! 🏡'); Snd.nope(); return; }
   const ghost = item === 'florPlantada' ? MODEL.florPlantada({ stage: 0 }) : MODEL[item](); scene.add(ghost);
   GAME.placing = { item, ghost, rot: 0, door: null, pos: null };
   $('#placeBar').hidden = false; $('#placeMsg').textContent = ITEMS[item].door ? 'Ande até uma porta para pendurar (ou escolha um lugar no chão)' : 'Ande para escolher o lugar';
@@ -577,21 +584,26 @@ function updatePlace(dt, t) {
   const pl = GAME.placing; if (!pl) return;
   let x = P.pos.x + P.dir.x * 1.5, z = P.pos.z + P.dir.z * 1.5, y = ITEMS[pl.item].groundY || 0, ry = pl.rot; pl.door = null;
   if (ITEMS[pl.item].door && GAME.area === 'vila') for (const H of Object.values(HOUSES)) { if (Math.hypot(H.doorX - P.pos.x, H.doorZ - P.pos.z) < 3.2) { pl.door = H.id; x = H.wreathX; z = H.wreathZ; y = 2.2; ry = H.rot; break; } }
-  if (GAME.area !== 'vila') { const b = BOUNDS[GAME.area]; x = clamp(x, b.x0 + 0.3, b.x1 - 0.3); z = clamp(z, b.z0 + 0.2, b.z1 - 0.6); }
-  pl.ghost.position.set(x, y + (pl.door ? 0 : Math.sin(t * 6) * 0.05), z); pl.ghost.rotation.y = ry; pl.ghost.visible = Math.sin(t * 10) > -0.7;
+  if (CANT_AREAS.has(GAME.area)) { const r = Cantinho.regra(pl, x, z, y, ry); x = r.x; z = r.z; y = r.y; ry = r.ry; }
+  else if (GAME.area !== 'vila') { const b = BOUNDS[GAME.area]; x = clamp(x, b.x0 + 0.3, b.x1 - 0.3); z = clamp(z, b.z0 + 0.2, b.z1 - 0.6); }
+  const preso = pl.door || pl.fach || pl.slot != null;
+  pl.ghost.position.set(x, y + (preso ? 0 : Math.sin(t * 6) * 0.05), z); pl.ghost.rotation.y = ry; pl.ghost.visible = pl.bad ? Math.sin(t * 18) > 0 : Math.sin(t * 10) > -0.7;
   pl.pos = { x, y, z, ry };
-  $('#placeMsg').textContent = pl.door ? `Pendurar na porta: ${HOUSES[pl.door].nome}` : (S.tut === 3 && pl.item === 'guirlanda' ? 'Chegue pertinho de uma porta para pendurar' : 'Ande para escolher o lugar');
+  $('#placeMsg').textContent = pl.door ? `Pendurar na porta: ${HOUSES[pl.door].nome}` : CANT_AREAS.has(GAME.area) ? Cantinho.msgColocar(pl) : (S.tut === 3 && pl.item === 'guirlanda' ? 'Chegue pertinho de uma porta para pendurar' : 'Ande para escolher o lugar');
 }
 function confirmPlace() {
-  const pl = GAME.placing; if (!pl || !pl.pos) return;
+  const pl = GAME.placing; if (pl && !pl.pos) updatePlace(0, GAME.t); if (!pl || !pl.pos) return;
   if (S.tut === 3 && pl.item === 'guirlanda' && !pl.door) { toast('Para a missão, chegue pertinho de uma porta 🚪'); Snd.nope(); return; }
   if (pl.door && S.placed.some((p) => p.door === pl.door)) { toast('Essa porta já tem uma guirlanda!'); Snd.nope(); return; }
+  if (CANT_AREAS.has(GAME.area) && !Cantinho.pode(pl)) return;
   if (!(S.inv[pl.item] > 0)) return cancelPlace();
   takeItems({ [pl.item]: 1 });
   const rec = { id: uid(), item: pl.item, area: GAME.area, x: pl.pos.x, y: pl.pos.y, z: pl.pos.z, r: pl.pos.ry, door: pl.door, t: Date.now() };
+  if (pl.fach) rec.fach = pl.fach; if (pl.slot != null) rec.slot = pl.slot;
   if (pl.item === 'florPlantada') rec.c = pick([0xffd23f, 0xff8fb8, 0xa77bff, 0xff5e5e]);
   S.placed.push(rec); save(); spawnPlaced(rec);
   scene.remove(pl.ghost); GAME.placing = null; $('#placeBar').hidden = true; Snd.pop(); burst(rec.x, (rec.y || 0) + 0.8, rec.z);
+  if (CANT_AREAS.has(rec.area)) { if (rec.slot != null) Snd.plant(); Cantinho.aoMudar(); }
   if (S.tut === 3 && rec.item === 'guirlanda' && rec.door) { S.tut = 4; save(); refreshQuest(); setTimeout(() => say([7], () => { penaGoHome(); refreshQuest(); }), 300); }
 }
 function cancelPlace() { const pl = GAME.placing; if (!pl) return; scene.remove(pl.ghost); GAME.placing = null; $('#placeBar').hidden = true; }
@@ -600,6 +612,7 @@ function cancelPlace() { const pl = GAME.placing; if (!pl) return; scene.remove(
 function villageInters() {
   for (const H of Object.values(HOUSES)) inter({ x: H.doorX, z: H.doorZ, r: 2.3, y: 3.4, label: () => (H.id === 'pena' && S.tut < 4 ? '🔒 Casa da Pena' : `🚪 Entrar · ${H.nome}`), act: () => enterHouse(H.id) });
   inter({ x: 0, z: 3.9, r: 1.9, y: 3.2, label: () => '💧 Pegar água da fonte', act: () => { if (cooldown('agua', 2)) return; addItem('agua'); Snd.tone(600, 0.2, 'sine', 0.15, 0, 1200); Snd.noise(0.3, 0.1, 2500); } });
+  inter({ x: PORTAL.ix, z: PORTAL.iz, r: 2.4, y: 4.3, label: () => (Cantinho.liberado() ? '🏡 Ir para o Meu Cantinho' : '🔒 Meu Cantinho'), act: () => Cantinho.ir(null) });
   const b = VILLAGE.bauTurma.position; inter({ x: b.x + 0.9, z: b.z + 0.5, r: 1.8, y: 2.4, obj: VILLAGE.bauTurma, hopH: 0.2, label: () => '🧺 Baú da Turma', act: openColetiva });
 }
 
@@ -652,7 +665,7 @@ function bindInput() {
   cv.addEventListener('pointermove', (e) => { if (!PTR.down || e.pointerId !== PTR.id) return; const dx = e.clientX - PTR.sx, dy = e.clientY - PTR.sy, d = Math.hypot(dx, dy); if (d > 14) { PTR.joy = true; const k = Math.min(1, d / 70); PTR.jx = (dx / d) * k; PTR.jz = (dy / d) * k; } });
   const up = (e) => { if (e.pointerId !== PTR.id) return; const wasJoy = PTR.joy; PTR.down = false; PTR.joy = false; PTR.jx = PTR.jz = 0; if (!wasJoy && e.type === 'pointerup' && performance.now() - PTR.t0 < 450) tapAt(e.clientX, e.clientY); };
   cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
-  cv.addEventListener('wheel', (e) => { if (GAME.area === 'vila') CAM.zoom = clamp(CAM.zoom + Math.sign(e.deltaY) * 0.06, 0.7, 1.35); }, { passive: true });
+  cv.addEventListener('wheel', (e) => { if (areaExterna(GAME.area)) CAM.zoom = clamp(CAM.zoom + Math.sign(e.deltaY) * 0.06, 0.7, 1.35); }, { passive: true });
   $('#dialog').addEventListener('click', (e) => { if (e.target.id === 'voz') return; advance(); });
   $('#voz').addEventListener('click', (e) => { e.stopPropagation(); if (GAME.dlg && GAME.dlg.voz) { Voz.play(GAME.dlg.voz); return; } S.voz = !S.voz; save(); $('#voz').classList.toggle('on', S.voz); if (S.voz && GAME.dlg) speak(GAME.dlg.full); else try { speechSynthesis.cancel(); } catch (er) {} });
   $('#act').addEventListener('click', () => { Snd.ensure(); if (GAME.dlg) return advance(); if (performance.now() - (GAME.dlgClosed || 0) < 450) return; if (GAME.cur) doInteract(GAME.cur); else if (P.sitting) standUp(); });
@@ -684,7 +697,7 @@ function loop() {
   const now = performance.now(), dt = Math.min(0.05, (now - lastT) / 1000); lastT = now; GAME.t += dt; const t = GAME.t;
   if (GAME.entryOrbit) { const a = t * 0.06; camera.position.set(Math.sin(a) * 30, 17, Math.cos(a) * 30 + 2); camera.lookAt(0, 1.5, -3); camFocus.x = 0; camFocus.z = 0; }
   else { updatePlayer(dt, t); updateCamera(dt); }
-  updatePena(dt, t); updateWorldItems(dt, t); updateInters(dt); updateAmbient(dt, t); updateParticles(dt, t); updatePlace(dt, t); updatePlaced(dt, t); updateRemotes(dt, t); updateMissoes(dt, t); runAnims(dt); Net.tick(dt); Srv.tick(dt); updateLabels();
+  updatePena(dt, t); updateWorldItems(dt, t); updateInters(dt); updateAmbient(dt, t); updateParticles(dt, t); updatePlace(dt, t); updatePlaced(dt, t); updateRemotes(dt, t); updateMissoes(dt, t); Cantinho.update(dt, t); runAnims(dt); Net.tick(dt); Srv.tick(dt); updateLabels();
   posSaveT += dt; if (posSaveT > 2 && GAME.started) { posSaveT = 0; if (GAME.area === 'vila') { S.x = Math.round(P.pos.x * 10) / 10; S.z = Math.round(P.pos.z * 10) / 10; save(); } }
   renderer.render(scene, camera);
 }
@@ -699,12 +712,12 @@ async function boot() {
   _v = new T.Vector3(); _ct = new T.Vector3(); _cl = new T.Vector3(); CAM_POS = new T.Vector3(0, 20, 40); CAM_LOOK = new T.Vector3(); RAY = new T.Raycaster(); GROUND = new T.Plane(new T.Vector3(0, 1, 0), 0);
   P.pos = new T.Vector3(0, 0, 25); P.vel = new T.Vector3(); P.dir = new T.Vector3(0, 0, -1);
   PROMPT_EL = h('div', { class: 'lbl prompt', hidden: true }, h('span', {}, ''), h('kbd', {}, 'E')); ME_LBL = h('div', { class: 'lbl name me', hidden: true }); $('#labels').append(PROMPT_EL, ME_LBL);
-  initMats(); initLights(); buildVillage(); Object.keys(ROOM_DEFS).forEach(buildRoom);
+  initMats(); initLights(); buildVillage(); Object.keys(ROOM_DEFS).forEach(buildRoom); buildCantinho();
   initGoldSpots(); initSpawnPoints(); createPena(); villageInters(); initMissoes();
   applySeason(S.season === 'auto' || !SEASONS[S.season] ? seasonByDate() : S.season);
   for (let i = 0; i < 10 && SPAWN_PTS.length; i++) { const p = SPAWN_PTS[(i * 7) % SPAWN_PTS.length]; spawnWorldItem(pickSpawnItem(), 'vila', p.x, p.z); }
   applyFire(); bindInput(); bindEntry(); addEventListener('resize', onResize);
-  if (window.__vilaTest) window.__vila = { get S() { return S; }, GAME, P, Srv, Voz, iconURL, ITEMS, RECIPES, SELOS, SEASONS, drawPena, sampleSticker, coverCanvas, pageCanvas, openSelos, openMural, openColetiva, openCaderno, say, refreshQuest, applyFire, drawChalk, startPlace, openAlbum, openMissao, openCaderno, MISSOES, cutDrawing, API, HOUSES, ROOMS, Net, REMOTES, postMural, coletivaTotals, advance, startPlace, confirmPlace, openBau, PENA, WITEMS, enterHouse, exitHouse, startGame, openCraft, openMochila, applySeason, addItem, award, renderer, scene, get ENGINE() { return ENGINE; } };
+  if (window.__vilaTest) window.__vila = { get S() { return S; }, GAME, P, Srv, Voz, iconURL, ITEMS, RECIPES, SELOS, SEASONS, drawPena, sampleSticker, coverCanvas, pageCanvas, openSelos, openMural, openColetiva, openCaderno, say, refreshQuest, applyFire, drawChalk, startPlace, openAlbum, openMissao, openCaderno, MISSOES, cutDrawing, API, HOUSES, ROOMS, Net, REMOTES, postMural, coletivaTotals, advance, startPlace, confirmPlace, openBau, PENA, WITEMS, enterHouse, exitHouse, startGame, Cantinho, CANT, PLACED_MESH, setArea, plantStage, INTERS, camera, snapCam, openCraft, openMochila, applySeason, addItem, award, renderer, scene, get ENGINE() { return ENGINE; } };
   renderer.setAnimationLoop(loop);
   $('#loading').hidden = true; showEntry(1);
 }

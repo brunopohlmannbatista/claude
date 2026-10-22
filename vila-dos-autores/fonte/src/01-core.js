@@ -33,7 +33,8 @@ function defSave() {
   return { v: 2, nome: '', turma: '', charKey: 'lia', inv: {}, seen: {}, tut: 0, flags: {}, found: {}, visited: {}, selos: {},
     ideas: [], placed: [], season: 'auto', mute: false, voz: false, area: 'vila', x: 0, z: 25, coletiva: { flor: 0, fita: 0, graveto: 0 },
     cartas: [], wearing: null, nomePers: '', crafts: 0, cd: {},
-    titulo: '', frase: '', hist: {}, missoes: {}, codigo: '', vid: '', turmaId: '', colegio: '', tituloLivro: '', livroDesenhos: [], desenhoSlot: null, desenhoCrop: null, figSig: '', figV: 0, figAprov: '', salvoEm: 0 };
+    titulo: '', frase: '', hist: {}, missoes: {}, codigo: '', vid: '', turmaId: '', colegio: '', tituloLivro: '', livroDesenhos: [], desenhoSlot: null, desenhoCrop: null, figSig: '', figV: 0, figAprov: '', salvoEm: 0,
+    cant: { cores: [0, 0, 0], luz: false, quadro: { img: 'pers', txt: 'abertura', livre: '' } } };
 }
 function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
 function lsSet(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
@@ -95,6 +96,13 @@ const Snd = {
   nope() { this.tone(320, 0.12, 'triangle', 0.18, 0, 200); },
   chirp() { const f = rnd(2400, 3400); this.tone(f, 0.07, 'sine', 0.045, 0, f * 1.3); this.tone(f * 1.1, 0.07, 'sine', 0.035, 0.11, f * 1.4); },
   step() { this.noise(0.04, 0.035, 700, 0, 1.5); },
+  plant() { this.noise(0.18, 0.18, 380, 0, 0.7); this.noise(0.15, 0.14, 300, 0.16, 0.7); [660, 880, 1175].forEach((f, i) => this.tone(f, 0.22, 'sine', 0.12, 0.32 + i * 0.08)); },
+  brush() { this.noise(0.25, 0.16, 2400, 0, 0.5); this.noise(0.22, 0.12, 3200, 0.18, 0.5); this.tone(520, 0.12, 'triangle', 0.08, 0.3, 780); },
+  lamp(on) { this.tone(on ? 1400 : 900, 0.03, 'square', 0.06); if (on) this.tone(220, 0.35, 'sine', 0.05, 0.03, 330); },
+  gate() { this.tone(300, 0.35, 'sawtooth', 0.035, 0, 520); this.noise(0.08, 0.12, 1200, 0.32); },
+  boing() { this.tone(180, 0.35, 'sine', 0.2, 0, 420); this.tone(260, 0.25, 'triangle', 0.08, 0.05, 500); },
+  mailbox() { this.tone(1600, 0.08, 'triangle', 0.08); this.tone(2100, 0.25, 'sine', 0.06, 0.06); },
+  chestOpen() { this.tone(160, 0.25, 'sawtooth', 0.045, 0, 110); [784, 988, 1319].forEach((f, i) => this.tone(f, 0.3, 'sine', 0.1, 0.2 + i * 0.08)); },
   fire(on) { clearInterval(this.fireTimer); if (on) this.fireTimer = setInterval(() => { if (typeof GAME !== 'undefined' && GAME.area === 'pena') this.noise(0.04 + Math.random() * 0.06, 0.04 + Math.random() * 0.08, 1800 + Math.random() * 2200, 0, 0.8); }, 150); },
 };
 

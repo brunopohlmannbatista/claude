@@ -115,12 +115,17 @@ const MODEL = {
   marcador() { const g = new T.Group(); part(box(0.3, 0.06, 0.2), M.woodDark, 0, 0.03, 0, 0.02, g); part(box(0.16, 0.62, 0.03), toon(0x7a5cff), 0, 0.37, 0, 0.02, g); part(sph(0.06, 8, 6), toon(0x38c6c0), 0, 0.55, 0.03, 0.015, g); part(box(0.03, 0.25, 0.02), toon(0xff4f6d), 0, 0.8, 0, 0.01, g); return g; },
   enfeiteJanela() { const g = new T.Group(); [-0.35, 0.35].forEach((x) => part(box(0.05, 0.9, 0.05), M.woodDark, x, 0.45, 0, 0.02, g)); part(box(0.85, 0.06, 0.06), M.trunk, 0, 0.92, 0, 0.02, g); [[-0.22, 'c'], [0, 'p'], [0.22, 'c']].forEach(([x, k], i) => { part(box(0.01, 0.3, 0.01), M.ink, x, 0.76, 0, 0, g); const o = k === 'c' ? MODEL.concha() : MODEL.pedra(); o.scale.setScalar(0.6); o.position.set(x, 0.48, 0); g.add(o); o.userData.sw = i; }); return g; },
   florPlantada(o = {}) {
-    const g = new T.Group(); part(cyl(0.22, 0.16, 0.32, 12), toon(0xd9774a), 0, 0.16, 0, 0.03, g); part(cyl(0.2, 0.2, 0.04, 12), toon(0x6b4a2b), 0, 0.31, 0, 0, g);
-    const st = o.stage == null ? 2 : o.stage;
-    if (st === 0) part(sph(0.05, 6, 5), toon(0xa8692e), 0, 0.34, 0, 0.015, g);
-    if (st >= 1) part(cyl(0.025, 0.025, st === 1 ? 0.2 : 0.55, 5), toon(0x3c9a3c), 0, st === 1 ? 0.42 : 0.6, 0, 0.015, g);
-    if (st === 1) { const l = part(sph(0.07, 6, 5), toon(0x5cc05a), 0.05, 0.5, 0, 0.015, g); l.scale.set(1, 0.4, 0.6); }
-    if (st >= 2) { const c = o.c || 0xffd23f; for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2; part(sph(0.1, 8, 6), toon(c), Math.cos(a) * 0.13, 0.92, Math.sin(a) * 0.13, 0.02, g); } part(sph(0.08, 8, 6), toon(0xff8a3c), 0, 0.93, 0, 0.015, g); const l = part(sph(0.1, 8, 6), toon(0x5cc05a), 0.1, 0.55, 0, 0.015, g); l.scale.set(1, 0.35, 0.6); }
+    // com vaso (enfeite) ou direto na terra do canteiro (o.solo); cresce em estágios: semente, brotinho, flor, flor cheia
+    const g = new T.Group(), dy = o.solo ? -0.24 : 0;
+    if (o.solo) { const mt = part(sph(0.22, 10, 6), toon(0x5a3d22), 0, 0.02, 0, 0.02, g); mt.scale.set(1, 0.4, 0.85); }
+    else { part(cyl(0.22, 0.16, 0.32, 12), toon(0xd9774a), 0, 0.16, 0, 0.03, g); part(cyl(0.2, 0.2, 0.04, 12), toon(0x6b4a2b), 0, 0.31, 0, 0, g); }
+    const st = o.stage == null ? 2 : o.stage, c = o.c || 0xffd23f;
+    const flor = (x, y, z, s) => { for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2; part(sph(0.1 * s, 8, 6), toon(c), x + Math.cos(a) * 0.13 * s, y, z + Math.sin(a) * 0.13 * s, 0.02, g); } part(sph(0.08 * s, 8, 6), toon(0xff8a3c), x, y + 0.01, z, 0.015, g); };
+    if (st === 0) part(sph(0.05, 6, 5), toon(0xa8692e), 0, 0.34 + dy, 0, 0.015, g);
+    if (st >= 1) part(cyl(0.025, 0.025, st === 1 ? 0.2 : 0.55, 5), toon(0x3c9a3c), 0, (st === 1 ? 0.42 : 0.6) + dy, 0, 0.015, g);
+    if (st === 1) { const l = part(sph(0.07, 6, 5), toon(0x5cc05a), 0.05, 0.5 + dy, 0, 0.015, g); l.scale.set(1, 0.4, 0.6); }
+    if (st >= 2) { flor(0, 0.92 + dy, 0, 1); const l = part(sph(0.1, 8, 6), toon(0x5cc05a), 0.1, 0.55 + dy, 0, 0.015, g); l.scale.set(1, 0.35, 0.6); g.userData.topo = 0.92 + dy; }
+    if (st >= 3) { part(cyl(0.022, 0.022, 0.4, 5), toon(0x3c9a3c), -0.16, 0.5 + dy, 0.05, 0.012, g).rotation.z = 0.35; flor(-0.24, 0.72 + dy, 0.06, 0.75); const l2 = part(sph(0.09, 8, 6), toon(0x5cc05a), -0.12, 0.42 + dy, -0.04, 0.012, g); l2.scale.set(1, 0.35, 0.6); }
     return g;
   },
   pagina() { const g = new T.Group(); [[-0.2, 0.25], [0.2, -0.25]].forEach(([x, r]) => { const l = part(box(0.05, 0.9, 0.05), M.wood, x, 0.45, 0, 0.015, g); l.rotation.z = r; }); part(box(0.62, 0.78, 0.03), M.paper, 0, 0.75, 0.04, 0.02, g); const p = pictureMesh(0.55, 0.7, pageCanvas); p.position.set(0, 0.75, 0.06); g.add(p); return g; },

@@ -1,6 +1,6 @@
 # Vila dos Autores (Fábrica de Autores)
 
-Jogo 2.5D da Fase 1 ("Chegada na Vila"), painel da professora e servidor no n8n.
+Jogo 2.5D da Fase 1 ("Chegada na Vila") e da Fase 2 ("Meu Cantinho"), painel da professora e servidor no n8n.
 
 ## O que tem aqui
 
@@ -8,8 +8,9 @@ Jogo 2.5D da Fase 1 ("Chegada na Vila"), painel da professora e servidor no n8n.
 | --- | --- |
 | `index.html` | O jogo pronto. Servido pelo n8n em `/webhook/vila`. |
 | `painel.html` | Painel da professora. Servido pelo n8n em `/webhook/vila-professora`. |
+| `FASE2-MEU-CANTINHO.md` | Fase 2: o lote de cada criança (casa, jardim, interior, estações, visitas) e a lista de assets. |
 | `guia/Vila-dos-Autores-Guia-de-jogo.pdf` | Guia ilustrado: como funciona e como jogar (crianças, professoras e famílias). |
-| `fonte/src/` | Código do jogo em partes (`01-core.js` até `07-escola.js`, `99-inicio.js`, `head.html`). |
+| `fonte/src/` | Código do jogo em partes (`01-core.js` até `08-cantinho.js`, `99-inicio.js`, `head.html`). |
 | `fonte/build.sh` | Junta as partes e gera o `index.html`. |
 | `servidor/` | Os três fluxos do n8n escritos com o Workflow SDK (`paginas.js`, `api.js`, `salas.js`) e o `gen.mjs`, que expande os atalhos para o formato que o validador do n8n aceita. |
 
@@ -27,7 +28,7 @@ O n8n busca os arquivos por um commit fixo (jsDelivr). Por isso, mudar este bran
 
 - **Vila — páginas, vozes e imagens**: `/vila`, `/vila-professora`, `/vila-voz`, `/vila-desenho`, `/vila-fig`.
 - **Vila — API**: `vila-entrar`, `vila-salvar`, `vila-turma`, `vila-presente`, `vila-prof-login`, `vila-prof-turma`, `vila-prof-aprovar`.
-- **Vila — salas da turma (sync)**: `vila-sync` (presença, mural, baú da turma, figurinhas aprovadas, presentes).
+- **Vila — salas da turma (sync)**: `vila-sync` (presença, mural, baú da turma, figurinhas aprovadas, presentes), `vila-cantinho-salvar` e `vila-cantinho` (Fase 2: guardar o lote e visitar colegas; precisam das colunas `cant` e `cant_em` em `vila_salas`).
 
 Os fluxos só leem a planilha da Bia e gravam nas tabelas da Vila. Nenhum fluxo da Bia é alterado.
 

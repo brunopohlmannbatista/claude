@@ -87,6 +87,7 @@ function buildVillage() {
   const pathTo = (angDeg, r0, r1, w = 2.6) => { const a = (angDeg * Math.PI) / 180, L = r1 - r0, cx = Math.cos(a) * (r0 + L / 2), cz = Math.sin(a) * (r0 + L / 2); const m = part(box(w, 0.06, L), M.path, cx, 0.03, cz, 0.05, V); m.rotation.y = Math.atan2(Math.cos(a), Math.sin(a)); for (let s = 0; s < L / 1.6; s++) { const rr = r0 + 0.8 + s * 1.6; const st = new T.Mesh(cyl(0.38, 0.42, 0.05, 9), M.stoneDark); st.position.set(Math.cos(a) * rr + Math.sin(a) * ((s % 2) - 0.5) * 0.7, 0.07, Math.sin(a) * rr - Math.cos(a) * ((s % 2) - 0.5) * 0.7); V.add(st); } };
   HOUSE_DEFS.forEach((d) => pathTo(d.ang, 9.4, 17.2));
   pathTo(90, 9.4, 33, 3);
+  pathTo(PORTAL.ang, 9.4, 25.4, 2.2);
   buildFountain(V);
   HOUSE_DEFS.forEach((d) => buildHouse(d, V));
   // bancos
@@ -99,8 +100,9 @@ function buildVillage() {
   const treeSpots = [[205, 23, 'r'], [247, 23.5, 'p'], [292, 23.5, 'r'], [335, 23, 'p'], [164, 21.5, 'p'], [16, 21.5, 'r']];
   for (let ang = 150; ang <= 390; ang += 17) treeSpots.push([ang, 30 + (ang % 3), ang % 34 === 0 ? 'p' : 'r']);
   treeSpots.forEach(([ang, r, k], i) => { const a = (ang * Math.PI) / 180; buildTree(V, Math.cos(a) * r, Math.sin(a) * r, 0.9 + ((i * 37) % 10) / 25, k === 'p' ? 'pine' : 'round'); });
-  [[-12, 16, 'round'], [13, 15, 'pine'], [-18, 23, 'pine'], [19, 22, 'round'], [-25, 10, 'round'], [26, 8, 'pine'], [-9, 27, 'pine'], [10, 28, 'round']].forEach(([x, z, k], i) => buildTree(V, x, z, 0.95 + (i % 3) * 0.12, k));
+  [[-12, 16, 'round'], [11.2, 17.4, 'pine'], [-18, 23, 'pine'], [19, 22, 'round'], [-25, 10, 'round'], [26, 8, 'pine'], [-9, 27, 'pine'], [10, 28, 'round']].forEach(([x, z, k], i) => buildTree(V, x, z, 0.95 + (i % 3) * 0.12, k));
   buildEntranceArch(V);
+  buildPortalCantinho(V);
   buildSeasonalProps(V);
   buildColetiva(V);
   initParticles();
@@ -321,7 +323,7 @@ function initParticles() {
 }
 function updateParticles(dt, t) {
   if (!PART.mesh) return;
-  PART.mesh.visible = GAME.area === 'vila';
+  PART.mesh.visible = areaExterna(GAME.area);
   if (!PART.mesh.visible) return;
   const k = SEASONS[GAME.season].part.kind, cx = camFocus.x, cz = camFocus.z, dm = PART.dm;
   for (let i = 0; i < PART.n; i++) {
@@ -346,7 +348,7 @@ function applySeason(key, announce) {
   ROOM_WIN.color.setHex(s.window); M.flag.forEach((m, i) => m.color.setHex(s.flags[i]));
   if (PART.mat) PART.mat.color.setHex(s.part.color);
   LIGHT_AMB.intensity = s.amb; LIGHT_DIR.intensity = s.dir; LIGHT_DIR.color.setHex(s.light);
-  if (GAME.area === 'vila') { scene.background.setHex(s.sky); scene.fog.color.setHex(s.sky); }
+  if (areaExterna(GAME.area)) { scene.background.setHex(s.sky); scene.fog.color.setHex(s.sky); }
   document.body.style.background = s.css; $('#stage').style.background = s.css;
   SEASONAL.forEach((e) => (e.obj.visible = e.seasons.includes(key)));
   VILLAGE.drops.forEach((d) => (d.visible = key !== 'inverno'));

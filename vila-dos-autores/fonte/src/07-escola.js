@@ -120,7 +120,8 @@ function placeholderSticker(nome) {
 function resumoProfessora() {
   return { tut: S.tut, selos: Object.keys(S.selos), douradas: goldCount(), casas: Object.keys(S.visited).length, criacoes: S.crafts || 0, album: albumCount(),
     titulo: String(S.titulo || '').slice(0, 80), frase: String(S.frase || '').slice(0, 300), hist: S.hist || {}, missoes: Object.keys(S.missoes || {}), ideias: S.ideas.length,
-    personagem: S.charKey === 'img' ? (S.desenhoSlot != null ? 'desenho do livro' : 'foto') : 'exemplo', estacao: GAME.season };
+    personagem: S.charKey === 'img' ? (S.desenhoSlot != null ? 'desenho do livro' : 'foto') : 'exemplo', estacao: GAME.season,
+    cantinho: { enfeites: Cantinho.meus().filter((p) => p.slot == null).length, flores: Cantinho.meus('cantinho').filter((p) => p.slot != null).length } };
 }
 function figurinhaNova() {
   if (S.charKey !== 'img' || !PLAYER_CANVAS) return null;
@@ -167,16 +168,19 @@ function makeRemote(id) {
   const crown = MODEL.coroa(); crown.scale.setScalar(0.9); crown.visible = false; bb.pivot.add(crown);
   const lab = h('div', { class: 'lbl name' }); $('#labels').append(lab);
   return {
-    id, bb, lab, crown, x: 0, z: 0, tx: 0, tz: 0, area: '', f: 1, k: '', a: 0, nome: '', init: false, walkT: 0, sit: false, texSig: '',
+    id, bb, lab, crown, x: 0, z: 0, tx: 0, tz: 0, area: '', o: '', f: 1, k: '', a: 0, nome: '', init: false, walkT: 0, sit: false, texSig: '', visita0: false,
     upd(peer) {
       const pr = parseJSON(peer.p || '{}', {});
       this.tx = Number.isFinite(+pr.x) ? +pr.x : 0; this.tz = Number.isFinite(+pr.z) ? +pr.z : 0;
-      const area = String(pr.a || 'vila').slice(0, 20); if (area !== this.area) { this.area = area; this.init = false; }
+      const area = String(pr.a || 'vila').slice(0, 20), o = String(pr.o || '').slice(0, 24); if (area !== this.area || o !== this.o) { this.area = area; this.o = o; this.init = false; }
       this.f = +pr.f < 0 ? -1 : 1; this.sit = !!pr.s; this.crown.visible = !!pr.w;
       const nome = String(peer.n || 'Colega').slice(0, 16); if (nome !== this.nome) { this.nome = nome; lab.textContent = nome; }
       this.k = String(pr.k || '').slice(0, 8); this.a = +peer.a || 0;
       const sig = this.k + ':' + this.a; if (sig !== this.texSig) { this.texSig = sig; this.refreshTex(); }
       if (!this.init) { this.x = this.tx; this.z = this.tz; this.init = true; }
+      const visita = CANT_AREAS.has(this.area) && this.o === S.vid;
+      if (visita && !this.visita0 && GAME.started) { toast(`👋 ${this.nome} veio visitar o seu cantinho!`); Snd.mailbox(); }
+      this.visita0 = visita;
     },
     async refreshTex() {
       let c = null;
@@ -190,7 +194,7 @@ function makeRemote(id) {
 }
 function updateRemotes(dt, t) {
   for (const r of REMOTES.values()) {
-    const vis = r.area === GAME.area && GAME.started; r.bb.root.visible = vis; r.lab.hidden = !vis; if (!vis) continue;
+    const vis = r.area === GAME.area && GAME.started && (!CANT_AREAS.has(r.area) || r.o === Cantinho.donoVid()); r.bb.root.visible = vis; r.lab.hidden = !vis; if (!vis) continue;
     const dx = r.tx - r.x, dz = r.tz - r.z, d = Math.hypot(dx, dz); let walking = false;
     if (d > 14) { r.x = r.tx; r.z = r.tz; }
     else if (d > 0.03) { const s = Math.min(d, Math.max(3.4, d / 0.9) * dt); r.x += (dx / d) * s; r.z += (dz / d) * s; walking = true; if (Math.abs(dx) > 0.05) r.f = dx > 0 ? 1 : -1; }
@@ -203,7 +207,7 @@ const Net = {
   mural: [], turma: [], turmaSig: '', coletivaSrv: null, prox: 3500, t: 0, busy: false, falhas: 0, ligado: false, idle: 0, lastP: '',
   get on() { return Srv.on; },
   start() { this.t = 1e9; this.ui(); },
-  presenceObj() { return { a: GAME.area, x: Math.round(P.pos.x * 50) / 50, z: Math.round(P.pos.z * 50) / 50, f: P.facing, s: P.sitting ? 1 : 0, w: S.wearing === 'coroa' && (S.inv.coroa || 0) > 0 ? 1 : 0, k: S.charKey }; },
+  presenceObj() { return { a: GAME.area, o: CANT_AREAS.has(GAME.area) ? Cantinho.donoVid() : undefined, x: Math.round(P.pos.x * 50) / 50, z: Math.round(P.pos.z * 50) / 50, f: P.facing, s: P.sitting ? 1 : 0, w: S.wearing === 'coroa' && (S.inv.coroa || 0) > 0 ? 1 : 0, k: S.charKey }; },
   sendPresence() { this.t = Math.max(this.t, this.prox - 250); this.idle = 0; },
   tick(dt) {
     if (!this.on || !GAME.started || document.hidden) return;
@@ -239,7 +243,7 @@ const Net = {
       try { const r = await apiPost('vila-turma', { c: S.codigo, vid: S.vid, mural: Number.isInteger(S.flags.muralFig) ? S.flags.muralFig : -1, mural_em: S.flags.muralEm || Date.now(), doacoes }); if (r && r.ok) { S.flags.colEnviado = doacoes; save(); } } catch (e) {}
     }, 1200);
   },
-  giftTargets() { if (!this.on) return []; return [...REMOTES.values()].filter((r) => r.area === GAME.area && Math.hypot(r.x - P.pos.x, r.z - P.pos.z) < 8).map((r) => ({ u: r.id, nome: r.nome })); },
+  giftTargets() { if (!this.on) return []; return [...REMOTES.values()].filter((r) => r.area === GAME.area && (!CANT_AREAS.has(r.area) || r.o === Cantinho.donoVid()) && Math.hypot(r.x - P.pos.x, r.z - P.pos.z) < 8).map((r) => ({ u: r.id, nome: r.nome })); },
   async sendGift(to, item) {
     if (!(S.inv[item] > 0)) return; takeItems({ [item]: 1 });
     try { const r = await apiPost('vila-presente', { c: S.codigo, vid: S.vid, para: to, item }); if (!r || !r.ok) throw new Error('recusado'); toast('🎁 Presente enviado!'); Snd.bell(); Srv.agora(); }
@@ -451,6 +455,7 @@ function aplicarSave() {
   PENA.mode = S.tut >= 4 && S.tut < 7 ? 'inside' : 'idle'; updatePenaArea();
   if (ROOM_FX.chestLid) ROOM_FX.chestLid.rotation.x = S.selos.autor ? -1.9 : 0;
   drawChalk(); drawMural(); refreshColetiva();
+  Cantinho.norm(); CANT.dono = null; CANT.visitaFig = null; Cantinho.aplicarDono();
 }
 async function startGame() {
   $('#entry').hidden = true; GAME.entryOrbit = false;
@@ -461,15 +466,16 @@ async function startGame() {
   if (ROOM_FX.easelMat) { if (ROOM_FX.easelMat.map) ROOM_FX.easelMat.map.dispose(); ROOM_FX.easelMat.map = canvasTex(PLAYER_CANVAS); ROOM_FX.easelMat.needsUpdate = true; }
   aplicarSave();
   refreshVaral();
-  const area = ROOMS[S.area] ? S.area : 'vila';
+  let area = ROOMS[S.area] || S.area === 'cantinho' ? S.area : 'vila';
+  if (CANT_AREAS.has(area) && !Cantinho.liberado()) area = 'vila';
   setArea(area);
-  if (area === 'vila') { P.pos.set(Number.isFinite(S.x) ? S.x : 0, 0, Number.isFinite(S.z) ? S.z : 25); } else { P.pos.set(ROOMS[area].ox, 0, 3.4); }
+  if (area === 'vila') { P.pos.set(Number.isFinite(S.x) ? S.x : 0, 0, Number.isFinite(S.z) ? S.z : 25); } else if (area === 'cantinho') { P.pos.set(cwX(0), 0, cwZ(5.2)); } else { P.pos.set(ROOMS[area].ox, 0, 3.4); }
   resolveColl(GAME.area, P.pos, 0.45);
   snapCam(); $('#hud').hidden = false; GAME.started = true;
   if (!S.cartas.length) { S.cartas.push({ de: 'Pena', txt: 'Bem-vindo(a) à Vila dos Autores! Aqui no Correio chegam cartas e presentes da sua turma. Com carinho, Pena.', em: Date.now(), lida: false }); save(); }
   checkDiscoveries(true); refreshQuest(); updateBadges(); refreshColetiva();
   $('#somIc').textContent = S.mute ? '🔇' : '🔊'; $('#voz').classList.toggle('on', !!S.voz);
-  Net.start(); if (Srv.on) Srv.agora();
+  Net.start(); if (Srv.on) { Srv.agora(); Cantinho.agendar(); }
   Voz.preload(S.tut === 0 ? [1, 2, 3, 4] : S.tut < 5 ? [5, 6, 7, 8] : S.tut < 7 ? [9, 10, 11, 12] : missoesFeitas() < 4 ? [16, 17, 18, 19] : []);
   if (S.tut === 0) toast('Siga o caminho até a fonte: a Pena está esperando! 👣');
   renderer.domElement.focus({ preventScroll: true });
