@@ -489,7 +489,7 @@ const Cantinho = {
     const flor = this.meus('cantinho').some((p) => p.slot != null);
     return [['Colocar um enfeite criado por você', crafted], ['Plantar uma flor no canteiro', flor]];
   },
-  checkMissao() { if (S.selos.cantinho) return; if (this.tarefas().every((t) => t[1])) { award('cantinho'); setTimeout(() => say(['Que cantinho mais lindo! Agora ele tem a sua cara. Você ganhou o selo Cantinho Decorado!'], () => refreshQuest()), 700); } },
+  checkMissao() { if (S.selos.cantinho) return; if (this.tarefas().every((t) => t[1])) { award('cantinho'); setTimeout(() => say([24], () => refreshQuest()), 700); } },
   aoMudar() { save(); refreshQuest(); this.checkMissao(); this.agendar(); },
   // ----- ir e vir -----
   ir(dono) {
@@ -499,7 +499,7 @@ const Cantinho = {
       CANT.dono = dono || null; this.aplicarDono(); setArea('cantinho');
       P.pos.set(cwX(0), 0, cwZ(12.2)); P.vel.set(0, 0, 0); P.target = null; P.sitting = null; P.dir.set(0, 0, -1); snapCam(); Snd.gate();
       if (dono) toast(`🏡 Você está visitando o cantinho de ${dono.n}. Os enfeites são de ${dono.n}!`);
-      else if (!S.flags.cantVisto) { S.flags.cantVisto = 1; save(); setTimeout(() => say(['Bem-vindo(a) ao seu cantinho! Esta casinha é só sua, e o caminho de flores leva de volta para a praça.', 'Plante uma flor no canteiro, pendure enfeites na porta e na janela, e coloque até 3 decorações no jardim.', 'No quadro da entrada fica um pedacinho da sua história. Dá para trocar o desenho e o trecho quando quiser!'], () => refreshQuest()), 500); }
+      else if (!S.flags.cantVisto) { S.flags.cantVisto = 1; save(); Voz.preload([21, 22, 23]); setTimeout(() => say([21, 22, 23], () => refreshQuest()), 500); }
       refreshQuest();
     });
   },

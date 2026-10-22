@@ -6,7 +6,7 @@ O lote individual de cada criança, no mesmo estilo da Fase 1: 2.5D tipo Paper M
 
 - Na praça sai um **caminho de flores** (nordeste) até um portal de madeira com telhadinho e a placa **MEU CANTINHO**.
 - O cantinho abre depois do selo **Autor(a) da Vila** (fim da Casa da Pena). Antes disso, o portal mostra 🔒 e explica.
-- Na primeira vez, um balão rosa com "!" fica em cima do portal e a Pena dá as boas-vindas (3 falas).
+- Na primeira vez, um balão rosa com "!" fica em cima do portal e a Pena dá as boas-vindas (3 falas com voz gravada).
 - Do cantinho, a placa **Praça da Vila** na Rua dos Cantinhos leva de volta.
 
 ## O lote
@@ -97,6 +97,19 @@ Tudo é gerado no navegador (Three.js e Canvas 2D). Não há arquivos de imagem,
 | Textura | Desenhos do livro para o quadro | `/vila-desenho` (já existente) |
 | Som | plantar, pincel, luminária, portão, cama (boing), caixa de correio, baú | Web Audio (osciladores e ruído) |
 | Som | passos, porta, pop, fanfarra do selo | Os da Fase 1 |
+| Voz | 4 falas novas da Pena (21 a 24) | ElevenLabs, servidas por `/vila-voz` |
 | Luz | Luz quente da luminária | `PointLight` |
 
-**Pendente (opcional):** gravar com a voz da Pena as 4 falas novas (3 de boas-vindas ao cantinho e a do selo), como as 20 da Fase 1. Hoje elas aparecem escritas e são lidas pela voz do navegador quando a criança liga "Ler em voz alta".
+## Voz da Pena
+
+As 4 falas da Fase 2 têm voz gravada (ElevenLabs, voz Yasmin, mesmas configurações das 20 da Fase 1) e ficam na tabela `vila_vozes` como 21 a 24:
+- 21: "Que bom ter você aqui no seu cantinho! Esta casinha é só sua, e o caminho de flores leva de volta para a praça."
+- 22: "Plante uma flor no canteiro, pendure enfeites na porta e na janela, e coloque até três decorações no jardim."
+- 23: "No quadro da entrada fica um pedacinho da sua história. Dá para trocar o desenho e o trecho quando quiser!"
+- 24: "Que cantinho mais lindo! Agora ele tem a sua cara. Você ganhou o selo Cantinho Decorado!"
+
+O texto na tela é igual ao áudio.
+
+## Guia em PDF
+
+O guia ilustrado (`guia/Vila-dos-Autores-Guia-de-jogo.pdf`) tem 5 páginas da Fase 2: a casinha e como chegar, plantar/enfeitar/pintar, dentro de casa, as 4 estações e as visitas.

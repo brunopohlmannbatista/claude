@@ -20,7 +20,7 @@ function apiURL(path, q) { return API.base + path + '?' + new URLSearchParams(q)
 function parseJSON(s, d) { try { const v = JSON.parse(s); return v == null ? d : v; } catch (e) { return d; } }
 function hash32(s) { let x = 2166136261 >>> 0; for (let i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619) >>> 0; } return x.toString(36); }
 
-// ---------- as 20 falas gravadas da Pena (o texto na tela é igual ao áudio) ----------
+// ---------- as 24 falas gravadas da Pena (o texto na tela é igual ao áudio; 21 a 24 são do Meu Cantinho) ----------
 const VOZES = {
   1: 'Oi! Que bom que você chegou na Vila dos Autores! Eu sou a Pena, a guardiã das histórias daqui.',
   2: 'Aqui cada criança é autora. E olha só: você veio com o personagem do seu próprio desenho!',
@@ -42,6 +42,10 @@ const VOZES = {
   18: 'Na Gráfica, a gente descobre o problema. Toda história fica emocionante quando alguma coisa dá errado!',
   19: 'No Correio, você escreve como a sua história termina e manda para quem vai ler.',
   20: 'Que história incrível! Personagem, cenário, problema e final: agora a sua história está completinha!',
+  21: 'Que bom ter você aqui no seu cantinho! Esta casinha é só sua, e o caminho de flores leva de volta para a praça.',
+  22: 'Plante uma flor no canteiro, pendure enfeites na porta e na janela, e coloque até três decorações no jardim.',
+  23: 'No quadro da entrada fica um pedacinho da sua história. Dá para trocar o desenho e o trecho quando quiser!',
+  24: 'Que cantinho mais lindo! Agora ele tem a sua cara. Você ganhou o selo Cantinho Decorado!',
 };
 const Voz = {
   cache: {}, cur: null,
@@ -477,6 +481,7 @@ async function startGame() {
   $('#somIc').textContent = S.mute ? '🔇' : '🔊'; $('#voz').classList.toggle('on', !!S.voz);
   Net.start(); if (Srv.on) { Srv.agora(); Cantinho.agendar(); }
   Voz.preload(S.tut === 0 ? [1, 2, 3, 4] : S.tut < 5 ? [5, 6, 7, 8] : S.tut < 7 ? [9, 10, 11, 12] : missoesFeitas() < 4 ? [16, 17, 18, 19] : []);
+  if (Cantinho.liberado() && !S.flags.cantVisto) Voz.preload([21]);
   if (S.tut === 0) toast('Siga o caminho até a fonte: a Pena está esperando! 👣');
   renderer.domElement.focus({ preventScroll: true });
 }

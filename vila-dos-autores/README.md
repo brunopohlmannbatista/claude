@@ -9,7 +9,7 @@ Jogo 2.5D da Fase 1 ("Chegada na Vila") e da Fase 2 ("Meu Cantinho"), painel da 
 | `index.html` | O jogo pronto. Servido pelo n8n em `/webhook/vila`. |
 | `painel.html` | Painel da professora. Servido pelo n8n em `/webhook/vila-professora`. |
 | `FASE2-MEU-CANTINHO.md` | Fase 2: o lote de cada criança (casa, jardim, interior, estações, visitas) e a lista de assets. |
-| `guia/Vila-dos-Autores-Guia-de-jogo.pdf` | Guia ilustrado: como funciona e como jogar (crianças, professoras e famílias). |
+| `guia/Vila-dos-Autores-Guia-de-jogo.pdf` | Guia ilustrado de 23 páginas: como funciona e como jogar, Fase 1 e Fase 2 (crianças, professoras e famílias). |
 | `fonte/src/` | Código do jogo em partes (`01-core.js` até `08-cantinho.js`, `99-inicio.js`, `head.html`). |
 | `fonte/build.sh` | Junta as partes e gera o `index.html`. |
 | `servidor/` | Os três fluxos do n8n escritos com o Workflow SDK (`paginas.js`, `api.js`, `salas.js`) e o `gen.mjs`, que expande os atalhos para o formato que o validador do n8n aceita. |
