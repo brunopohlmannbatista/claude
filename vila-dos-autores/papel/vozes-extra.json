@@ -1,0 +1,158 @@
+{
+ "voz": "Yasmin lWq4KDY8znfkV0DrK8Vb",
+ "modelo": "eleven_multilingual_v2",
+ "ajustes": {
+  "similarity_boost": 0.8,
+  "speed": 1,
+  "stability": 0.42,
+  "style": 0.35,
+  "use_speaker_boost": true
+ },
+ "falas": [
+  {
+   "n": 25,
+   "fala": "Esta missão abre quando você ganhar o selo de Autor da Vila. Termine as tarefas da Pena na casa amarela!"
+  },
+  {
+   "n": 26,
+   "fala": "A próxima missão da história está na Biblioteca: personagem. Procure a placa azul com a exclamação lá dentro!"
+  },
+  {
+   "n": 27,
+   "fala": "A próxima missão da história está no Ateliê de Desenho: cenário. Procure a placa azul com a exclamação lá dentro!"
+  },
+  {
+   "n": 28,
+   "fala": "A próxima missão da história está na Gráfica: problema. Procure a placa azul com a exclamação lá dentro!"
+  },
+  {
+   "n": 29,
+   "fala": "A próxima missão da história está no Correio das Histórias: final. Procure a placa azul com a exclamação lá dentro!"
+  },
+  {
+   "n": 30,
+   "fala": "Abra o Livro de Receitas no botão do martelinho e crie a Guirlanda."
+  },
+  {
+   "n": 31,
+   "fala": "Abra a Mochila, escolha a Guirlanda e toque em Colocar. Chegue pertinho de uma porta para pendurar!"
+  },
+  {
+   "n": 32,
+   "fala": "Me encontre na minha casa, a amarelinha de telhado vermelho!"
+  },
+  {
+   "n": 33,
+   "fala": "O Baú de Conquistas está esperando por você!"
+  },
+  {
+   "n": 34,
+   "fala": "Plante uma semente com água num cantinho da vila e volte daqui a uns minutos: ela cresce!"
+  },
+  {
+   "n": 35,
+   "fala": "Na Gráfica você encaderna cinco Páginas Ilustradas num Mini-livro. Seu primeiro livro de verdade!"
+  },
+  {
+   "n": 36,
+   "fala": "Quando seus colegas da turma entram com o código deles, vocês se encontram aqui na vila."
+  },
+  {
+   "n": 37,
+   "fala": "O Baú da Turma, aqui na praça, junta doações de todo mundo para montar o Arco da Turma."
+  },
+  {
+   "n": 38,
+   "fala": "Seu cantinho fica no fim do caminho de flores que sai da praça. Lá você planta, decora e recebe visitas da turma!"
+  },
+  {
+   "n": 39,
+   "fala": "Estamos na primavera. Cada estação traz receitas novas no Livro de Receitas!"
+  },
+  {
+   "n": 40,
+   "fala": "Estamos no verão. Cada estação traz receitas novas no Livro de Receitas!"
+  },
+  {
+   "n": 41,
+   "fala": "Estamos no outono. Cada estação traz receitas novas no Livro de Receitas!"
+  },
+  {
+   "n": 42,
+   "fala": "Estamos no inverno. Cada estação traz receitas novas no Livro de Receitas!"
+  },
+  {
+   "n": 43,
+   "fala": "Toda boa história tem começo, meio e fim."
+  },
+  {
+   "n": 44,
+   "fala": "Dê um nome bem especial para o seu personagem."
+  },
+  {
+   "n": 45,
+   "fala": "Conte o que o seu personagem mais quer na vida."
+  },
+  {
+   "n": 46,
+   "fala": "Use os cinco sentidos: qual é o cheiro desse lugar?"
+  },
+  {
+   "n": 47,
+   "fala": "Um problema deixa a história emocionante!"
+  },
+  {
+   "n": 48,
+   "fala": "Se quiser, desenhe primeiro. A ideia aparece no papel."
+  },
+  {
+   "n": 49,
+   "fala": "Leia sua história em voz alta para alguém da família."
+  },
+  {
+   "n": 50,
+   "fala": "Diálogos dão vida: o que os personagens dizem um para o outro?"
+  },
+  {
+   "n": 51,
+   "fala": "Um final surpresa faz o leitor sorrir."
+  },
+  {
+   "n": 52,
+   "fala": "Releia e troque uma palavra sem graça por uma divertida."
+  },
+  {
+   "n": 53,
+   "fala": "Dica de escrita:"
+  },
+  {
+   "n": 54,
+   "fala": "Dica de autora:"
+  },
+  {
+   "n": 55,
+   "fala": "A Casa da Pena ainda está fechada. Termine as missões da praça e a Pena abre a porta para você!"
+  },
+  {
+   "n": 56,
+   "fala": "Estas caixas guardam capas em branco para livros. Elas vão servir quando você ganhar o selo de Autor na Casa da Pena!"
+  },
+  {
+   "n": 57,
+   "fala": "O seu cantinho abre quando você ganhar o selo de Autor da Vila, na Casa da Pena!"
+  },
+  {
+   "n": 58,
+   "fala": "Para plantar aqui, crie uma Flor Plantada no Livro de Receitas: uma Semente mais uma Água. A água fica na fonte da praça!"
+  },
+  {
+   "n": 59,
+   "fala": "Entrando com o código do livro, você visita o cantinho dos colegas da sua turma!"
+  },
+  {
+   "n": 60,
+   "fala": "Tic-tac! Este relógio marca a hora de verdade, igualzinho ao seu aparelho."
+  }
+ ],
+ "tabela": "vila_vozes (n8n 3XxVQ9t3OVGvQB7d), servidas por /vila-voz?n=NN"
+}

@@ -155,12 +155,14 @@ function somDobra(tam) {
   const f = rnd(1700, 3600) / (0.75 + tam * 0.09);
   Snd.noise(0.06 + tam * 0.008, 0.055, f, 0, 0.8); Snd.noise(0.045, 0.04, f * 1.9, 0.035, 1.2); Snd.tone(rnd(150, 230), 0.07, 'sine', 0.035, 0.01, 95);
 }
+// Só casa e árvore fazem o "flap" ao subir (pedido do Bruno em 17/11: com tudo soando, a praça virava um barulho contínuo).
+function fazBarulho(o) { return VILLAGE.trees.includes(o) || CANT.trees.includes(o) || o === CANT.casa || Object.values(HOUSES).some((h) => h.group === o); }
 function registraDobra(o, area, modo) {
   const p = PAPEL.vec, b = PAPEL.caixa; b.setFromObject(o);
   let x, z; if (modo === 'achata') { x = (b.min.x + b.max.x) / 2; z = (b.min.z + b.max.z) / 2; } else { o.getWorldPosition(p); x = p.x; z = p.z; }
   if (modo === 'dobra' && (Math.abs(o.rotation.x) > 1e-4 || Math.abs(o.rotation.z) > 1e-4 || o.position.y > 1.2)) modo = 'brota'; // peça inclinada ou presa na parede: cresce em vez de dobrar
   if (modo === 'dobra') o.rotation.order = 'YXZ';
-  PAPEL.folds.push({ o, area, modo, x, z, h: Math.max(0.5, b.max.y), tam: Math.max(b.max.y, b.max.x - b.min.x), k: 1, v: 0, alvo: 1, quieto: true, atraso: 0, sx: 1, sy: 1, sz: 1, y0: 0, lift: 0.05 + (PAPEL.folds.length % 9) * 0.011 });
+  PAPEL.folds.push({ o, area, modo, som: fazBarulho(o), x, z, h: Math.max(0.5, b.max.y), tam: Math.max(b.max.y, b.max.x - b.min.x), k: 1, v: 0, alvo: 1, quieto: true, atraso: 0, sx: 1, sy: 1, sz: 1, y0: 0, lift: 0.05 + (PAPEL.folds.length % 9) * 0.011 });
 }
 function coletaDobras(grupo, area, desde = 0) {
   grupo.updateWorldMatrix(true, true);
@@ -213,7 +215,7 @@ function atualizaDobras(dt) {
     }
     if (f.quieto) continue;
     if (f.alvo === 1 && f.atraso > 0) { f.atraso -= dt; continue; }
-    if (f.soa) { f.soa = false; if (f.o.visible && (!f.o.parent || f.o.parent.visible)) somDobra(f.tam); }
+    if (f.soa) { f.soa = false; if (f.som && f.o.visible && (!f.o.parent || f.o.parent.visible)) somDobra(f.tam); }
     const sobe = f.alvo === 1, K = sobe ? 135 : 90, C = sobe ? 10.5 : 19;
     f.v += ((f.alvo - f.k) * K - f.v * C) * dt; f.k += f.v * dt;
     if (f.k < 0) { f.k = 0; f.v = 0; }

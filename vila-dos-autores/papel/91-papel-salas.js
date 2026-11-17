@@ -195,19 +195,50 @@ roomAtelie = (room) => salaPapel(room, _roomAtelie0, detAtelie);
 roomGrafica = (room) => salaPapel(room, _roomGrafica0, detGrafica);
 roomCorreio = (room) => salaPapel(room, _roomCorreio0, detCorreio);
 
-// ---------- "Ler em voz alta": escolhe a voz mais natural que o aparelho tiver ----------
-// As 24 falas gravadas da Pena não passam por aqui. Isto vale só para as falas sem gravação.
-function melhorVozPt() {
-  let vs = []; try { vs = speechSynthesis.getVoices(); } catch (e) {}
-  const br = vs.filter((v) => /^pt[-_]BR/i.test(v.lang)), pt = br.length ? br : vs.filter((v) => /^pt/i.test(v.lang));
-  const nota = (v) => (/natural|neural|online/i.test(v.name) ? 40 : 0) + (/google/i.test(v.name) ? 30 : 0) + (/francisca|thalita|luciana|fernanda|let[ií]cia|yara|maria/i.test(v.name) ? 12 : 0);
-  return pt.sort((a, b) => nota(b) - nota(a))[0] || null;
+// ---------- voz: as falas que não tinham gravação agora tocam com a voz da Pena ----------
+// O jogo original lê essas falas com a voz do aparelho (a "voz de robô"), e só com o botão "Ler em voz alta" ligado.
+// Aqui elas tocam gravadas (ElevenLabs, a mesma voz Yasmin das outras 24), nos números 25 a 60 da tabela vila_vozes.
+// Fala sem gravação (as que mudam com nome ou contagem) fica só no texto: nada de voz de robô.
+const VOZ_EXTRA = { fixas: null, casas: { 'Biblioteca': 26, 'Ateliê de Desenho': 27, 'Gráfica': 28, 'Correio das Histórias': 29 }, estacoes: { Primavera: 39, 'Verão': 40, Outono: 41, Inverno: 42 } };
+function vozLimpa(t) { return String(t).replace(/\p{Extended_Pictographic}/gu, '').replace(/️/g, '').replace(/\s+/g, ' ').trim(); }
+function vozGravada(txt) {
+  if (!VOZ_EXTRA.fixas) {
+    VOZ_EXTRA.fixas = {};
+    [['Esta missão abre quando você ganhar o selo de Autor(a) da Vila. Termine as tarefas da Pena na casa amarela!', 25],
+      ['Abra o Livro de Receitas no botão 🔨 (ou tecla C) e crie a Guirlanda.', 30],
+      ['Abra a Mochila 🎒, escolha a Guirlanda e toque em Colocar. Chegue pertinho de uma porta para pendurar!', 31],
+      ['Me encontre na minha casa, a amarelinha de telhado vermelho!', 32],
+      ['O Baú de Conquistas está esperando por você!', 33],
+      ['Plante uma semente com água num cantinho da vila e volte daqui a uns minutos: ela cresce!', 34],
+      ['Na Gráfica você encaderna 5 Páginas Ilustradas num Mini-livro. Seu primeiro livro de verdade!', 35],
+      ['Quando seus colegas da turma entram com o código deles, vocês se encontram aqui na vila.', 36],
+      ['O Baú da Turma, aqui na praça, junta doações de todo mundo para montar o Arco da Turma.', 37],
+      ['Seu cantinho fica no fim do caminho de flores que sai da praça. Lá você planta, decora e recebe visitas da turma!', 38],
+      ['A Casa da Pena ainda está fechada. Termine as missões da praça e a Pena abre a porta para você!', 55],
+      ['Estas caixas guardam capas em branco para livros. Elas vão servir quando você ganhar o selo de Autor(a) na Casa da Pena!', 56],
+      ['O seu cantinho abre quando você ganhar o selo de Autor(a) da Vila, na Casa da Pena!', 57],
+      ['Para plantar aqui, crie uma Flor Plantada no Livro de Receitas: 1 Semente + 1 Água. A água fica na fonte da praça!', 58],
+      ['Entrando com o código do livro, você visita o cantinho dos colegas da sua turma!', 59],
+    ].forEach(([t, n]) => { VOZ_EXTRA.fixas[vozLimpa(t)] = n; });
+  }
+  const t = vozLimpa(txt); let m;
+  if (VOZ_EXTRA.fixas[t]) return [VOZ_EXTRA.fixas[t]];
+  if ((m = t.match(/^A próxima missão da história está na (.+?):/)) && VOZ_EXTRA.casas[m[1]]) return [VOZ_EXTRA.casas[m[1]]];
+  if ((m = t.match(/^Estamos no (\S+)\./)) && VOZ_EXTRA.estacoes[m[1]]) return [VOZ_EXTRA.estacoes[m[1]]];
+  if ((m = t.match(/^Dica de (escrita|autora): (.+)$/))) { const i = DICAS.indexOf(m[2]); if (i >= 0) return [m[1] === 'escrita' ? 53 : 54, 43 + i]; }
+  if (/^Tic-tac!/.test(t)) return [60];
+  return null;
 }
-try { if (window.speechSynthesis) { speechSynthesis.getVoices(); speechSynthesis.addEventListener('voiceschanged', () => {}); } } catch (e) {}
-speak = function (txt) {
-  if (!S.voz || !window.speechSynthesis) return;
-  try {
-    speechSynthesis.cancel(); const v = melhorVozPt(); if (!v) return; // sem voz em português, melhor ficar em silêncio do que ler com sotaque de robô
-    const u = new SpeechSynthesisUtterance(txt.replace(/\p{Extended_Pictographic}/gu, '').replace(/\(a\)/g, '')); u.lang = 'pt-BR'; u.voice = v; u.rate = 0.96; u.pitch = 1.04; speechSynthesis.speak(u);
-  } catch (e) {}
-};
+function vozFila(ns) { // toca uma gravação ou duas em seguida ("Dica de escrita:" + a dica)
+  Voz.stop(); if (S.mute) return;
+  let i = 0;
+  const toca = () => { try { const a = Voz.get(ns[i]); a.onended = () => { a.onended = null; if (Voz.cur === a && ++i < ns.length) toca(); }; a.currentTime = 0; a.volume = 0.95; const p = a.play(); if (p && p.catch) p.catch(() => {}); Voz.cur = a; } catch (e) {} };
+  toca(); ns.slice(1).forEach((n) => Voz.get(n)); // já vai baixando a segunda parte
+}
+speak = function (txt) { const ns = vozGravada(txt); if (ns) vozFila(ns); };
+// o botão do balão repete a gravação, como já faz nas outras falas da Pena
+document.addEventListener('click', (e) => {
+  if (!e.target || e.target.id !== 'voz' || !GAME.dlg || GAME.dlg.voz) return;
+  const ns = vozGravada(GAME.dlg.full); if (!ns) return;
+  e.stopPropagation(); e.preventDefault(); vozFila(ns);
+}, true);
