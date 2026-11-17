@@ -56,23 +56,59 @@ buildLamp = function (V, x, z) {
   return topo;
 };
 
-// ---------- Casa da Pena: mesma casa, com fachada, reboco e telhas pintados ----------
-function casaArte(g) {
-  const zF = HD / 2, y0 = 0.5 + HH, roofG = geo('roof'), wallG = box(HW, HH, HD), stepG = box(2.2, 0.16, 1.1);
+// ---------- bancos e baú: cartão pintado no lugar das peças lisas ----------
+const _buildBench0 = buildBench;
+buildBench = function (V, x, z) {
+  const n0 = V.children.length; _buildBench0(V, x, z); const g = V.children[n0], a = PAPEL_ARTE.banco;
+  g.children.slice().forEach((o) => g.remove(o));
+  figuraArte(g, 'banco', (2.5 * a.h) / a.w);
+};
+const _buildColetiva0 = buildColetiva;
+buildColetiva = function (V) {
+  _buildColetiva0(V);
+  const b = VILLAGE.bauTurma, a = PAPEL_ARTE.bau; if (!b) return;
+  b.children.slice().forEach((o) => { if (!o.isGroup) b.remove(o); }); // fica a placa "Baú da Turma"
+  figuraArte(b, 'bau', (1.75 * a.h) / a.w);
+};
+// pedra pintada na fonte e nos degraus
+const _initMatsArte0 = initMats;
+initMats = function () { _initMatsArte0(); const t = arteTex('pedra', true); t.repeat.set(3, 1); M.stone2.map = t; M.stone2.alphaTest = 0.01; M.stone2.needsUpdate = true; };
+
+// ---------- casas: o mesmo volume 3D, com fachada, reboco e telhas pintados ----------
+const CASA_ARTE = {
+  pena: { fachada: 'fachada', telha: 'telha', parede: 'parede' },
+  biblioteca: { fachada: 'fachadaBiblio', telha: 'telhaBiblio', parede: 'paredeBiblio' },
+  atelie: { fachada: 'fachadaAtelie', telha: 'telhaAtelie', parede: 'paredeAtelie' },
+  grafica: { fachada: 'fachadaGrafica', telha: 'telhaGrafica', parede: 'paredeGrafica' },
+  correio: { fachada: 'fachadaCorreio', telha: 'telhaCorreio', parede: 'paredeCorreio' },
+};
+// marca onde terminam as peças comuns (porta, janelas, floreiras) e começam os enfeites próprios de cada casa
+const _casaMarca = (f) => function (g, d) { g.userData.nBase = g.children.length; return f(g, d); };
+housePena = _casaMarca(housePena); houseBiblio = _casaMarca(houseBiblio); houseAtelie = _casaMarca(houseAtelie); houseGrafica = _casaMarca(houseGrafica); houseCorreio = _casaMarca(houseCorreio);
+function casaArte(g, id) {
+  const zF = HD / 2, y0 = 0.5 + HH, roofG = geo('roof'), wallG = box(HW, HH, HD), stepG = box(2.2, 0.16, 1.1), art = CASA_ARTE[id];
+  const nBase = g.userData.nBase || g.children.length;
   let parede = null;
-  g.children.slice().forEach((o) => {
+  g.children.slice().forEach((o, i) => {
     if (o.geometry === wallG) { parede = o; return; }
     if (o.geometry === roofG || o.geometry === stepG) return;
-    if (o.isGroup && Math.abs(o.position.y - HH) < 0.01) return; // a placa com o nome fica
     const p = o.isGroup && o.children[0] && o.position.lengthSq() === 0 ? o.children[0].position : o.position;
-    if (p.z >= zF - 0.01) g.remove(o); // porta, janelas, floreiras, cantoneiras e olho-de-boi agora estão pintados
+    if (i < nBase) { // peças comuns
+      if (o.isGroup && Math.abs(o.position.y - HH) < 0.01) return; // a placa com o nome fica
+      if (p.z >= zF - 0.01) g.remove(o); // porta, janelas, floreiras e cantoneiras agora estão pintadas
+      return;
+    }
+    // enfeites próprios: ficam, menos o que passou a estar pintado
+    if (id === 'pena' && p.z >= zF - 0.01) g.remove(o); // olho-de-boi
+    else if (id === 'atelie' && !o.isGroup && Math.abs(p.z - (zF + 0.02)) < 0.001) g.remove(o); // respingos de tinta
+    else if (id === 'correio' && o.isGroup && Math.abs(o.position.z - (zF + 0.48)) < 0.001) o.position.z += 0.08; // envelope à frente das telhas
   });
   const plano = (nome, w, h, x, y, z, opt) => { const m = new T.Mesh(new T.PlaneGeometry(w, h), arteMat(nome, opt)); m.position.set(x, y, z); m.receiveShadow = true; g.add(m); return m; };
-  if (parede) parede.material = arteMat('parede', { recorte: false });
-  plano('fachada', HW + 0.3, HH + 0.1, 0, 0.5 + HH / 2, zF + 0.03);
+  if (parede) parede.material = arteMat(art.parede, { recorte: false });
+  plano(art.fachada, HW + 0.3, HH + 0.1, 0, 0.5 + HH / 2, zF + 0.03);
   plano('base', HW + 0.8, 0.52, 0, 0.26, (HD + 0.7) / 2 + 0.02, { recorte: false });
   // telhas: duas águas e os dois oitões, um fio acima do telhado original (que continua dando o volume e a sombra)
-  const Wb = HW / 2 + 0.65, Hr = 2.9, D = (HD + 0.9) / 2, sl = Math.hypot(Wb, Hr), e = 0.03, lado = 2.5, mt = arteMat('telha', { recorte: false, repete: true });
+  const Wb = HW / 2 + 0.65, Hr = 2.9, D = (HD + 0.9) / 2, sl = Math.hypot(Wb, Hr), e = 0.03, lado = 2.5, mt = arteMat(art.telha, { recorte: false, repete: true });
   const folha = (pts, uv) => {
     const bg = new T.BufferGeometry(); bg.setAttribute('position', new T.Float32BufferAttribute(pts.flat(), 3)); bg.setAttribute('uv', new T.Float32BufferAttribute(uv.flat(), 2));
     bg.setIndex(pts.length === 4 ? [0, 1, 2, 0, 2, 3] : [0, 1, 2]); bg.computeVertexNormals();
@@ -83,10 +119,10 @@ function casaArte(g) {
     folha([[s * Wb + ox, y0 + oy, z1], [s * Wb + ox, y0 + oy, z2], [ox, y0 + Hr + oy, z2], [ox, y0 + Hr + oy, z1]], [[0, 0], [u, 0], [u, v], [0, v]]);
     folha([[-s * Wb, y0, s * (D + e)], [s * Wb, y0, s * (D + e)], [0, y0 + Hr, s * (D + e)]], [[0, 0], [(2 * Wb) / lado, 0], [Wb / lado, Hr / lado]]);
   });
-  plano('olho', 1.3, 1.3, 0, y0 + 1.08, D + 0.07);
+  if (id === 'pena') plano('olho', 1.3, 1.3, 0, y0 + 1.08, D + 0.07);
 }
 const _buildHouse0 = buildHouse;
 buildHouse = function (d, V) {
   _buildHouse0(d, V);
-  if (d.id === 'pena') casaArte(HOUSES.pena.group);
+  if (CASA_ARTE[d.id]) casaArte(HOUSES[d.id].group, d.id);
 };
