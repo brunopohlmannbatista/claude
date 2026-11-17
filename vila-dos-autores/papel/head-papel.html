@@ -1,0 +1,16 @@
+<style>
+/* EDIÇÃO PAPEL: desfoque de miniatura (tilt-shift) em cima e embaixo, vinheta quente */
+#papelFx{position:fixed;inset:0;pointer-events:none;z-index:2}
+#papelFx i{position:absolute;left:0;right:0;display:block}
+#papelFx .t1{top:0;height:34%;-webkit-backdrop-filter:blur(2.2px);backdrop-filter:blur(2.2px);-webkit-mask-image:linear-gradient(to bottom,#000 30%,transparent);mask-image:linear-gradient(to bottom,#000 30%,transparent)}
+#papelFx .t2{top:0;height:20%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);-webkit-mask-image:linear-gradient(to bottom,#000 25%,transparent);mask-image:linear-gradient(to bottom,#000 25%,transparent)}
+#papelFx .b1{bottom:0;height:27%;-webkit-backdrop-filter:blur(2.2px);backdrop-filter:blur(2.2px);-webkit-mask-image:linear-gradient(to top,#000 30%,transparent);mask-image:linear-gradient(to top,#000 30%,transparent)}
+#papelFx .b2{bottom:0;height:15%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);-webkit-mask-image:linear-gradient(to top,#000 25%,transparent);mask-image:linear-gradient(to top,#000 25%,transparent)}
+#papelFx .vg{inset:0;background:radial-gradient(ellipse at 50% 52%,transparent 58%,rgba(74,44,18,.2) 100%)}
+body.papel-int #papelFx .t1,body.papel-int #papelFx .t2,body.papel-int #papelFx .b1,body.papel-int #papelFx .b2,
+body.papel-leve #papelFx .t1,body.papel-leve #papelFx .t2,body.papel-leve #papelFx .b1,body.papel-leve #papelFx .b2{display:none}
+#papelSelo{display:none;position:fixed;left:8px;bottom:6px;z-index:60;pointer-events:none;font:700 11px/1 Andika,system-ui,sans-serif;color:#5a3e22;background:#f6e6c8;border:1.5px solid #5a3e22;border-radius:999px;padding:4px 9px;opacity:.85}
+body:has(#entry:not([hidden])) #papelSelo{display:block}
+</style>
+<div id="papelFx" aria-hidden="true"><i class="t1"></i><i class="t2"></i><i class="b1"></i><i class="b2"></i><i class="vg"></i></div>
+<div id="papelSelo" aria-hidden="true">edição papel · teste</div>
