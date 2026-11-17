@@ -9,17 +9,17 @@ const PAPEL = { folds: [], tex: null, borda: null, last: 0, flapT: 0, sombras: t
 
 // ---------- paleta de cartolina ----------
 const PAPEL_ESTACAO = {
-  primavera: { sky: 0xf4e6c8, ground: 0xbccd7a, ground2: 0xa9bd68, path: 0xf3ddb0, leafA: 0xee9a94, leafB: 0xa5bb60, pine: 0x4f8257, water: 0x52bfb3, light: 0xfff0d8 },
-  verao: { sky: 0xf6e4b8, ground: 0xb4cc68, ground2: 0xa0ba56, path: 0xf5dfa8, leafA: 0x86b34e, leafB: 0x61994a, pine: 0x46784f, water: 0x45bbbb, light: 0xffeec8 },
-  outono: { sky: 0xefd4a6, ground: 0xe2cc84, ground2: 0xd2b86c, path: 0xf0d8a6, leafA: 0xee8f30, leafB: 0xd2552e, pine: 0x4d744b, water: 0x4cb2af, light: 0xffe6bd },
-  inverno: { sky: 0xe5e2d9, ground: 0xe8eae4, ground2: 0xd8ddd9, path: 0xd7d1c3, leafA: 0xeef1ef, leafB: 0xd4dde1, pine: 0x47705b, water: 0xb8dee2, light: 0xf4f0e6 },
+  primavera: { sky: 0xf6e7c6, ground: 0xb2d867, ground2: 0x9bc853, path: 0xf8dfa6, leafA: 0xff8f97, leafB: 0x98c94e, pine: 0x3f8f58, water: 0x35c4bd, light: 0xfff3dc },
+  verao: { sky: 0xf8e5b4, ground: 0xa6d655, ground2: 0x8dc544, path: 0xfae09c, leafA: 0x6fc043, leafB: 0x48a443, pine: 0x34834e, water: 0x27c0c6, light: 0xfff0c8 },
+  outono: { sky: 0xf2d39c, ground: 0xecc968, ground2: 0xdcb04f, path: 0xf6dba0, leafA: 0xff8a1f, leafB: 0xe0492a, pine: 0x447a47, water: 0x35b6b3, light: 0xffe8c0 },
+  inverno: { sky: 0xe6e6e0, ground: 0xeef2f1, ground2: 0xd9e4ea, path: 0xdcd5c4, leafA: 0xf3f6f6, leafB: 0xcfe0ea, pine: 0x3c7a5c, water: 0xa9dfea, light: 0xf6f3ea },
 };
 let _papelHSL = null, _papelMix = null;
 function tomPapel(hex) {
   // tinta de impressão sobre cartolina: um pouco menos néon e um pouco mais quente
   if (!_papelHSL) { _papelHSL = { h: 0, s: 0, l: 0 }; _papelMix = new T.Color(0xe2b384); }
   const c = new T.Color(hex); c.getHSL(_papelHSL);
-  c.setHSL(_papelHSL.h, _papelHSL.s * 0.9, 0.05 + _papelHSL.l * 0.9); c.lerp(_papelMix, 0.08);
+  c.setHSL(_papelHSL.h, Math.min(1, _papelHSL.s * 1.12), 0.03 + _papelHSL.l * 0.95); c.lerp(_papelMix, 0.035);
   return c.getHex();
 }
 
@@ -61,7 +61,7 @@ initMats = function () {
   for (const k in SEASONS) {
     const s = SEASONS[k], p = PAPEL_ESTACAO[k];
     s.flags = s.flags.map(tomPapel); s.rug = tomPapel(s.rug);
-    Object.assign(s, p); s.css = hexCss(p.sky); s.amb *= 0.95; s.dir *= 1.1;
+    Object.assign(s, p); s.css = hexCss(p.sky); s.amb *= 0.88; s.dir *= 1.2;
   }
   _initMats0();
   // degraus de sombra mais macios (papel fosco, não desenho animado)
@@ -158,10 +158,11 @@ function somDobra(tam) {
 function registraDobra(o, area, modo) {
   const p = PAPEL.vec, b = PAPEL.caixa; b.setFromObject(o);
   let x, z; if (modo === 'achata') { x = (b.min.x + b.max.x) / 2; z = (b.min.z + b.max.z) / 2; } else { o.getWorldPosition(p); x = p.x; z = p.z; }
+  if (modo === 'dobra' && (Math.abs(o.rotation.x) > 1e-4 || Math.abs(o.rotation.z) > 1e-4 || o.position.y > 1.2)) modo = 'brota'; // peça inclinada ou presa na parede: cresce em vez de dobrar
   if (modo === 'dobra') o.rotation.order = 'YXZ';
   PAPEL.folds.push({ o, area, modo, x, z, h: Math.max(0.5, b.max.y), tam: Math.max(b.max.y, b.max.x - b.min.x), k: 1, v: 0, alvo: 1, quieto: true, atraso: 0, sx: 1, sy: 1, sz: 1, y0: 0, lift: 0.05 + (PAPEL.folds.length % 9) * 0.011 });
 }
-function coletaDobras(grupo, area) {
+function coletaDobras(grupo, area, desde = 0) {
   grupo.updateWorldMatrix(true, true);
   const b = new T.Box3(), s = new T.Vector3(), c = new T.Vector3(), w = new T.Vector3();
   const visita = (o) => {
@@ -174,7 +175,7 @@ function coletaDobras(grupo, area) {
       registraDobra(o, area, 'dobra');
     } else if (o.isMesh) registraDobra(o, area, longe > 2.5 ? 'achata' : 'brota');
   };
-  grupo.children.slice().forEach(visita);
+  grupo.children.slice(desde).forEach(visita);
 }
 function capturaBase(f) { const o = f.o; f.sx = o.scale.x; f.sy = o.scale.y; f.sz = o.scale.z; f.y0 = o.position.y; }
 function aplicaDobra(f) {
@@ -198,7 +199,7 @@ function atualizaDobras(dt) {
   for (const f of PAPEL.folds) {
     if (f.area !== area) continue;
     let alvo = f.alvo;
-    if (abre || area === 'cantinho') alvo = 1; // no cantinho a câmera quase não anda: tudo fica em pé depois da onda de abertura
+    if (abre || area !== 'vila') alvo = 1; // no cantinho e nas salas a câmera quase não anda: tudo fica em pé depois da onda de abertura
     else {
       v.set(f.x, Math.min(f.h * 0.35, 1.6), f.z).project(camera);
       // sobe quando entra no quadro (pelo alto, que é o "lá na frente"); dos lados já chega quase em pé
@@ -233,13 +234,13 @@ camTarget = function (out, look) {
 function papelQualidade(n) {
   PAPEL.nivel = n; try { localStorage.setItem('vila-papel-q', String(n)); } catch (e) {}
   document.body.classList.toggle('papel-leve', n >= 1);
-  PAPEL.sombras = n < 2; LIGHT_DIR.castShadow = PAPEL.sombras && areaExterna(GAME.area);
+  PAPEL.sombras = n < 2; LIGHT_DIR.castShadow = PAPEL.sombras;
 }
 function papelFrame() {
   const now = performance.now(), bruto = (now - (PAPEL.last || now)) / 1000, dt = Math.min(0.05, bruto); PAPEL.last = now;
   const fov = GAME.entryOrbit || !areaExterna(GAME.area) ? 38 : 30;
   if (camera.fov !== fov) { camera.fov = fov; camera.updateProjectionMatrix(); }
-  const fx = areaExterna(GAME.area) ? Math.round(camFocus.x * 2) / 2 : 0, fz = areaExterna(GAME.area) ? Math.round(camFocus.z * 2) / 2 : 0;
+  const sala = ROOMS[GAME.area], fx = areaExterna(GAME.area) ? Math.round(camFocus.x * 2) / 2 : sala ? sala.ox : 0, fz = areaExterna(GAME.area) ? Math.round(camFocus.z * 2) / 2 : 0;
   LIGHT_DIR.target.position.set(fx, 0, fz); LIGHT_DIR.position.set(fx - 12, 26.4, fz + 16.8);
   atualizaDobras(dt);
   // se o aparelho não acompanhar, tira primeiro o desfoque e depois a sombra
@@ -257,14 +258,16 @@ setArea = function (a) {
   const fora = areaExterna(a);
   document.body.classList.toggle('papel-int', !fora);
   if (!fora) { scene.background.setHex(0x2a1b13); scene.fog.color.setHex(0x2a1b13); }
-  LIGHT_DIR.castShadow = PAPEL.sombras && fora;
-  if (fora) deitaTudo(a, null, null, a === 'cantinho' ? 0.05 : 0.035);
+  LIGHT_DIR.castShadow = PAPEL.sombras;
+  const sc = LIGHT_DIR.shadow.camera, e = fora ? 30 : 11; sc.left = -e; sc.right = e; sc.top = e; sc.bottom = -e; sc.updateProjectionMatrix(); // sala pequena: sombra mais nítida
+  deitaTudo(a, null, null, a === 'vila' ? 0.035 : a === 'cantinho' ? 0.05 : 0.075);
   PAPEL.perf.espera = 3; PAPEL.perf.n = 0; PAPEL.perf.acc = 0;
 };
 // última coisa do boot: registra o que dobra e abre o livro
 const _bindEntry0 = bindEntry;
 bindEntry = function () {
   [VILLAGE.group, CANT.group].forEach((g) => g && g.traverse((o) => { if (o.isMesh && !o.isInstancedMesh && o.material && o.material.isMeshToonMaterial) o.receiveShadow = true; }));
+  Object.values(ROOMS).forEach((r) => r.g.children.forEach((o) => { if (o.isMesh && o.geometry && o.geometry.parameters && (o.geometry.parameters.height > 5 || o.geometry.parameters.width > 13)) o.castShadow = false; })); // parede e piso não fazem sombra
   coletaDobras(VILLAGE.group, 'vila'); if (CANT.group) { const vis = CANT.group.visible; coletaDobras(CANT.group, 'cantinho'); CANT.group.visible = vis; }
   deitaTudo('vila', 0, 0, 0.055);
   let q = 0; try { q = Math.min(2, parseInt(localStorage.getItem('vila-papel-q') || '0', 10) || 0); } catch (e) {}
