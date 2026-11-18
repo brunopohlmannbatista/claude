@@ -101,6 +101,9 @@ for nome, arq, lado in [('banco', 'banco.png', 384), ('bau', 'bau.png', 320)]:
     guarda(nome, reduz(recorta(sangra(Image.open(f'{SRC}/{arq}').convert('RGBA'))), lado, 'w'), cx=0.5)
 pedra = np.clip(np.array([250.0, 246.0, 238.0]) * (1 + (par_luz - 1) * 1.8), 0, 255).astype("uint8")  # quase branca: a cor vem do material, a imagem só dá a pincelada
 guarda('pedra', Image.fromarray(pedra, 'RGB'), q=80)
+# telha sem cor (quase branca): no Meu Cantinho a criança escolhe a cor do telhado; a cor vem do material e a imagem só dá o desenho das telhas
+tl = telha0.astype(float) @ np.array([0.299, 0.587, 0.114]); tl = np.clip(tl / np.percentile(tl, 90), 0, 1.06) ** 1.15
+guarda('telhaNeutra', Image.fromarray(np.clip(np.dstack([tl * 252, tl * 248, tl * 240]), 0, 255).astype('uint8'), 'RGB'), q=82)
 
 with open(OUT, 'w') as f:
     f.write('// Artes do piloto ilustrado (geradas por IA a partir de capturas do proprio jogo, 17/11/2026).\n// Arquivo gerado por empacota.py. Nao editar a mao.\n')

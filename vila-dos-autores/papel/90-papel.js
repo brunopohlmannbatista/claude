@@ -274,7 +274,7 @@ bindEntry = function () {
   deitaTudo('vila', 0, 0, 0.055);
   let q = 0; try { q = Math.min(2, parseInt(localStorage.getItem('vila-papel-q') || '0', 10) || 0); } catch (e) {}
   if (q) papelQualidade(q);
-  document.title = 'Vila dos Autores · edição papel';
+  document.title = 'Vila dos Autores';
   if (window.__vilaTest) { window.__papel = PAPEL; PAPEL.luz = LIGHT_DIR; PAPEL.foco = camFocus; }
   return _bindEntry0();
 };
