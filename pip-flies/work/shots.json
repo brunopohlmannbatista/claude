@@ -14,7 +14,7 @@
   {
    "i": 1,
    "t": 10.5,
-   "t1": 17.0,
+   "t1": 15.833,
    "at": 126,
    "name": "stool",
    "size": "medium",
@@ -22,18 +22,18 @@
   },
   {
    "i": 2,
-   "t": 17.0,
-   "t1": 24.0,
-   "at": 204,
+   "t": 15.833,
+   "t1": 23.0,
+   "at": 190,
    "name": "run",
    "size": "medium",
    "bg": "class_floor"
   },
   {
    "i": 3,
-   "t": 24.0,
+   "t": 23.0,
    "t1": 31.0,
-   "at": 288,
+   "at": 276,
    "name": "window",
    "size": "medium-close",
    "bg": "class_window"

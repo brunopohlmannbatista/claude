@@ -1,0 +1,60 @@
+{
+ "dur": 40.0,
+ "fps": 24,
+ "shots": [
+  {
+   "i": 0,
+   "t": 0.0,
+   "t1": 10.5,
+   "at": 0,
+   "name": "lesson",
+   "size": "wide",
+   "bg": "class_wide"
+  },
+  {
+   "i": 1,
+   "t": 10.5,
+   "t1": 17.0,
+   "at": 126,
+   "name": "stool",
+   "size": "medium",
+   "bg": "class_corner"
+  },
+  {
+   "i": 2,
+   "t": 17.0,
+   "t1": 24.0,
+   "at": 204,
+   "name": "run",
+   "size": "medium",
+   "bg": "class_floor"
+  },
+  {
+   "i": 3,
+   "t": 24.0,
+   "t1": 31.0,
+   "at": 288,
+   "name": "window",
+   "size": "medium-close",
+   "bg": "class_window"
+  },
+  {
+   "i": 4,
+   "t": 31.0,
+   "t1": 37.5,
+   "at": 372,
+   "name": "hill",
+   "size": "wide",
+   "bg": "hill_wide"
+  },
+  {
+   "i": 5,
+   "t": 37.5,
+   "t1": 40.0,
+   "at": 450,
+   "name": "landing",
+   "size": "medium-close",
+   "bg": "hill_bottom"
+  }
+ ]
+}

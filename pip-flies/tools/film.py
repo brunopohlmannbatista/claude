@@ -265,7 +265,7 @@ def load():
 # sizes; one shot can play 6–10 s.
 N = P(DUR)
 MEDIUM_K = 1.5                      # the stool shot (medium): Pip 1.33x his wide-shot size
-T1, T2, T3, T4, T5 = P(10.5), P(17.0), P(24.0), P(31.0), P(37.5)
+T1, T2, T3, T4, T5 = P(10.5), P(15.8), P(23.0), P(31.0), P(37.5)
 # ground lines measured on the backgrounds (stage = frame coords)
 G0, G1, G2, G3, G5 = 905, 990, 960, 1012, 985
 STOOL_X = 560
@@ -330,7 +330,7 @@ def build():
                + [(f'owl_{3 + (j // 2) % 2}', 1, (lambda j: (lambda i: hov(j)))(j)) for j in range(30)]
                + [('owl_5', 1, dict(ol=90)), ('owl_5', 1, dict(ol=45)), ('owl_5', 1, dict(ol=15)),
                   ('owl_6', 4, dict(sfx=('thud', 0.35, 0.9))), ('owl_0', 2, {}), ('owl_7', 19, {}), ('owl_0', 27, {}),
-                  ('owl_1', 3, {}), ('owl_0', 0, {})])
+                  ('owl_1', 3, {}), ('owl_0', 7, {}), ('owl_6', 2, {}), ('owl_7', 14, dict(sfx=('rub', 0.25, 0.9))), ('owl_0', 0, {})])
     n0 = T1
     pip = _fit(pip, n0)
     owl = _fit(owl, n0)
@@ -344,18 +344,19 @@ def build():
         ts.add(p['c'], **st)
     # ---------------- shot 1: stool (medium). Pip on the stool, leaps right, belly-flops on the rug
     n1 = T2 - T1
-    jump = [('jump_0', 18, dict(x=STOOL_X, on_stool=1)), ('jump_1', 6, dict(x=STOOL_X, on_stool=1)),
+    jump = [('jump_0', 10, dict(x=STOOL_X, on_stool=1)), ('jump_1', 6, dict(x=STOOL_X, on_stool=1)),
             ('jump_2', 2, lambda i: dict(x=STOOL_X + 50 + 40 * i, air=1.0, lift=0, sfx=('whoosh', 0.3, 1.2) if i == 0 else None)),
             ('jump_3', 3, lambda i: dict(x=STOOL_X + 150 + 70 * i, air=1.0, lift=40 - 15 * i)),
             ('jump_4', 2, lambda i: dict(x=STOOL_X + 360 + 60 * i, air=0.45 - 0.35 * i, lift=0)),
             ('jump_5', 3, lambda i: dict(x=1060, shake=[7, 3, 0][i], puff=i, sfx=('thud', 0.7, 1.15) if i == 0 else None)),
             ('jump_5', 3, lambda i: dict(x=1060, puff=3 + i, sfx=('puff', 0.4, 1.2) if i == 0 else None)),
-            ('jump_6', 22, lambda i: dict(x=1060, puff=6 + i if i < 2 else None)), ('jump_7', 0, dict(x=1060))]
+            ('jump_6', 14, lambda i: dict(x=1060, puff=6 + i if i < 2 else None)), ('jump_7', 0, dict(x=1060))]
     for st in _fit(_seq(jump), n1):
         c = st.pop('c'); st['beat'] = 'try2'; ts.add(c, **st)
     # ---------------- shot 2: run (wide). Run right, leap, belly-land, slide to the wall under the window
     n2 = T3 - T2
-    run = [(f'run_{j % 2}', 1, (lambda j: (lambda i: dict(x=120 + 16 * j, sfx=('step', 0.32, 1.35) if True else None)))(j))
+    run = [('look_6', 6, dict(x=150)), ('look_7', 4, dict(x=150, sfx=('rub', 0.25, 1.4)))]
+    run += [(f'run_{j % 2}', 1, (lambda j: (lambda i: dict(x=150 + 15 * j, sfx=('step', 0.32, 1.35) if True else None)))(j))
            for j in range(30)]
     run += [('run_2', 2, lambda i: dict(x=600 + 20 * i)), ('run_3', 2, lambda i: dict(x=650 + 40 * i, lift=40 + 40 * i)),
             ('run_4', 3, lambda i: dict(x=730 + 40 * i, lift=[110, 125, 112][i])),
@@ -371,9 +372,10 @@ def build():
         c = st.pop('c'); st['beat'] = 'try3'; st['rep_ok'] = 'run-up crossing the whole floor'; ts.add(c, **st)
     # ---------------- shot 3: window (medium-close). Low point, then the idea
     n3 = T4 - T3
-    win = [('sad_0', 30, {}), ('sad_1', 22, {}), ('sad_2', 8, {}), ('sad_3', 0, {})]
+    win = [('sad_0', 16, {}), ('sad_1', 3, {}), ('sad_0', 12, {}), ('sad_1', 24, dict(sfx=('rub', 0.25, 0.8))), ('sad_2', 8, {}), ('sad_3', 0, {})]
     for st in _fit(_seq(win), n3):
-        c = st.pop('c'); ts.add(c, x=600, beat='low' if c in ('sad_0', 'sad_1') else 'turn', warm=0.55, live='snow falling past the window, slow push')
+        c = st.pop('c'); ts.add(c, x=600, beat='low' if c in ('sad_0', 'sad_1') else 'turn', warm=0.55, live='snow falling past the window, slow push',
+                   rep_ok='one sigh-blink then a long sigh; not a loop')
     # ---------------- shot 4: hill (wide). Belly slide down the slope, owl flying above
     n4 = T5 - T4
     for k in range(n4):
@@ -528,7 +530,9 @@ def render(pic, st, shots, ts, D, hero=None):
     frame = cam.plate(D['plates'][sh['bg']], par=PAR)
     name, K = sh['name'], sh.get('k', 1.0)
     if sh['bg'] in D['win']:                                        # snow falling outside, only inside the window panes
-        cp = D['snow'].draw(frame.copy(), D['env'], pic, amount=0.9, wind=1.2, cam=cam, size=0.55)
+        big = sh['name'] == 'window'
+        cp = D['snow'].draw(frame.copy(), D['env'], pic, amount=1.5 if big else 0.9, wind=1.6 if big else 1.2, cam=cam,
+                            size=1.1 if big else 0.55)
         m = cam.plate(D['win'][sh['bg']], par=PAR)[..., :1]
         frame = frame * (1 - m) + cp * m
     if s.get('o'):                                                  # the owl teacher (supporting character)
