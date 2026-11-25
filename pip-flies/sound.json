@@ -54,7 +54,7 @@
     "kind": "thud"
    },
    {
-    "t": "window+5.25",
+    "t": "window+5.42",
     "kind": "sparkle"
    },
    {
@@ -72,8 +72,8 @@
   ],
   "silences": [
    [
-    "window+3.5",
-    "window+5.2"
+    "window+3.6",
+    "window+5.35"
    ]
   ]
  },
@@ -91,7 +91,7 @@
    "d": 1.2
   },
   {
-   "t": "window+5.25",
+   "t": "window+5.42",
    "kind": "sparkle",
    "v": 0.45
   }

@@ -265,7 +265,7 @@ def load():
 # sizes; one shot can play 6–10 s.
 N = P(DUR)
 MEDIUM_K = 1.5                      # the stool shot (medium): Pip 1.33x his wide-shot size
-T1, T2, T3, T4, T5 = P(10.5), P(15.8), P(23.0), P(31.0), P(37.5)
+T1, T2, T3, T4, T5 = P(10.5), P(15.8), P(23.0), P(30.2), P(37.5)
 # ground lines measured on the backgrounds (stage = frame coords)
 G0, G1, G2, G3, G5 = 905, 990, 960, 1012, 985
 STOOL_X = 560
@@ -355,12 +355,12 @@ def build():
         c = st.pop('c'); st['beat'] = 'try2'; ts.add(c, **st)
     # ---------------- shot 2: run (wide). Run right, leap, belly-land, slide to the wall under the window
     n2 = T3 - T2
-    run = [('look_6', 6, dict(x=150)), ('look_7', 4, dict(x=150, sfx=('rub', 0.25, 1.4)))]
-    run += [(f'run_{j % 2}', 1, (lambda j: (lambda i: dict(x=150 + 15 * j, sfx=('step', 0.32, 1.35) if True else None)))(j))
+    run = [('look_6', 6, dict(x=330)), ('look_7', 4, dict(x=330, sfx=('rub', 0.25, 1.4)))]
+    run += [(f'run_{j % 2}', 1, (lambda j: (lambda i: dict(x=330 + 11 * j, sfx=('step', 0.32, 1.35) if True else None)))(j))
            for j in range(30)]
-    run += [('run_2', 2, lambda i: dict(x=600 + 20 * i)), ('run_3', 2, lambda i: dict(x=650 + 40 * i, lift=40 + 40 * i)),
-            ('run_4', 3, lambda i: dict(x=730 + 40 * i, lift=[110, 125, 112][i])),
-            ('run_5', 2, lambda i: dict(x=850 + 40 * i, lift=[70, 25][i])),
+    run += [('run_2', 2, lambda i: dict(x=665 + 15 * i)), ('run_3', 2, lambda i: dict(x=700 + 30 * i, lift=40 + 40 * i)),
+            ('run_4', 3, lambda i: dict(x=760 + 35 * i, lift=[110, 125, 112][i])),
+            ('run_5', 2, lambda i: dict(x=865 + 35 * i, lift=[70, 25][i])),
             ('run_6', 2, lambda i: dict(x=930 + 35 * i, puff=i, shake=[5, 0][i], sfx=('thud', 0.6, 1.2) if i == 0 else None))]
     x = 965.0
     for j in range(18):
@@ -372,9 +372,10 @@ def build():
         c = st.pop('c'); st['beat'] = 'try3'; st['rep_ok'] = 'run-up crossing the whole floor'; ts.add(c, **st)
     # ---------------- shot 3: window (medium-close). Low point, then the idea
     n3 = T4 - T3
-    win = [('sad_0', 16, {}), ('sad_1', 3, {}), ('sad_0', 12, {}), ('sad_1', 24, dict(sfx=('rub', 0.25, 0.8))), ('sad_2', 8, {}), ('sad_3', 0, {})]
+    win = [('sad_0', 16, {}), ('sad_1', 3, {}), ('sad_0', 14, {}), ('sad_1', 20, dict(sfx=('rub', 0.25, 0.8))), ('sad_2', 12, {}),
+           ('sad_3', 0, lambda i: dict(x=600 + 40 * kit.ease(min(1.0, i / 6))))]
     for st in _fit(_seq(win), n3):
-        c = st.pop('c'); ts.add(c, x=600, beat='low' if c in ('sad_0', 'sad_1') else 'turn', warm=0.55, live='snow falling past the window, slow push',
+        c = st.pop('c'); ts.add(c, x=st.get('x', 600), beat='low' if c in ('sad_0', 'sad_1') else 'turn', warm=0.55, live='snow falling past the window, slow push',
                    rep_ok='one sigh-blink then a long sigh; not a loop')
     # ---------------- shot 4: hill (wide). Belly slide down the slope, owl flying above
     n4 = T5 - T4
