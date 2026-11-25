@@ -1,0 +1,5 @@
+[view] Draw the same character four times in one row, left to right: front, three-quarter view (facing right), full side profile (facing right), back.
+[held_prop] Draw the prop in the character's hand from the same camera position as the set.
+[ground_line] In poses standing on the ground, the soles rest on the same horizontal line within each row; jumping or airborne poses are clearly above that line (at least half a body height off the ground).
+[sheet_ground_line] Feet on the same horizontal line.
+[prop_view] Use the same viewpoint as the shot the prop will be composited into. A prop that is also needed seen from above is listed separately and marked "top-down"; draw that one from above.

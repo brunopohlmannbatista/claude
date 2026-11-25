@@ -1,0 +1,1 @@
+<what to watch for when drawing layer (a transparent set layer: a full strip of foreground grass, paper waves, a row of trees) in this style; delete this file for styles without layered sets>

@@ -1,0 +1,5 @@
+[view] <how the four views of the character sheet are arranged (default: "front, three-quarter, full side profile, back in one row"); rewrite only for profile-only or top-down styles; delete this entry if no change is needed>
+[held_prop] <how a prop held by the character is drawn in this style and from what camera position (3D styles: "camera slightly above the rim; the bowl's opening is a very flat ellipse"; flat styles: "a flat side-profile outline"); replaces that sentence of the shared template entirely; delete this entry from this file if not needed>
+[prop_view] <the viewpoint for props in this style (same camera position as the set); delete this entry if not needed>
+[ground_line] <how the 8-pose sheet is aligned in this style: default "standing soles on the same horizontal line, jumps above it"; for top-down or floating styles rewrite as "body centres on the same horizontal line"; delete this entry if no change is needed>
+[sheet_ground_line] <how the four views of the character sheet are aligned: default "Feet on the same horizontal line."; delete this entry if no change is needed>

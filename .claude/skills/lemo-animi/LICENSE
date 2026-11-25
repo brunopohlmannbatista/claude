@@ -1,0 +1,118 @@
+lemo-animi
+Copyright (c) 2026 SecondFirst Pty Ltd, trading as LemoLab
+https://github.com/lemomo-ai/lemo-animi
+
+lemo-animi is created by Lemomo. Since 23 November 2026, Lemomo's
+copyright in it has been held by SecondFirst Pty Ltd (ACN 701 727 237),
+trading as LemoLab, which grants the permissions and licences in this file.
+Where this file names Lemomo (LemoLab) as the one granting rights, read it
+as SecondFirst Pty Ltd, trading as LemoLab. Credit lines stay as they are.
+
+lemo-animi is licensed under the Creative Commons Attribution-NonCommercial
+4.0 International licence (CC BY-NC 4.0).
+
+  Legal code: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+  Summary:    https://creativecommons.org/licenses/by-nc/4.0/
+
+In short:
+
+- Non-commercial use is free. You may share and adapt lemo-animi for
+  non-commercial purposes, with credit: "lemo-animi by Lemomo (LemoLab)",
+  a link to https://github.com/lemomo-ai/lemo-animi and to the licence, and
+  a note if you changed it. For films made with lemo-animi, the credit
+  alone is enough: see Credit for Films below.
+
+- Commercial use needs a commercial licence, except as the Additional
+  Permission for Individual Creators below allows. This includes using films
+  made with lemo-animi commercially, for example in advertising, client work,
+  monetised channels or products. To ask for one, email
+  lemomo.studio@gmail.com.
+
+CREDIT FOR FILMS
+
+When you publish a film made with lemo-animi, under CC BY-NC 4.0 or under the
+permission below, it is enough to credit "lemo-animi by Lemomo (LemoLab)" in
+the film or in its description. For films, Lemomo (LemoLab) waives the other
+attribution requirements in Section 3(a) of CC BY-NC 4.0, including the links
+to lemo-animi and to the licence and the note of changes. Sharing lemo-animi
+itself, or an adapted version of it, still needs the full credit above.
+
+ADDITIONAL PERMISSION FOR INDIVIDUAL CREATORS
+
+This permission is given by Lemomo (LemoLab) in addition to CC BY-NC 4.0. It
+is separate from and independent of CC BY-NC 4.0 (see Section 7(b) of that
+licence) and does not change it: CC BY-NC 4.0 applies to lemo-animi
+unmodified.
+
+1. Who can use it. You can use this permission while both of these are true:
+   (a) you are an individual acting for yourself. A company, partnership,
+       trust, multi-channel network (MCN), studio, agency or other
+       organisation cannot use it, and neither can an individual acting for
+       one. An agreement with an MCN or agency does not by itself stop you,
+       as long as the accounts are yours and you run them yourself;
+   (b) your creator income for the last 12 months is no more than CNY 50,000.
+       If more than half of that income was paid to you in currencies other
+       than CNY, the limit is USD 7,000 instead.
+
+2. What you may do. You may use lemo-animi to make films, publish them on
+   accounts that you own and control (on social media, video and content
+   platforms, and your own website or newsletter), and earn money from them
+   there: platform advertising and revenue sharing, affiliate and shopping
+   commissions, tips and gifts, memberships and paid content, and
+   sponsorships you publish on your own accounts. This covers films made with
+   any version of lemo-animi, including versions published before this
+   permission.
+
+3. What it does not cover.
+   (a) Making films for a client or for anyone else, including films you hand
+       over for someone else to publish or to use in their own advertising;
+   (b) putting lemo-animi, or anything adapted from it, into a product or
+       service for other people to use;
+   (c) selling or sharing lemo-animi, or style packs, prompts or templates
+       adapted from it, for commercial advantage;
+   (d) third-party material, which keeps its own licence or terms. For
+       example, narration made with Microsoft Edge online voices is under
+       Microsoft's terms, and the instrument samples keep their own licences
+       and credit requirements.
+   Items (a) to (c) need a commercial licence.
+
+4. Counting your income. "Creator income" is all the money, and the value of
+   anything else, that you receive as a creator from all your accounts and
+   channels, for any content, not only films made with lemo-animi. Count it
+   before income tax and before your own costs, after any share that a
+   platform keeps under its own rules. "The last 12 months" means the 12
+   months before the day you check, so check again as you go. To compare
+   income in another currency with the limit, use any reasonable exchange
+   rate on or about the day you received it, for example the one your
+   platform, bank or payment service used. A conversion made in good faith is
+   enough.
+
+5. When you go over. If your creator income goes over the limit, or you stop
+   being an individual described in 1(a), you may keep using this permission
+   for 30 days. To keep making films for commercial use after that, buy a
+   commercial film licence (individual tier) within those 30 days. Films you
+   published while you could use this permission stay covered: you may keep
+   them online and keep earning from them, whether or not you buy a licence.
+   If you were already over the limit on the day this section was added to
+   this file, the 30 days start on that day.
+
+6. Credit. Credit "lemo-animi by Lemomo (LemoLab)" in the film or in its
+   description. No link is needed.
+
+7. Nothing to apply for. You do not need to ask, register or report. If we
+   ask, tell us in writing whether you meet the conditions above. We will not
+   ask for your bank or tax records.
+
+8. Terms. This permission is worldwide, royalty-free and non-exclusive. It is
+   personal to you and cannot be transferred. For films published while you
+   could use it, it is irrevocable. It applies to the extent that your use of
+   lemo-animi needs permission from Lemomo (LemoLab). lemo-animi is provided
+   as is, as Section 5 of CC BY-NC 4.0 says, to the extent the law allows.
+
+Third-party material keeps its own licence:
+
+- Source Han Sans, in plugin/skills/lemo-animi/fonts/: SIL Open Font
+  License 1.1 (see LICENSE-SourceHanSans.txt there).
+- The instrument sample libraries that setup downloads keep their own
+  licences.
+- Narration uses Microsoft Edge online voices, under Microsoft's terms.

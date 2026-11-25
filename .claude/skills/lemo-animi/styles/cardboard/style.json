@@ -1,0 +1,332 @@
+{
+ "id": "cardboard",
+ "num": 7,
+ "name": "纸板箱定格",
+ "en": "Cardboard Stop-motion",
+ "line": "快递箱、胶带和马克笔搭出来的小孩想象世界，做得有点歪，一本正经地搞笑",
+ "line_en": "A kid's imagined world built from shipping boxes, tape and markers, a little crooked and played completely straight",
+ "best": {
+  "subject": "A child's game of make-believe: boxes become a rocket, a submarine, a castle, a race car; a big mission carried out with a straight face, until the reveal at the end (it is still the bedroom floor). When the hero sits inside a prop, give them a bit of business climbing in, squeezing out, falling out",
+  "palette": "Mainly kraft-paper brown, accented with marker red and blue and tinfoil silver; dark grey-blue room in the background",
+  "light": "Warm, hard light from one desk lamp, crisp hard shadows, big prop shadows on the wall; the rest of the room fairly dark",
+  "camera": "Low camera, eye-level medium shots, slightly looking up, to make small cardboard look epic; in wide shots the hero walks in the foreground near the camera; medium-close shots for reactions"
+ },
+ "good_for": [
+  "Comedy shorts, deadpan little adventures",
+  "Children's imagination, toys, crafts",
+  "Inventing, building things, DIY",
+  "Failing, then fixing it"
+ ],
+ "bad_for": [
+  "Lyrical, dreamy, beautiful subjects",
+  "Nature scenery, realistic animals",
+  "Scenes needing delicate soft materials (cloth, water, fur)"
+ ],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  }
+ },
+ "preset": {
+  "on": 2,
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.12,
+  "grade": {
+   "tint": [
+    1.05,
+    1.0,
+    0.92
+   ],
+   "bloom": 0.2,
+   "bloom_th": 0.8,
+   "bloom_r": 22,
+   "vig": 0.34,
+   "grain": 0,
+   "sat": 1.0,
+   "contrast": 1.05
+  },
+  "rigid": true,
+  "idle": 0.012,
+  "jitter_rot": 0,
+  "light": null,
+  "shadow": {
+   "kind": "cast",
+   "light": [
+    0.85,
+    0.13
+   ],
+   "cast_k": 0.42,
+   "cast_blur": 2.2
+  },
+  "dark": {
+   "frame": 0.03,
+   "hero": 0.06,
+   "len": 0.3
+  }
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false,
+  "hero_min_scale": 1.0
+ },
+ "music": {
+  "desc": "Budget space epic: French horn plays a heroic theme with a straight face, staccato bassoon walks the bass (comic), spiccato strings on the offbeats, piccolo answers, bass drum and snare march; hits: piccolo gliss, bass drum with crash cymbals, tubular-bell arpeggio; the reveal gets one low trombone note",
+  "bpm": [
+   96,
+   116
+  ],
+  "key": "Eb",
+  "mode": "major",
+  "swing": 0.0,
+  "progressions": [
+   [
+    "I",
+    "IV",
+    "V",
+    "I"
+   ],
+   [
+    "I",
+    "vi",
+    "ii",
+    "V"
+   ],
+   [
+    "I",
+    "V",
+    "IV",
+    "V"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "horn",
+    "oct": 4,
+    "vel": 0.6,
+    "legato": 0.8,
+    "pan": -0.1
+   },
+   "counter": {
+    "inst": "piccolo",
+    "oct": 6,
+    "vel": 0.26,
+    "pan": 0.3
+   },
+   "bass": {
+    "inst": "bassoon_stac",
+    "oct": 2,
+    "pattern": "root-fifth",
+    "vel": 0.7
+   },
+   "comp": {
+    "inst": "violins_spic",
+    "oct": 4,
+    "pattern": "offbeat",
+    "vel": 0.4,
+    "pan": 0.15
+   },
+   "perc": {
+    "inst": [
+     "gran_cassa",
+     "snare"
+    ],
+    "pattern": "march",
+    "vel": 0.32
+   }
+  },
+  "energy": {
+   "0": [
+    "bass"
+   ],
+   "0.25": [
+    "bass",
+    "perc"
+   ],
+   "0.45": [
+    "bass",
+    "perc",
+    "comp"
+   ],
+   "0.6": [
+    "bass",
+    "perc",
+    "comp",
+    "melody"
+   ],
+   "0.85": [
+    "bass",
+    "perc",
+    "comp",
+    "melody",
+    "counter"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "piccolo",
+     "gliss_up",
+     0.55
+    ]
+   ],
+   "boom": [
+    [
+     "gran_cassa",
+     null,
+     0.9
+    ],
+    [
+     "clash",
+     null,
+     0.5
+    ]
+   ],
+   "stop": [
+    [
+     "trombone",
+     "Eb2",
+     0.8
+    ]
+   ],
+   "sparkle": [
+    [
+     "tubular_bells",
+     "arp",
+     0.4
+    ]
+   ],
+   "thud": [
+    [
+     "toms",
+     "low",
+     0.85
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.18,
+   "mix": 0.08
+  }
+ },
+ "foley": {
+  "material": "cardboard",
+  "kinds": [
+   "step",
+   "tap",
+   "thud",
+   "whoosh",
+   "sparkle",
+   "rip"
+  ]
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": "Deadpan mission briefing: floor-level trifles announced like a real big mission, the grander the funnier; the reveal line said flat"
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 54,
+  "color": [
+   1.0,
+   0.97,
+   0.9
+  ],
+  "outline": [
+   0.24,
+   0.14,
+   0.06
+  ],
+  "outline_w": 6,
+  "pos": "bottom",
+  "plate": null
+ },
+ "transitions": [
+  {
+   "id": "box_flaps",
+   "name": "Box flaps close",
+   "kind": "hinge",
+   "params": {
+    "sprite": "prop_flap",
+    "hinge": "lr",
+    "before": 5,
+    "after": 7,
+    "hold": 2,
+    "power": 1.4,
+    "overlap": 60,
+    "over": 70,
+    "focal": 3.2,
+    "back": 0.62
+   },
+   "how": "Two box flaps, hinged on the left and right edges of the frame, swing in with perspective and cover the frame; the cut hides in the fully covered drawings, then they swing open to reveal the next scene. In SHOTS write tr='box_flaps' on the shot after the cut. Generate asset prop_flap with the prop type: \"one corrugated cardboard box flap, front-on at eye level, one flat piece: a tall rectangle, kraft-paper colour; the left long edge is a pressed fold line, the other three edges are torn and fuzzy with the corrugated cross-section visible; half a strip of wrinkled kraft tape stuck vertically near the fold; one casual marker scribble on the surface\", save as src/prop_flap.png (the template's load() reads it automatically; both flaps share one image). thud on close, whoosh on open; once per film, for \"going somewhere else\""
+  },
+  {
+   "id": "reality_cut",
+   "name": "Reveal cut",
+   "kind": "move",
+   "params": {},
+   "how": "Not a transition, no tr=: hard cut from the imagined version to the real wide at the same moment, the hero in the same pose on the same side of the frame, with stop on the cut; the real-version background uses the prop image as reference. See STYLE.md \"Imagined and real sets\". Once per film, at the landing"
+  }
+ ],
+ "title": {
+  "motion": {"enter": "pop", "step": 2, "sub_side": -1},
+  "color": [
+   0.13,
+   0.11,
+   0.1
+  ],
+  "plate": {
+   "shape": "cut",
+   "color": [
+    0.8,
+    0.63,
+    0.42
+   ],
+   "texture": "ref/texture.jpg",
+   "texture_k": 0.6,
+   "rough": 9,
+   "pad": [
+    0.45,
+    0.3
+   ],
+   "shadow": [
+    7,
+    10,
+    0.42
+   ]
+  },
+  "sound": [
+   "thud",
+   "tap"
+  ]
+ }
+}

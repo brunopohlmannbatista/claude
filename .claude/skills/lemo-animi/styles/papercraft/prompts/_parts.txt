@@ -1,0 +1,2 @@
+[held_prop] Draw the prop in the character's hand from the same camera position as the set: front-on at eye level. The prop is also built from flat paper pieces and a few folded faces, and faces the same direction as the character.
+[prop_view] Use the same viewpoint as the shot the prop will be composited into: front-on at eye level, paper pieces parallel to the picture plane; objects seen side-on (boats, carriages, large animals) are drawn in full side profile. A prop that is also needed seen from above is listed separately and marked "top-down"; draw that one from above.

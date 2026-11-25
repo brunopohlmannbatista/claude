@@ -1,0 +1,244 @@
+{
+ "id": "<id>",
+ "num": 0,
+ "name": "<Chinese name>",
+ "en": "<English name>",
+ "line": "<one line in Chinese: what material, what feel>",
+ "line_en": "<one line: what material, what feel>",
+ "best": {
+  "subject": "",
+  "palette": "",
+  "light": "",
+  "camera": ""
+ },
+ "good_for": [],
+ "bad_for": [],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  }
+ },
+ "preset": {
+  "on": 2,
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.12,
+  "grade": {
+   "bloom": 0.0,
+   "vig": 0.25,
+   "grain": 0
+  },
+  "rigid": false,
+  "idle": 0.012,
+  "jitter_rot": 0,
+  "light": null,
+  "shadow": {
+   "kind": null
+  },
+  "dark": {
+   "frame": 0.03,
+   "hero": 0.06,
+   "len": 0.3
+  },
+  "par": 0.9
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false,
+  "hero_min_scale": 1.0
+ },
+ "music": {
+  "desc": "",
+  "bpm": [
+   96,
+   120
+  ],
+  "key": "C",
+  "mode": "major",
+  "swing": 0.0,
+  "progressions": [
+   [
+    "I",
+    "vi",
+    "IV",
+    "V"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "marimba",
+    "oct": 5,
+    "vel": 0.6
+   },
+   "bass": {
+    "inst": "contrabass_pizz",
+    "oct": 2,
+    "pattern": "root-fifth",
+    "vel": 0.7
+   },
+   "comp": {
+    "inst": "violins_pizz",
+    "oct": 4,
+    "pattern": "offbeat",
+    "vel": 0.4
+   },
+   "perc": {
+    "inst": [
+     "woodblock"
+    ],
+    "pattern": "tick",
+    "vel": 0.35
+   }
+  },
+  "energy": {
+   "0": [
+    "bass"
+   ],
+   "0.3": [
+    "bass",
+    "comp"
+   ],
+   "0.5": [
+    "bass",
+    "comp",
+    "melody"
+   ],
+   "0.75": [
+    "bass",
+    "comp",
+    "melody",
+    "perc"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "xylophone",
+     "gliss_up",
+     0.7
+    ]
+   ],
+   "boom": [
+    [
+     "bass_drum",
+     null,
+     0.9
+    ]
+   ],
+   "stop": [
+    [
+     "woodblock",
+     null,
+     0.8
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.25,
+   "mix": 0.1
+  }
+ },
+ "foley": {
+  "material": "<material, e.g. clay / paper / tin / wood / felt / cardboard>",
+  "kinds": []
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": ""
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 54,
+  "color": [
+   1,
+   1,
+   1
+  ],
+  "outline": [
+   0,
+   0,
+   0
+  ],
+  "outline_w": 5,
+  "pos": "bottom",
+  "plate": null
+ },
+ "title": {
+  "motion": {"enter": "drop", "step": 2, "sub_side": -1},
+  "color": [
+   0.12,
+   0.1,
+   0.09
+  ],
+  "plate": {
+   "shape": "round",
+   "color": [
+    0.97,
+    0.94,
+    0.88
+   ],
+   "texture": null,
+   "texture_k": 0.5,
+   "stitch": [
+    0.72,
+    0.24,
+    0.2
+   ],
+   "rough": 7,
+   "pad": [
+    0.45,
+    0.3
+   ],
+   "shadow": [
+    6,
+    8,
+    0.32
+   ],
+   "border": null
+  },
+  "sound": [
+   "thud",
+   "tap",
+   "pop"
+  ],
+  "sub": null
+ },
+ "transitions": [
+  {
+   "id": "",
+   "name": "",
+   "how": "",
+   "kind": "",
+   "params": {}
+  }
+ ]
+}

@@ -1,0 +1,324 @@
+{
+ "id": "tin",
+ "num": 4,
+ "name": "铁皮玩具定格",
+ "en": "Tin Toy Stop-motion",
+ "line": "印花铁皮冲压的复古发条玩具，一顿一顿地动；上紧发条就活，发条松了就停",
+ "line_en": "Printed tin wind-up toys from another age, moving in little jerks: wound up they live, run down they stop",
+ "best": {
+  "subject": "Wind-up circus, a toy shop after closing, old toys in an attic: wind-up toys perform in turn, one runs down and stops halfway, then gets wound up again (the wind-up key is the heart of the story)",
+  "palette": "Vintage print colours, slightly faded: tomato red, cream white, teal, golden yellow; paint worn off at edges and corners, showing silver tin",
+  "light": "Warm stage spotlight plus a string of small coloured lights; bright highlights on the tin, clear shadows",
+  "camera": "Eye level, slightly low (toy height), with the wind-up key on the back visible; mostly medium shots, camera mostly locked off"
+ },
+ "good_for": [
+  "Circus, performances, contests",
+  "Machines, clocks, daily routines",
+  "Stories of running down, stopping, and being wound up again",
+  "Retro, nostalgia"
+ ],
+ "bad_for": [
+  "Subtle facial acting (faces are printed and cannot deform)",
+  "Scenes needing fluid, soft movement (tumbling, running, hugging)",
+  "Outdoor nature, water and weather",
+  "Horror, realistic serious subjects"
+ ],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  }
+ },
+ "preset": {
+  "jitter_rot": 0,
+  "idle": 0.012,
+  "light": {"tint": [1.035, 1.0, 0.95]},
+  "on": 3,
+  "rigid": true,
+  "shadow": {"kind": "contact", "contact": 0.45},
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.08,
+  "grade": {
+   "tint": [
+    1.04,
+    1.0,
+    0.93
+   ],
+   "lift": [
+    0.018,
+    0.012,
+    0.0
+   ],
+   "contrast": 1.05,
+   "bloom": 0.3,
+   "bloom_th": 0.78,
+   "bloom_r": 16,
+   "halation": 0.04,
+   "vig": 0.34,
+   "grain": 0,
+   "sat": 0.98
+  }
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false
+ },
+ "music": {
+  "desc": "Wind-up circus band: staccato trumpet carries the melody, glockenspiel follows like a music box, trombone oom-pah underneath, an old player piano on the offbeats, claves and snare drum march; straight, no swing, like a running machine. When a toy runs down: descending piano gliss and a gap in the score",
+  "bpm": [
+   112,
+   132
+  ],
+  "key": "Bb",
+  "mode": "major",
+  "swing": 0.0,
+  "progressions": [
+   [
+    "I",
+    "V",
+    "I",
+    "V"
+   ],
+   [
+    "I",
+    "IV",
+    "V",
+    "I"
+   ],
+   [
+    "I",
+    "vi",
+    "ii",
+    "V"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "trumpet_stac",
+    "oct": 4,
+    "vel": 0.55,
+    "legato": 0.6,
+    "pan": -0.15
+   },
+   "counter": {
+    "inst": "glockenspiel",
+    "oct": 6,
+    "vel": 0.3,
+    "pan": 0.3
+   },
+   "bass": {
+    "inst": "trombone_stac",
+    "oct": 2,
+    "pattern": "oom-pah",
+    "vel": 0.68
+   },
+   "comp": {
+    "inst": "honky_tonk",
+    "oct": 4,
+    "pattern": "oom-pah",
+    "vel": 0.4,
+    "pan": 0.15
+   },
+   "perc": {
+    "inst": [
+     "claves",
+     "snare2"
+    ],
+    "pattern": "march",
+    "vel": 0.36
+   }
+  },
+  "energy": {
+   "0": [
+    "comp"
+   ],
+   "0.25": [
+    "bass",
+    "comp"
+   ],
+   "0.45": [
+    "bass",
+    "comp",
+    "melody"
+   ],
+   "0.7": [
+    "bass",
+    "comp",
+    "melody",
+    "perc"
+   ],
+   "0.85": [
+    "bass",
+    "comp",
+    "melody",
+    "perc",
+    "counter"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "glockenspiel",
+     "gliss_up",
+     0.6
+    ]
+   ],
+   "boom": [
+    [
+     "gran_cassa",
+     null,
+     0.9
+    ],
+    [
+     "clash",
+     null,
+     0.5
+    ]
+   ],
+   "stop": [
+    [
+     "claves",
+     null,
+     0.9
+    ],
+    [
+     "triangle",
+     null,
+     0.35
+    ]
+   ],
+   "sparkle": [
+    [
+     "triangle",
+     null,
+     0.45
+    ],
+    [
+     "glockenspiel",
+     "arp",
+     0.45
+    ]
+   ],
+   "thud": [
+    [
+     "timpani",
+     "tonic",
+     0.8
+    ]
+   ],
+   "wind_down": [
+    [
+     "honky_tonk",
+     "gliss_down",
+     0.5
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.4,
+   "mix": 0.14
+  }
+ },
+ "title": {
+  "motion": {"enter": "drop", "step": 2, "sub_side": -1},
+  "color": [0.98, 0.94, 0.82],
+  "plate": {"shape": "round", "color": [0.78, 0.22, 0.16], "texture": null, "texture_k": 0.5,
+            "border": [0.04, [0.80, 0.78, 0.72]], "pad": [0.45, 0.3], "shadow": [7, 9, 0.42]},
+  "sub": {"color": [0.17, 0.22, 0.26], "plate": {"color": [0.93, 0.77, 0.30]}},
+  "sound": ["clink", "thud", "tap"]
+ },
+ "foley": {
+  "material": "tin",
+  "kinds": [
+   "thud",
+   "wind",
+   "clink",
+   "step",
+   "tap",
+   "whoosh",
+   "sparkle"
+  ]
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": "Circus ringmaster: grand, a little over the top, like announcing acts on stage; when a toy runs down, sentences get shorter and slower"
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 54,
+  "color": [
+   1.0,
+   0.95,
+   0.84
+  ],
+  "outline": [
+   0.32,
+   0.07,
+   0.05
+  ],
+  "outline_w": 5,
+  "pos": "bottom"
+ },
+ "transitions": [
+  {
+   "id": "tin_curtain",
+   "name": "Tin curtain close",
+   "how": "Two printed-tin stage curtains draw shut from the left and right edges of the frame, meet in the middle and cover it (on threes, so the pull is jerky like a toy), the cut hides in the closed drawings, then they draw open to reveal the next scene. Asset: generate one prop with the prop type: \"one tin toy-stage curtain panel printed with red-and-white vertical stripes and a gold fringe along the bottom, hanging straight down, no tie-backs, no gathered waist, one tall rectangle; no curtain rod, rings or knobs sticking out past its sides\" (without the hanging-straight phrase it comes out tied back and leaves a gap in the middle; anything sticking out at the sides leaves a strip at the frame edge), save as src/prop_curtain.png; both panels share this one image (the right one is mirrored), the template's load() reads it automatically. Recolour the stripes to this film's print colours if they differ. In SHOTS write tr='tin_curtain' on the shot after the cut. tin_clink on closing, tin_clink on opening, a stop hit on the closed drawing",
+   "kind": "hinge",
+   "params": {
+    "sprite": "prop_curtain",
+    "hinge": "lr",
+    "before": 5,
+    "after": 6,
+    "hold": 2,
+    "power": 1.0,
+    "overlap": 60,
+    "over": 60,
+    "focal": 40,
+    "back": 0.9,
+    "cast": 0.2
+   }
+  },
+  {
+   "id": "key_turn",
+   "name": "Wind-up cut",
+   "how": "Not a transition between shots, no tr=: done in build() / render(). Generate a 2×2 close-up sheet (sheet4): a supporting character on tiptoe gripping the wind-up key on the hero's back; seen from behind or rear three-quarter, the key staying plugged into the same spot on the back; with the shaft across the frame the 4 cells are key full face, turned 45° (narrower), turned 90° (edge-on, a thin bar), fully wound (full face again) with the helper letting go with one hand (both characters on one sheet, both character sheets as reference; staging and wording in STYLE.md). The butterfly key looks the same after half a turn, so the loop 1→2→3→2→3… reads as continuous winding. Wind 3 times (each: 1 drawing at 45° + 4–6 drawings at 90°, tin_wind on the drawing where it clicks home, the toy dips and springs back), then on the fully wound fourth cell hold for under 1 s and hard cut to the next shot: the character jolts in place and starts moving. Existing code can do it",
+   "kind": "move"
+  },
+  {
+   "id": "wind_down_cut",
+   "name": "Run-down cut",
+   "how": "Not a transition between shots, no tr=: done in build() / render(). In the outgoing shot the character's spring runs down: first a mechanical wait changing every two cells, then each cell holds longer (2→3→4→6→9 drawings in a row; these are drawing counts, not holds frame counts), the amplitude shrinking; the last drawing tips 3° extra then settles back 1°. wind_down hit and a gap in the score (5–6 s); once it stops, cut to a bystander's medium-close reaction. No new code",
+   "kind": "move"
+  }
+ ]
+}

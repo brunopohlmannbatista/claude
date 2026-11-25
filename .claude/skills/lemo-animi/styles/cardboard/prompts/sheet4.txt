@@ -1,0 +1,2 @@
+Medium-close views must clearly show corrugated cross-sections, tape wrinkles and marker strokes; expressions exaggerated and readable at a glance.
+If the framing above says the character is inside a prop (porthole, car window, box opening): the prop is exactly as in the reference image, the same size and in the same position in all four cells, and only the character changes. If not, draw only the character.

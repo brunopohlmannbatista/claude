@@ -1,0 +1,322 @@
+{
+ "id": "clay",
+ "num": 1,
+ "name": "黏土定格",
+ "en": "Clay Stop-motion",
+ "line": "油性黏土捏的角色和布景，表情夸张、压扁拉长，最有喜感",
+ "line_en": "Oil-clay characters and sets with big squash-and-stretch faces; the funniest of the lot",
+ "best": {
+  "subject": "Small everyday farces at home, in a kitchen or a little shop; a small character tries to get one thing done, botches it twice, succeeds the third time",
+  "palette": "Saturated, bright primaries: cream-yellow walls, tomato-red and off-white check, sky-blue objects, grass-green plants",
+  "light": "Warm, soft daylight, key light upper left, one shaft of window light; soft shadows",
+  "camera": "Eye level, camera at the character's chest-to-eye height; medium shots for action, medium-close for expressions and reactions, wide shots to establish the tabletop set"
+ },
+ "good_for": [
+  "Comedy, little farces",
+  "Anthropomorphic animals",
+  "Everyday family life",
+  "A character learning one thing, succeeding on the third try"
+ ],
+ "bad_for": [
+  "Horror, realistic serious subjects",
+  "Big crowd scenes",
+  "Grand landscapes",
+  "Stories set mostly in the dark or at night"
+ ],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  }
+ },
+ "preset": {
+  "jitter_rot": 0,
+  "idle": 0.012,
+  "on": 2,
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.12,
+  "grade": {
+   "tint": [
+    1.02,
+    1.0,
+    0.97
+   ],
+   "bloom": 0.18,
+   "bloom_th": 0.82,
+   "bloom_r": 20,
+   "vig": 0.26,
+   "grain": 0,
+   "sat": 1.04
+  },
+  "rigid": false,
+  "light": null,
+  "shadow": {
+   "kind": "contact",
+   "contact": 0.35
+  }
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false
+ },
+ "music": {
+  "desc": "Cartoon little band: staccato clarinet carries the melody, tuba oom-pah underneath, pizzicato strings fill the harmony, woodblock and shaker keep the beat; key actions hit with a xylophone gliss, bass drum and cymbal",
+  "bpm": [
+   104,
+   124
+  ],
+  "key": "F",
+  "mode": "major",
+  "swing": 0.1,
+  "progressions": [
+   [
+    "I",
+    "vi",
+    "IV",
+    "V"
+   ],
+   [
+    "I",
+    "IV",
+    "V",
+    "I"
+   ],
+   [
+    "I",
+    "V",
+    "vi",
+    "IV"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "clarinet_stac",
+    "oct": 5,
+    "vel": 0.62,
+    "legato": 0.7,
+    "pan": -0.15
+   },
+   "counter": {
+    "inst": "glockenspiel",
+    "oct": 6,
+    "vel": 0.28,
+    "pan": 0.3
+   },
+   "bass": {
+    "inst": "tuba_stac",
+    "oct": 2,
+    "pattern": "oom-pah",
+    "vel": 0.7
+   },
+   "comp": {
+    "inst": "violins_pizz",
+    "oct": 4,
+    "pattern": "oom-pah",
+    "vel": 0.42,
+    "pan": 0.15
+   },
+   "perc": {
+    "inst": [
+     "woodblock",
+     "shaker"
+    ],
+    "pattern": "tick",
+    "vel": 0.38
+   }
+  },
+  "energy": {
+   "0": [
+    "bass"
+   ],
+   "0.25": [
+    "bass",
+    "comp"
+   ],
+   "0.45": [
+    "bass",
+    "comp",
+    "melody"
+   ],
+   "0.7": [
+    "bass",
+    "comp",
+    "melody",
+    "perc"
+   ],
+   "0.85": [
+    "bass",
+    "comp",
+    "melody",
+    "perc",
+    "counter"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "xylophone",
+     "gliss_up",
+     0.7
+    ]
+   ],
+   "boom": [
+    [
+     "bass_drum",
+     null,
+     0.9
+    ],
+    [
+     "crash",
+     null,
+     0.45
+    ]
+   ],
+   "stop": [
+    [
+     "woodblock",
+     null,
+     0.85
+    ]
+   ],
+   "sparkle": [
+    [
+     "glockenspiel",
+     "arp",
+     0.5
+    ]
+   ],
+   "thud": [
+    [
+     "timpani",
+     "F2",
+     0.8
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.25,
+   "mix": 0.1
+  }
+ },
+ "foley": {
+  "material": "clay",
+  "kinds": [
+   "step",
+   "squish",
+   "boing",
+   "pop",
+   "thud",
+   "whoosh",
+   "clink",
+   "tap",
+   "smear",
+   "sparkle"
+  ]
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": "Lively, like telling a joke to kids; sentence ends lift up"
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 54,
+  "color": [
+   1.0,
+   0.98,
+   0.94
+  ],
+  "outline": [
+   0.25,
+   0.15,
+   0.1
+  ],
+  "outline_w": 5,
+  "pos": "bottom",
+  "plate": null
+ },
+ "transitions": [
+  {
+   "id": "clay_smear",
+   "name": "Clay smear",
+   "how": "A lump of clay smears onto the lens from the bottom right until it fills one drawing, then peels away toward the top left to reveal the next scene. Once per film, at a section boundary such as \"try again\". Generate the texture with the texture type as src/fx_smear_tex.png. Use one colour that appears in this film's set or main character (tomato red for a warm set; off-white or pale blue for a cold film such as a snow scene), never a colour absent from the film: \"one whole sheet of <that colour> oil-based clay pressed flat by a palm against a pane of glass, filling the whole frame, clay on all four edges and corners with no gaps, fingerprints, palm-print dents and squeezed-out ridges visible\". The template's load() reads it into assets automatically if present. In SHOTS write tr='clay_smear'. Two squish sounds: a low one about 0.3 s before the cut (pitch 0.8), a high one about 0.2 s after (pitch 1.25)",
+   "kind": "smear",
+   "params": {
+    "tex": "fx_smear_tex",
+    "before": 4,
+    "after": 5,
+    "hold": 1,
+    "power": 2,
+    "origin_in": [
+     0.92,
+     0.95
+    ],
+    "origin_out": [
+     0.05,
+     0.02
+    ],
+    "seed": 3
+   }
+  }
+ ],
+ "title": {
+  "motion": {"enter": "drop", "step": 2, "sub_side": -1},
+  "color": [
+   0.98,
+   0.93,
+   0.8
+  ],
+  "plate": {
+   "shape": "round",
+   "color": [
+    0.86,
+    0.13,
+    0.06
+   ],
+   "texture": "ref/texture.jpg",
+   "texture_k": 0.5,
+   "pad": [
+    0.45,
+    0.3
+   ],
+   "shadow": [
+    6,
+    8,
+    0.32
+   ]
+  },
+  "sound": [
+   "pop",
+   "squish",
+   "thud"
+  ]
+ }
+}

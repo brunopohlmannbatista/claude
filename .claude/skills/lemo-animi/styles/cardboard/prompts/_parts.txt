@@ -1,0 +1,2 @@
+[held_prop] Draw the prop in the character's hand from the same camera position as the set: eye level, looking slightly up; the back rim of a container's opening is visible.
+[prop_view] Use the same viewpoint as the shot the prop will be composited into: tall upright props (rocket, tower, castle) at eye level, looking slightly up; the back rim of a container's opening is visible, with the inside in a colour that contrasts strongly with the outside. A prop that is also needed seen from above is listed separately and marked "top-down"; draw that one from above.

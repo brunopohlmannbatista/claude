@@ -1,0 +1,3 @@
+Close-up material texture, opaque, {aspect}.
+One continuous sheet of material fills the whole frame, edge to edge and corner to corner: no gaps, no background, nothing placed on it. Shot straight on, evenly lit, so the material's own texture is clearly visible (fingerprint dents, fibres, stitches, grain, wood grain).
+Material: {material}

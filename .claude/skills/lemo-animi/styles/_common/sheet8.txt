@@ -1,0 +1,4 @@
+8-pose action sheet. {_transparent}
+Two rows of 4, read left to right, top to bottom: 8 poses of one continuous action by the same character (the key poses and the in-between poses that connect them; each pose must flow from the one before). Leave clear gaps between all 8 poses; they must not touch or overlap. No grid lines, numbers, motion arcs or speed lines. [[Holding {held_prop}. <<held_prop>> The prop is the same size in every cell.]] The character is the same size in all 8 poses (one scale, no change in distance) and the whole body stays in the frame. <<ground_line>> All 8 poses face the same direction (unless the action itself is a turn); anything worn on the back or held stays on the same side of the body throughout.
+Character: exactly as in the attached reference image ({character}); do not change the design, colours or proportions.
+Action: {action}

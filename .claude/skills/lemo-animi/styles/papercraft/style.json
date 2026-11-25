@@ -1,0 +1,346 @@
+{
+ "id": "papercraft",
+ "num": 2,
+ "name": "纸艺立体定格",
+ "en": "Papercraft Stop-motion",
+ "line": "卡纸剪刻折叠的纸雕灯箱，一层层前后排开，逆光透亮，安静又梦幻",
+ "line_en": "Cut, scored and folded card in layered lightbox scenes, backlit and glowing, quiet and dreamy",
+ "best": {
+  "subject": "Fairy tales and bedtime stories: a journey across a night sea, a forest or a starry sky; a small character passes through layer after layer of set and meets something much bigger (a whale, the moon, a great tree)",
+  "palette": "Layered cool tones of one family: deep blue, indigo, teal, paler far and deeper near; focal points in cream white and warm yellow (moon, sail, lamp)",
+  "light": "Backlight: moonlight or a lamp from behind, every paper edge glowing, clear shadows between layers, like a paper-cut lightbox",
+  "camera": "Front-on at eye level to show the layers, paper layers parallel to the picture plane; pan within the shot for parallax, never orbit the character"
+ },
+ "good_for": [
+  "Fairy tales, bedtime stories",
+  "Journeys, encounters",
+  "Quiet, magical night scenes",
+  "A small character in frame with something huge"
+ ],
+ "bad_for": [
+  "Fast slapstick comedy",
+  "Scenes that need to orbit the character or see it from behind",
+  "Stories needing lots of soft materials (cloth, fur, water) that deform delicately"
+ ],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  },
+  "layer": {
+   "aspect": "landscape"
+  }
+ },
+ "preset": {
+  "on": 2,
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.1,
+  "par": 0.85,
+  "grade": {
+   "tint": [
+    0.96,
+    0.99,
+    1.05
+   ],
+   "bloom": 0.32,
+   "bloom_th": 0.7,
+   "bloom_r": 26,
+   "vig": 0.32,
+   "grain": 0,
+   "sat": 1.0
+  },
+  "rigid": true,
+  "idle": 0.03,
+  "jitter_rot": 0,
+  "light": null,
+  "shadow": {
+   "kind": "contact",
+   "contact": 0.3
+  },
+  "dark": {
+   "frame": 0.03,
+   "hero": 0.06,
+   "len": 0.3
+  }
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false,
+  "hero_min_scale": 1.0
+ },
+ "music": {
+  "desc": "Night lightbox: soft handbell-like chimes carry the melody, glass-harp broken chords underneath, long cello notes hold the bass, an ocarina answers now and then like a sea breeze; Nepalese hand bells tap the beat lightly. Hits: glass-harp gliss, timpani with suspended cymbal, chime arpeggio",
+  "bpm": [
+   66,
+   84
+  ],
+  "key": "E",
+  "mode": "major",
+  "swing": 0.0,
+  "progressions": [
+   [
+    "I",
+    "V",
+    "vi",
+    "IV"
+   ],
+   [
+    "I",
+    "iii",
+    "IV",
+    "V"
+   ],
+   [
+    "vi",
+    "IV",
+    "I",
+    "V"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "hand_chimes",
+    "oct": 5,
+    "vel": 0.6,
+    "legato": 0.9,
+    "pan": -0.1
+   },
+   "counter": {
+    "inst": "ocarina",
+    "oct": 5,
+    "vel": 0.3,
+    "pan": 0.3
+   },
+   "bass": {
+    "inst": "cellos",
+    "oct": 2,
+    "pattern": "root",
+    "vel": 0.5
+   },
+   "comp": {
+    "inst": "glass",
+    "oct": 4,
+    "pattern": "arp",
+    "vel": 0.4,
+    "pan": 0.15
+   },
+   "perc": {
+    "inst": [
+     "nepal_bells"
+    ],
+    "pattern": "tick",
+    "vel": 0.2
+   }
+  },
+  "energy": {
+   "0": [
+    "comp",
+    "bass"
+   ],
+   "0.45": [
+    "comp",
+    "bass",
+    "melody"
+   ],
+   "0.7": [
+    "comp",
+    "bass",
+    "melody",
+    "counter"
+   ],
+   "0.85": [
+    "comp",
+    "bass",
+    "melody",
+    "counter",
+    "perc"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "glass",
+     "gliss_up",
+     0.6
+    ]
+   ],
+   "boom": [
+    [
+     "timpani",
+     "tonic",
+     0.85
+    ],
+    [
+     "sus_cymbal",
+     null,
+     0.45
+    ]
+   ],
+   "stop": [
+    [
+     "glass",
+     "B4",
+     0.8
+    ]
+   ],
+   "sparkle": [
+    [
+     "hand_chimes",
+     "arp",
+     0.55
+    ],
+    [
+     "nepal_bells",
+     null,
+     0.3
+    ]
+   ],
+   "thud": [
+    [
+     "timpani",
+     "E2",
+     0.75
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.6,
+   "mix": 0.24
+  }
+ },
+ "foley": {
+  "material": "paper",
+  "kinds": [
+   "flap",
+   "rustle",
+   "tap",
+   "thud",
+   "whoosh",
+   "step",
+   "sparkle",
+   "drip",
+   "splash",
+   "flow",
+   "bubble"
+  ]
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": "Gentle bedtime story, like turning the pages of a pop-up book at the bedside; short sentences, plenty of pause between them"
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 52,
+  "color": [
+   1.0,
+   0.96,
+   0.86
+  ],
+  "outline": [
+   0.07,
+   0.09,
+   0.2
+  ],
+  "outline_w": 5,
+  "pos": "bottom",
+  "plate": null
+ },
+ "transitions": [
+  {
+   "id": "layer_slide",
+   "name": "Paper layer slide",
+   "how": "A full-screen foreground paper layer sweeps from the left of the frame to the right (swap it for something this scene has: big waves at sea, leaf piles or grass in a forest, a row of rooftops in a town); the cut hides in the drawings it fully covers (before + after drawings, fully covered for about half, cut in the middle). Asset: generate one transparent paper layer with the layer type, with [set_layers] saying \"spans the frame, height at least half the width, the lower three quarters solid with no gaps\" (it must be tall enough to cover height × frame height; too flat and it blurs when scaled up; pass the same scene's bg as reference), save as src/layer_big.png; the template's load() reads it and slants both ends. In SHOTS write tr='layer_slide' on the shot after the cut, with one whoosh",
+   "kind": "slide",
+   "params": {
+    "tex": "layer_big",
+    "before": 7,
+    "after": 7,
+    "height": 2.6,
+    "y": 1.06,
+    "dir": "r",
+    "blur": 40,
+    "shadow": 0.45
+   }
+  },
+  {
+   "id": "pop_up",
+   "name": "Paper layers pop up",
+   "how": "Not a transition between shots; no tr=. In the opening of a new scene the set layers stand up one by one, hinged on their bottom edge (like a pop-up book opening). In the opening shot's layers in SHOTS, set each layer's sy as a function of the in-shot drawing index k (from 0): pop = lambda q: (lambda k: min(1.0, max(0.15, 1.1 * kit.ease_out((k - q) / 8)))), sy=pop(0), next layer sy=pop(3) (each layer 3 drawings later, standing fully over 8 drawings from drawing q); drawing 0 already shows the layers at 15%, never a black frame",
+   "kind": "move"
+  },
+  {
+   "id": "glow_mix",
+   "name": "Glow dissolve",
+   "how": "Scene change at a quiet moment: for 8 drawings before the cut the whole frame brightens by 30% (lift, like a lightbox switching on), then dissolve over 8 drawings into the next scene; no bloom. In SHOTS write tr='glow_mix' on the shot after the cut",
+   "kind": "glow",
+   "params": {
+    "before": 8,
+    "after": 8,
+    "lift": 0.3,
+    "bloom": false
+   }
+  }
+ ],
+ "title": {
+  "motion": {"enter": "pop", "step": 2, "sub_side": -1},
+    "sub": {"color": [0.99, 0.96, 0.88], "plate": {"color": [0.91, 0.5, 0.27]}},
+  "color": [
+   0.1,
+   0.15,
+   0.34
+  ],
+  "plate": {
+   "shape": "cut",
+   "color": [
+    0.97,
+    0.93,
+    0.83
+   ],
+   "texture": null,
+   "texture_k": 0.5,
+   "rough": 10,
+   "pad": [
+    0.42,
+    0.28
+   ],
+   "shadow": [
+    8,
+    12,
+    0.45
+   ]
+  },
+  "sound": [
+   "flap",
+   "tap"
+  ]
+ }
+}

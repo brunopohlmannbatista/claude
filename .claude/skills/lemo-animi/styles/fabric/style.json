@@ -1,0 +1,374 @@
+{
+ "id": "fabric",
+ "num": 11,
+ "name": "布偶拼布定格",
+ "en": "Patchwork Fabric Stop-motion",
+ "line": "花布、纽扣和针脚缝出来的布偶和田园，暖阳下走一段路，柔软又有乡土味",
+ "line_en": "Rag dolls and countryside sewn from floral cloth, buttons and stitches; a walk in warm sun, soft and homely",
+ "best": {
+  "subject": "Countryside, farms, country lanes, going to market, moving house: a story of walking a stretch of road across a big patchwork map; a group of small animals setting off in a line, finding a lost companion",
+  "palette": "Soft countryside colours: wheat yellow, apple green, sky blue, floral pink, off-white; floral and gingham patterns",
+  "light": "Warm afternoon sun low from behind to the side, weave and seams casting tiny shadows; warm overall, soft contrast",
+  "camera": "Medium, medium-close and wide shots at eye level close to the ground, to see button eyes and stitches; extreme-wide shots (showing the route) look down at an angle from above, like viewing a patchwork map from a hillside"
+ },
+ "good_for": [
+  "Stories of setting out, travelling, looking for something",
+  "Farms, countryside, the four seasons",
+  "A band of companions moving in a line",
+  "Gentle coming-of-age stories"
+ ],
+ "bad_for": [
+  "Night scenes, dark tones, tense thrilling subjects",
+  "Cities, technology, machinery",
+  "Fast fights, comedy with big deformation",
+  "Stories set entirely in one small room (wastes the fields)"
+ ],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  }
+ },
+ "preset": {
+  "on": 2,
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.18,
+  "grade": {
+   "tint": [
+    1.04,
+    1.0,
+    0.93
+   ],
+   "lift": [
+    0.02,
+    0.016,
+    0.0
+   ],
+   "bloom": 0.12,
+   "bloom_th": 0.84,
+   "bloom_r": 18,
+   "vig": 0.16,
+   "grain": 0,
+   "sat": 0.96,
+   "contrast": 0.97
+  },
+  "rigid": false,
+  "idle": 0.012,
+  "jitter_rot": 0,
+  "light": null,
+  "shadow": {
+   "kind": "contact",
+   "contact": 0.38,
+   "contact_w": 0.62,
+   "contact_off": [
+    0.06,
+    0
+   ]
+  },
+  "dark": {
+   "frame": 0.03,
+   "hero": 0.06,
+   "len": 0.3
+  }
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false,
+  "hero_min_scale": 1.0
+ },
+ "music": {
+  "desc": "Country folk: recorder sings the melody, harmonica answers behind it, strumstick on the offbeats, pizzicato double bass, cajón and tambourine one beat per step like walking; key actions hit with a strumstick gliss and cajón, cowbell to close",
+  "bpm": [
+   100,
+   118
+  ],
+  "key": "A",
+  "mode": "major",
+  "swing": 0.12,
+  "progressions": [
+   [
+    "I",
+    "IV",
+    "I",
+    "V"
+   ],
+   [
+    "I",
+    "V",
+    "IV",
+    "I"
+   ],
+   [
+    "I",
+    "IV",
+    "V",
+    "IV"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "recorder",
+    "oct": 5,
+    "vel": 0.38,
+    "legato": 0.8,
+    "pan": -0.15
+   },
+   "counter": {
+    "inst": "harmonica",
+    "oct": 5,
+    "vel": 0.32,
+    "legato": 0.9,
+    "pan": 0.3
+   },
+   "bass": {
+    "inst": "contrabass_pizz",
+    "oct": 2,
+    "pattern": "root-fifth",
+    "vel": 0.65
+   },
+   "comp": {
+    "inst": "strumstick",
+    "oct": 4,
+    "pattern": "offbeat",
+    "vel": 0.46,
+    "pan": 0.15
+   },
+   "perc": {
+    "inst": [
+     "cajon",
+     "tambourine"
+    ],
+    "pattern": "march",
+    "vel": 0.36
+   }
+  },
+  "energy": {
+   "0": [
+    "comp",
+    "counter"
+   ],
+   "0.25": [
+    "comp",
+    "bass"
+   ],
+   "0.45": [
+    "comp",
+    "bass",
+    "melody"
+   ],
+   "0.65": [
+    "comp",
+    "bass",
+    "melody",
+    "perc"
+   ],
+   "0.85": [
+    "comp",
+    "bass",
+    "melody",
+    "perc",
+    "counter"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "strumstick",
+     "gliss_up",
+     0.62
+    ]
+   ],
+   "boom": [
+    [
+     "cajon",
+     "bass",
+     0.9
+    ],
+    [
+     "tambourine",
+     null,
+     0.5
+    ]
+   ],
+   "stop": [
+    [
+     "cowbell",
+     null,
+     0.7
+    ]
+   ],
+   "sparkle": [
+    [
+     "hand_chimes",
+     "arp",
+     0.45
+    ]
+   ],
+   "thud": [
+    [
+     "toms",
+     "low_mallet",
+     0.8
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.2,
+   "mix": 0.07
+  }
+ },
+ "foley": {
+  "material": "fabric",
+  "kinds": [
+   "step",
+   "tap",
+   "thud",
+   "flop",
+   "button",
+   "rub",
+   "whoosh",
+   "sparkle"
+  ]
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": "Bright and unhurried, like talking while walking along a field path, with a little smile"
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 56,
+  "color": [
+   1.0,
+   0.98,
+   0.93
+  ],
+  "outline": [
+   0.2,
+   0.12,
+   0.06
+  ],
+  "outline_w": 4,
+  "pos": "bottom",
+  "plate": {
+   "color": [
+    0.13,
+    0.08,
+    0.05
+   ],
+   "alpha": 0.5,
+   "pad": [
+    30,
+    12
+   ]
+  }
+ },
+ "transitions": [
+  {
+   "id": "patch_push",
+   "name": "Push into a field",
+   "how": "Not part of the transition family, no tr=: in the extreme-wide map the camera slowly pushes toward the patch of fabric where the hero is (to about 1.16), and on the most pushed-in drawing hard cuts to an eye-level shot on that same patch (a separately generated background whose ground is written as the same fabric). The camera changes from an angled top-down view to eye level with the same fabric, so it is not a jump cut. One whoosh. Use only on the two extreme-wide map shots (after recognising the road, in cross-cutting), not in the opening: the opening is an eye-level wide shot",
+   "kind": "move"
+  },
+  {
+   "id": "cloth_flap",
+   "name": "Floral cloth cover",
+   "kind": "smear",
+   "how": "A piece of floral fabric flicks in from the left of the frame and covers the lens, then lifts off to the right to reveal the next scene. Asset: generate a big piece of floral fabric filling the frame with the texture type (prompt in STYLE.md \"Compositing\"), save as src/fx_smear_tex.png; the template's load() reads it automatically. In SHOTS write tr='cloth_flap'. whoosh plus thud. Once per film, at a section boundary (e.g. the cut point of cross-cutting between two lines)",
+   "params": {
+    "before": 3,
+    "after": 5,
+    "hold": 1,
+    "origin_in": [
+     -0.05,
+     0.5
+    ],
+    "origin_out": [
+     1.05,
+     0.5
+    ],
+    "wobble": 0.12,
+    "power": 1.5,
+    "tex": "fx_smear_tex"
+   }
+  },
+  {
+   "id": "stitch_wipe",
+   "name": "Stitch wipe",
+   "kind": "stitch",
+   "how": "A stitched fabric edge sweeps vertically from left to right, the new picture behind it, a soft shadow on its right. Asset prop_seam (prop type: \"a long stitched fabric-edge strip: a narrow off-white linen edge with one line of thick dark brown stitches down the middle, laid horizontally, perfectly straight\"), save as src/prop_seam.png; the template's load() reads it automatically. In SHOTS write tr='stitch_wipe'. whoosh. Use for \"remembering a road\", \"setting off from somewhere else\"",
+   "params": {
+    "after": 10,
+    "dir": "r",
+    "shadow": 0.3,
+    "sprite": "prop_seam"
+   }
+  }
+ ],
+ "title": {
+  "motion": {"enter": "drop", "step": 2, "sub_side": -1},
+    "sub": {"color": [0.99, 0.96, 0.88], "plate": {"color": [0.78, 0.22, 0.17]}},
+  "color": [
+   0.3,
+   0.17,
+   0.09
+  ],
+  "plate": {
+   "shape": "stitch",
+   "color": [
+    0.98,
+    0.95,
+    0.88
+   ],
+   "texture": null,
+   "texture_k": 0.5,
+   "stitch": [
+    0.76,
+    0.22,
+    0.2
+   ],
+   "rough": 7,
+   "pad": [
+    0.45,
+    0.3
+   ],
+   "shadow": [
+    12,
+    10,
+    0.35
+   ]
+  },
+  "sound": [
+   "thud",
+   "tap"
+  ]
+ }
+}

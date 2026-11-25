@@ -1,0 +1,3 @@
+Transparent set layer asset. {_transparent}
+One very wide strip of set (almost as wide as the frame, with a little empty space at both ends); draw only this layer. Its top edge is the layer's own silhouette (rolling hills, a row of trees, waves, tufts of grass); its bottom edge is one straight cut (in compositing it sits below the bottom edge of the frame). Material, colours and camera position exactly match the set in the reference image (this is one layer of the same shot). No sky, no distant scenery, no characters, nothing else.
+Set layer: {set_layers}

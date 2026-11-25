@@ -1,0 +1,392 @@
+{
+ "id": "wood",
+ "num": 8,
+ "name": "木偶定格",
+ "en": "Wooden Puppet Stop-motion",
+ "line": "清漆木雕的关节木偶，深夜一盏油灯下，一个关节一个关节地活过来",
+ "line_en": "Varnished, jointed wooden puppets coming to life one joint at a time under an oil lamp late at night",
+ "best": {
+  "subject": "A workshop late at night, an attic, old toys waking up; maker and creation, standing up for the first time, quiet warmth and curiosity. The smoothest structure makes the light the plot line: waking in the light → walking out of it and getting scared back → the light shrinks → making the light bigger → the light reveals something new",
+  "palette": "Honey, walnut, dark brown, a touch of brass; the background sinks into darkness; no bright colours",
+  "light": "Warm light from one oil lamp, low on the left; an oval pool of light on the bench top, falling off quickly to dark; small varnish highlights, wood grain still visible in the dark",
+  "camera": "Low camera close to the bench top, shallow depth of field, shavings blurred in the foreground; the hero stands in the pool of lamplight"
+ },
+ "good_for": [
+  "Objects and toys coming to life",
+  "Quiet warmth, loneliness and companionship",
+  "Makers, craft, stories of creation",
+  "Small night-time adventures"
+ ],
+ "bad_for": [
+  "Sunny outdoors, busy crowd scenes",
+  "Comedy needing soft deformation and exaggerated expressions",
+  "Soft things such as water, fire or cloth in the lead"
+ ],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  }
+ },
+ "preset": {
+  "on": 2,
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.14,
+  "grade": {
+   "tint": [
+    1.06,
+    0.97,
+    0.85
+   ],
+   "lift": [
+    0.012,
+    0.006,
+    0.0
+   ],
+   "contrast": 1.12,
+   "bloom": 0.3,
+   "bloom_th": 0.78,
+   "bloom_r": 24,
+   "halation": 0.1,
+   "vig": 0.48,
+   "grain": 0,
+   "sat": 0.98
+  },
+  "rigid": true,
+  "idle": 0.01,
+  "jitter_rot": 0,
+  "light": {
+   "decontam": 0,
+   "tint": [
+    1.08,
+    0.93,
+    0.74
+   ],
+   "expo": 1.0,
+   "gamma": 1.12,
+   "side": [
+    1.28,
+    0.43
+   ],
+   "rim": 0.55,
+   "rim_col": [
+    1.0,
+    0.72,
+    0.38
+   ],
+   "rim_dir": [
+    -10,
+    1
+   ],
+   "rim_soft": 1.6,
+   "warm_col": [
+    1.3,
+    1.02,
+    0.62
+   ],
+   "floor": {
+    "lo": 0.16,
+    "gamma": 1.8
+   }
+  },
+  "shadow": {
+   "kind": "contact",
+   "contact": 0.45
+  },
+  "dark": {
+   "frame": 0.03,
+   "hero": 0.06,
+   "len": 0.3
+  }
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false,
+  "hero_min_scale": 1.0
+ },
+ "music": {
+  "desc": "Late-night workshop chamber music: oboe sings the melody slowly (lonely, quiet), marimba (the sound of wood) answers behind it, harp broken chords, pizzicato cello underneath, woodblock ticking softly like a pendulum; glockenspiel and hand bells for moments like waking or standing up",
+  "bpm": [
+   76,
+   96
+  ],
+  "key": "D",
+  "mode": "minor",
+  "melody_scale": "dorian",
+  "swing": 0.0,
+  "progressions": [
+   [
+    "i",
+    "VI",
+    "III",
+    "VII"
+   ],
+   [
+    "i",
+    "iv",
+    "VI",
+    "V"
+   ],
+   [
+    "i",
+    "VII",
+    "VI",
+    "VII"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "oboe",
+    "oct": 5,
+    "vel": 0.6,
+    "legato": 0.9,
+    "pan": -0.1
+   },
+   "counter": {
+    "inst": "marimba",
+    "oct": 5,
+    "vel": 0.4,
+    "pan": 0.25
+   },
+   "bass": {
+    "inst": "cellos_pizz",
+    "oct": 2,
+    "pattern": "root-fifth",
+    "vel": 0.6
+   },
+   "comp": {
+    "inst": "harp",
+    "oct": 4,
+    "pattern": "arp",
+    "vel": 0.3,
+    "pan": 0.15
+   },
+   "perc": {
+    "inst": [
+     "woodblock",
+     "claves"
+    ],
+    "pattern": "tick",
+    "vel": 0.3
+   }
+  },
+  "energy": {
+   "0": [
+    "comp"
+   ],
+   "0.25": [
+    "comp",
+    "bass"
+   ],
+   "0.45": [
+    "comp",
+    "bass",
+    "melody"
+   ],
+   "0.7": [
+    "comp",
+    "bass",
+    "melody",
+    "perc"
+   ],
+   "0.85": [
+    "comp",
+    "bass",
+    "melody",
+    "perc",
+    "counter"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "marimba",
+     "gliss_up",
+     0.65
+    ]
+   ],
+   "boom": [
+    [
+     "gran_cassa",
+     "hit",
+     0.85
+    ],
+    [
+     "sus_cymbal",
+     "hit",
+     0.3
+    ]
+   ],
+   "stop": [
+    [
+     "woodblock",
+     "b",
+     0.85
+    ]
+   ],
+   "sparkle": [
+    [
+     "glockenspiel",
+     "arp",
+     0.45
+    ]
+   ],
+   "thud": [
+    [
+     "log_drum",
+     "lo",
+     0.85
+    ]
+   ],
+   "wake": [
+    [
+     "hand_chimes",
+     "arp",
+     0.5
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.35,
+   "mix": 0.14
+  }
+ },
+ "foley": {
+  "material": "wood",
+  "kinds": [
+   "knock",
+   "step",
+   "tap",
+   "click",
+   "creak",
+   "ratchet",
+   "thud",
+   "whoosh",
+   "sparkle"
+  ]
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": "Warm, like telling a bedtime story at the bedside late at night; short sentences, a pause before the key line"
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 52,
+  "color": [
+   1.0,
+   0.93,
+   0.8
+  ],
+  "outline": [
+   0.1,
+   0.05,
+   0.02
+  ],
+  "outline_w": 5,
+  "pos": "bottom",
+  "plate": null
+ },
+ "transitions": [
+  {
+   "id": "panel_slide",
+   "name": "Wooden panel slide",
+   "how": "A big varnished wooden panel passes right in front of the lens from left to right, lit by the warm lamp and slightly motion-blurred; the cut hides in the drawings it fully covers (fully covered for about half of the 14 drawings, cut in the middle), then it slides on out of frame to reveal the next scene. Asset: generate one transparent set layer with the layer type, with [set_layers] saying \"one wide panel of upright varnished wooden planks in honey and walnut (a cupboard's sliding door), clear wood grain, a little brass hardware, spans the image, height at least half the width, the lower three quarters solid with no gaps or holes\" (pass this film's wide background as reference so the wood and light match), save as src/layer_panel.png; the template's load() reads it and slants both ends. In SHOTS write tr='panel_slide' on the shot after the cut, with one low whoosh (pitch 0.7) and a soft wooden knock when it covers",
+   "kind": "slide",
+   "params": {
+    "tex": "layer_panel",
+    "before": 7,
+    "after": 7,
+    "height": 1.5,
+    "y": 1.2,
+    "dir": "r",
+    "blur": 30,
+    "shadow": 0.5
+   }
+  },
+  {
+   "id": "lamp_flood",
+   "name": "Light floods out",
+   "kind": "glow",
+   "how": "For moments when the light grows: turning up the lamp, switching on a light, dawn. Bloom swells over the last few drawings before the cut; cut to a bright version of the wide from the same camera; after the cut the bright background spreads out in rings from the lamp's position (fully spread in about 20 drawings), and the character's brightness blends along the same circle (animi.light_flood + floor_light(plate2=, mix=); see STYLE.md \"Compositing\"). In SHOTS write tr='lamp_flood', with a sparkle hit. Once per film, at the climax",
+   "params": {
+    "before": 3,
+    "after": 8,
+    "hold": 1,
+    "mix": false
+   }
+  }
+ ],
+ "title": {
+  "motion": {
+   "enter": "drop",
+   "step": 2,
+   "sub_side": -1
+  },
+  "color": [
+   0.22,
+   0.11,
+   0.04
+  ],
+  "plate": {
+   "shape": "round",
+   "color": [
+    0.8,
+    0.58,
+    0.34
+   ],
+   "texture": "proc:wood",
+   "texture_k": 0.55,
+   "rough": 4,
+   "pad": [
+    0.45,
+    0.3
+   ],
+   "shadow": [
+    8,
+    10,
+    0.45
+   ],
+   "border": [
+    0.04,
+    [
+     0.42,
+     0.25,
+     0.12
+    ]
+   ]
+  },
+  "sound": [
+   "knock",
+   "tap"
+  ]
+ }
+}

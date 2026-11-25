@@ -1,0 +1,3 @@
+8-cell effect sheet. {_transparent}
+Two rows of 4, read left to right, top to bottom: 8 stages of the same effect, from appearing to vanishing. Leave clear gaps between the 8; they must not touch. Do not draw any character; draw only the effect itself.
+Effect: {fx}

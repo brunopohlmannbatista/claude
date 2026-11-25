@@ -1,0 +1,376 @@
+{
+ "id": "crochet",
+ "num": 9,
+ "name": "钩织玩偶定格",
+ "en": "Crochet Stop-motion",
+ "line": "毛线一针针钩出来的玩偶和满屏小世界，糖果色、热闹、到处都在轻轻动",
+ "line_en": "Yarn dolls and a whole small world hooked stitch by stitch: candy colours, busy, everything gently moving",
+ "best": {
+  "subject": "Places full of small creatures edge to edge, like the seabed, a pond or a garden; treasure hunts, collecting, making friends, lively little adventures",
+  "palette": "Candy colours: coral pink, lemon yellow, mint green, lavender; cyan-blue gradient background",
+  "light": "Top light from above, bright and high-key, very light shadows",
+  "camera": "Front-on at eye level, hero centred, framed on both sides by larger crocheted coral (symmetrical composition); medium shots also use front-left and front-right 40° setups; seaweed, bubbles and small fish are composited separately in front and back rows"
+ },
+ "good_for": [
+  "Lively little adventures, treasure hunts",
+  "Small creatures of the seabed, gardens, ponds",
+  "Making friends, a band of companions",
+  "Bright stories for young children"
+ ],
+ "bad_for": [
+  "Dark, tense or scary subjects",
+  "Stories needing crisp, hard-edged action (fights, machines)",
+  "Realistic water, fire, smoke",
+  "Large-scale extreme-wide shots"
+ ],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  }
+ },
+ "preset": {
+  "on": 2,
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.08,
+  "grade": {
+   "tint": [
+    0.98,
+    1.02,
+    1.03
+   ],
+   "lift": [
+    0.0,
+    0.01,
+    0.016
+   ],
+   "bloom": 0.2,
+   "bloom_th": 0.8,
+   "bloom_r": 22,
+   "vig": 0.18,
+   "grain": 0,
+   "sat": 1.1
+  },
+  "rigid": false,
+  "idle": 0.012,
+  "jitter_rot": 0,
+  "light": null,
+  "shadow": {
+   "kind": "contact",
+   "contact": 0.28
+  },
+  "dark": {
+   "frame": 0.03,
+   "hero": 0.06,
+   "len": 0.3
+  }
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false,
+  "hero_min_scale": 1.0
+ },
+ "music": {
+  "desc": "Undersea bubble band: vibraphone sings a pentatonic melody, kalimba answers, ukulele strums the offbeats, jazz pizzicato bass, congas and shaker with a little swing; key actions hit with a marimba gliss and slit drum, kalimba arpeggios as sparkle",
+  "bpm": [
+   96,
+   112
+  ],
+  "key": "G",
+  "mode": "major",
+  "melody_scale": "pentatonic",
+  "swing": 0.18,
+  "progressions": [
+   [
+    "I",
+    "IV",
+    "I",
+    "V"
+   ],
+   [
+    "I",
+    "vi",
+    "ii",
+    "V"
+   ],
+   [
+    "IV",
+    "V",
+    "I",
+    "I"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "vibraphone",
+    "oct": 5,
+    "vel": 0.52,
+    "legato": 0.85,
+    "pan": -0.12
+   },
+   "counter": {
+    "inst": "kalimba",
+    "oct": 6,
+    "vel": 0.48,
+    "pan": 0.35
+   },
+   "bass": {
+    "inst": "jazz_bass",
+    "oct": 2,
+    "pattern": "root-fifth",
+    "vel": 0.62
+   },
+   "comp": {
+    "inst": "ukulele",
+    "oct": 4,
+    "pattern": "offbeat",
+    "vel": 0.46,
+    "pan": 0.18
+   },
+   "perc": {
+    "inst": [
+     "conga",
+     "shaker"
+    ],
+    "pattern": "tick",
+    "vel": 0.3
+   }
+  },
+  "energy": {
+   "0": [
+    "bass",
+    "melody"
+   ],
+   "0.25": [
+    "bass",
+    "comp"
+   ],
+   "0.45": [
+    "bass",
+    "comp",
+    "melody"
+   ],
+   "0.65": [
+    "bass",
+    "comp",
+    "melody",
+    "perc"
+   ],
+   "0.85": [
+    "bass",
+    "comp",
+    "melody",
+    "perc",
+    "counter"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "marimba",
+     "gliss_up",
+     0.62
+    ]
+   ],
+   "boom": [
+    [
+     "log_drum",
+     "lo",
+     0.9
+    ],
+    [
+     "gran_cassa",
+     "hit",
+     0.45
+    ]
+   ],
+   "stop": [
+    [
+     "claves",
+     null,
+     0.8
+    ]
+   ],
+   "sparkle": [
+    [
+     "kalimba",
+     "arp",
+     0.5
+    ]
+   ],
+   "thud": [
+    [
+     "conga",
+     "tumba",
+     0.85
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.42,
+   "mix": 0.18
+  }
+ },
+ "foley": {
+  "material": "crochet",
+  "kinds": [
+   "puff",
+   "bubble",
+   "flow",
+   "splash",
+   "whoosh",
+   "tap",
+   "sparkle",
+   "thud",
+   "step"
+  ]
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": "Curious and bouncy, like a child leaning on a fish tank introducing you to the friends inside"
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 56,
+  "color": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "outline": [
+   0.02,
+   0.16,
+   0.22
+  ],
+  "outline_w": 4,
+  "pos": "bottom",
+  "plate": {
+   "color": [
+    0.02,
+    0.14,
+    0.2
+   ],
+   "alpha": 0.58,
+   "pad": [
+    30,
+    11
+   ]
+  }
+ },
+ "transitions": [
+  {
+   "id": "blanket_drop",
+   "name": "Crochet blanket drop",
+   "how": "A crocheted granny-square blanket drops over the lens from the top with a soft, slightly ragged edge, fills the frame for one drawing, then is lifted back up and away to reveal the next scene. Asset: generate with the texture type, [material] \"a crocheted granny-square blanket: rows of small squares, each worked in rings of <this film's candy colours> with an off-white border, chunky stitches clearly visible, filling the whole frame\" (use colours already in this film's set and characters), save as src/fx_smear_tex.png; the template's load() reads it automatically. In SHOTS write tr='blanket_drop'. A soft whoosh (pitch 0.8) as it drops, a puff as it lifts",
+   "kind": "smear",
+   "params": {
+    "tex": "fx_smear_tex",
+    "before": 4,
+    "after": 5,
+    "hold": 1,
+    "power": 1.5,
+    "origin_in": [
+     0.5,
+     -0.05
+    ],
+    "origin_out": [
+     0.5,
+     -0.05
+    ],
+    "wobble": 0.3,
+    "edge": "line",
+    "seed": 4
+   }
+  },
+  {
+   "id": "bubble_curtain",
+   "name": "Bubble curtain",
+   "kind": "curtain",
+   "how": "A big mass of yarn bubbles surges up from the bottom of the frame and covers it (only where bubbles belong, i.e. underwater; anywhere else use blanket_drop); cut on the fully covered drawing, then the bubbles keep rising away to reveal the next scene. Asset: generate with the fx type \"a big cluster of solid yarn bubbles surging upward (for a scene change), 8 stages: three or four rise from the bottom of the cell, more and more, almost filling the whole cell by cell 5, then scattering upward\", animi.py slice src/fx_curtain.png work/cells fx_curtain --group grid, params.sprites take the densest fx_curtain_3 to _6, the template's load() reads them automatically. In SHOTS write tr='bubble_curtain', with whoosh plus bubble. Once per film, at a section boundary",
+   "params": {
+    "before": 8,
+    "after": 10,
+    "n": 22,
+    "size": [
+     0.55,
+     1.45
+    ],
+    "blur": 24,
+    "sprites": [
+     "fx_curtain_3",
+     "fx_curtain_4",
+     "fx_curtain_5",
+     "fx_curtain_6"
+    ]
+   }
+  }
+ ],
+ "title": {
+  "motion": {"enter": "drop", "step": 2, "sub_side": -1},
+    "sub": {"color": [0.99, 0.96, 0.88], "plate": {"color": [0.93, 0.47, 0.42]}},
+  "color": [
+   0.04,
+   0.22,
+   0.3
+  ],
+  "plate": {
+   "shape": "stitch",
+   "color": [
+    0.99,
+    0.96,
+    0.88
+   ],
+   "texture": "proc:knit",
+   "texture_k": 0.5,
+   "stitch": [
+    0.96,
+    0.5,
+    0.42
+   ],
+   "rough": 7,
+   "pad": [
+    0.45,
+    0.3
+   ],
+   "shadow": [
+    12,
+    12,
+    0.38
+   ]
+  },
+  "sound": [
+   "puff",
+   "thud",
+   "tap"
+  ]
+ }
+}

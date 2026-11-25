@@ -1,0 +1,376 @@
+{
+ "id": "felt",
+ "num": 5,
+ "name": "羊毛毡定格",
+ "en": "Needle-felt Stop-motion",
+ "line": "戳戳乐羊毛毡做的小动物和雪景，毛茸茸、安静、温暖，冷蓝夜色里点一盏暖灯",
+ "line_en": "Needle-felted animals in the snow: fuzzy, quiet and warm, one warm lamp in a cold blue night",
+ "best": {
+  "subject": "Cosy little stories of winter nights, snowfields, cabins in the woods, the eve of a holiday; a small animal quietly does something kind for someone: gives away something warm → is left in the cold → the other comes back bringing light",
+  "palette": "Large areas of cold blue, snow white and light grey; warm red and warm yellow only as one or two accents (scarf, lit window, lantern)",
+  "light": "Night: cold blue moonlight from behind right rims the fuzzy edges; warm yellow window light and lanterns as local fill; warm-cold contrast",
+  "camera": "Low camera close to the snow, shallow depth of field, a blurred felt snowdrift or berry sprig in the foreground"
+ },
+ "good_for": [
+  "Cosy, quiet little stories",
+  "Winter, holidays, night",
+  "Giving gifts, waiting for someone to come home, caring for others",
+  "Bedtime stories"
+ ],
+ "bad_for": [
+  "Fast slapstick, comedy with big squash-and-stretch",
+  "Harsh daylight, busy high-saturation scenes",
+  "Hard, shiny materials (metal, glass, water) in the lead",
+  "Lots of smoke and translucent effects"
+ ],
+ "assets": {
+  "character": {
+   "aspect": "landscape"
+  },
+  "sheet8": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "sheet4": {
+   "aspect": "square",
+   "n": 4,
+   "rows": 2,
+   "cols": 2
+  },
+  "prop": {
+   "aspect": "landscape"
+  },
+  "fx": {
+   "aspect": "landscape",
+   "n": 8,
+   "rows": 2,
+   "cols": 4
+  },
+  "bg": {
+   "aspect": "film"
+  }
+ },
+ "preset": {
+  "on": 2,
+  "jitter_pos": 0,
+  "jitter_scale": 0,
+  "flicker": 0,
+  "push_max": 1.1,
+  "grade": {
+   "tint": [
+    0.95,
+    0.99,
+    1.06
+   ],
+   "lift": [
+    0.0,
+    0.006,
+    0.022
+   ],
+   "bloom": 0.3,
+   "bloom_th": 0.76,
+   "bloom_r": 26,
+   "halation": 0.06,
+   "vig": 0.34,
+   "grain": 0,
+   "sat": 0.98
+  },
+  "rigid": false,
+  "idle": 0.012,
+  "jitter_rot": 0,
+  "light": {
+   "decontam": 6,
+   "tint": [
+    0.8,
+    0.86,
+    1.0
+   ],
+   "expo": 0.9,
+   "gamma": 1.0,
+   "side": null,
+   "rim": 0.55,
+   "rim_col": [
+    0.62,
+    0.74,
+    1.0
+   ],
+   "rim_dir": [
+    7,
+    -7
+   ],
+   "rim_soft": 2.0,
+   "warm_col": [
+    1.3,
+    1.02,
+    0.62
+   ]
+  },
+  "shadow": {
+   "kind": "contact",
+   "contact": 0.38
+  },
+  "dark": {
+   "frame": 0.03,
+   "hero": 0.06,
+   "len": 0.3
+  }
+ },
+ "flags": {
+  "profile_only": false,
+  "top_down": false,
+  "tilt_shift": false,
+  "hero_min_scale": 1.0
+ },
+ "music": {
+  "desc": "Winter-night lullaby: harp broken chords underneath, flute sings the melody softly, long double-bass notes hold it up; glockenspiel and sleigh bells at the climax. Key actions hit with a harp gliss, timpani and suspended cymbal; plenty of space",
+  "bpm": [
+   72,
+   90
+  ],
+  "key": "D",
+  "mode": "major",
+  "swing": 0.0,
+  "progressions": [
+   [
+    "I",
+    "IV",
+    "I",
+    "V"
+   ],
+   [
+    "I",
+    "vi",
+    "IV",
+    "V"
+   ],
+   [
+    "vi",
+    "IV",
+    "I",
+    "V"
+   ]
+  ],
+  "roles": {
+   "melody": {
+    "inst": "flute",
+    "oct": 5,
+    "vel": 0.42,
+    "legato": 0.95,
+    "pan": -0.12
+   },
+   "counter": {
+    "inst": "glockenspiel",
+    "oct": 6,
+    "vel": 0.28,
+    "pan": 0.3
+   },
+   "bass": {
+    "inst": "contrabass",
+    "oct": 2,
+    "pattern": "root",
+    "vel": 0.44
+   },
+   "comp": {
+    "inst": "harp",
+    "oct": 4,
+    "pattern": "arp",
+    "vel": 0.34,
+    "pan": 0.12
+   },
+   "perc": {
+    "inst": [
+     "triangle",
+     "sleighbells"
+    ],
+    "pattern": "tick",
+    "vel": 0.32
+   }
+  },
+  "energy": {
+   "0": [
+    "comp"
+   ],
+   "0.25": [
+    "comp",
+    "bass"
+   ],
+   "0.45": [
+    "comp",
+    "bass",
+    "melody"
+   ],
+   "0.7": [
+    "comp",
+    "bass",
+    "melody",
+    "counter"
+   ],
+   "0.85": [
+    "comp",
+    "bass",
+    "melody",
+    "counter",
+    "perc"
+   ]
+  },
+  "hits": {
+   "accent": [
+    [
+     "harp",
+     "gliss_up",
+     0.6
+    ]
+   ],
+   "boom": [
+    [
+     "timpani",
+     "tonic",
+     0.8
+    ],
+    [
+     "sus_cymbal",
+     "hit",
+     0.4
+    ]
+   ],
+   "stop": [
+    [
+     "triangle",
+     "muted",
+     0.7
+    ]
+   ],
+   "sparkle": [
+    [
+     "glockenspiel",
+     "arp",
+     0.42
+    ]
+   ],
+   "thud": [
+    [
+     "timpani",
+     "D2",
+     0.7
+    ]
+   ]
+  },
+  "reverb": {
+   "size": 0.55,
+   "mix": 0.2
+  }
+ },
+ "foley": {
+  "material": "felt",
+  "kinds": [
+   "step",
+   "crunch",
+   "puff",
+   "rub",
+   "thud",
+   "tap",
+   "whoosh",
+   "sparkle"
+  ]
+ },
+ "voice": {
+  "engine": "edge",
+  "voice": "zh-CN-XiaoyiNeural",
+  "rate": "+0%",
+  "pitch": "+0Hz",
+  "tone": "Gentle, like a bedtime story; short sentences with a little pause between them"
+ },
+ "subtitle": {
+  "font": "siyuan",
+  "size": 52,
+  "color": [
+   1.0,
+   0.97,
+   0.9
+  ],
+  "outline": [
+   0.06,
+   0.08,
+   0.18
+  ],
+  "outline_w": 5,
+  "pos": "bottom",
+  "plate": null
+ },
+ "transitions": [
+  {
+   "id": "wool_smear",
+   "name": "Wool smear",
+   "kind": "smear",
+   "how": "A big puff of fluffy white wool presses down onto the lens from the top of the frame until it fills it, then peels away downward to reveal the next scene, like snow covering the lens. Asset fx_smear_tex (a close-up of white wool filling the frame; prompt in STYLE.md). In SHOTS write tr='wool_smear' (the shorthand smear=(4, 1, 4) also uses this entry's direction and wobble). whoosh (v 0.55, pitch 0.8) plus thud (v 0.4, pitch 0.8). Once per film, at a section boundary where time passes (a night goes by, the snow gets heavier)",
+   "params": {
+    "before": 4,
+    "after": 5,
+    "hold": 1,
+    "origin_in": [
+     0.5,
+     -0.05
+    ],
+    "origin_out": [
+     0.5,
+     1.05
+    ],
+    "wobble": 0.35,
+    "power": 1.5,
+    "tex": "fx_smear_tex"
+   }
+  },
+  {
+   "id": "lamp_glow",
+   "name": "Window-glow dissolve",
+   "kind": "glow",
+   "how": "The outgoing shot pushes toward a warm light (window, lantern); bloom swells over the last few drawings before the cut, dissolves into the next scene at its brightest, then slowly falls back. In SHOTS write tr='lamp_glow', with a sparkle hit. Use for \"back inside\", \"thinking of someone\", \"going home together\"",
+   "params": {
+    "before": 4,
+    "after": 9,
+    "hold": 3,
+    "xfade": 6
+   }
+  }
+ ],
+ "title": {
+  "motion": {"enter": "drop", "step": 2, "sub_side": -1},
+  "color": [
+   0.11,
+   0.15,
+   0.29
+  ],
+  "plate": {
+   "shape": "stitch",
+   "color": [
+    0.95,
+    0.93,
+    0.88
+   ],
+   "texture": "ref/texture.jpg",
+   "texture_k": 0.6,
+   "stitch": [
+    0.74,
+    0.2,
+    0.18
+   ],
+   "rough": 7,
+   "pad": [
+    0.45,
+    0.3
+   ],
+   "shadow": [
+    6,
+    9,
+    0.4
+   ]
+  },
+  "sound": [
+   "puff",
+   "thud",
+   "tap"
+  ]
+ }
+}

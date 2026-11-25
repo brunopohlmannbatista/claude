@@ -1,0 +1,3 @@
+Character sheet. {_transparent}
+<<view>> Leave clear gaps between the four figures; they must not touch or overlap. All four are the same size. <<sheet_ground_line>> Each full body is complete.
+Character: {character}

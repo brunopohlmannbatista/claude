@@ -1,0 +1,4 @@
+[ground_line] In poses standing on the ground, the soles rest on the same horizontal line within each row. A character floating in water touches the ground in none of the 8 cells: its body centre lies on the same horizontal line, and only the rising or sinking cells are clearly above or below that line.
+[sheet_ground_line] Standing feet, or the body centre of a floating character, on the same horizontal line.
+[held_prop] Draw the prop in the character's hand from the same camera position as the set (front-on at eye level, the camera slightly above the prop).
+[prop_view] Use the same viewpoint as the shot the prop will be composited into: front-on at eye level, the camera slightly above the prop. For a container that will hold something (bowl, bucket, basket), make the inside a colour that contrasts strongly with the outside. A prop that is also needed seen from above is listed separately and marked "top-down"; draw that one from above.

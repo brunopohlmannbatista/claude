@@ -1,0 +1,3 @@
+Background set for one shot, {aspect}. {shot_size}.
+Scene: {scene}
+Do not show the main character (it is composited in later). Leave a clean, flat footing where the main character will stand: {margin}.

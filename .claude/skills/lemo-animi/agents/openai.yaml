@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lemo Animi"
+  short_description: "Stop-motion short films from one line: story, style, length"
+  default_prompt: "Make a 40-second stop-motion with lemo-animi: <story>, <style>, landscape"

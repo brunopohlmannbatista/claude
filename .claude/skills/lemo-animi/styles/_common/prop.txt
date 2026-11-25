@@ -1,0 +1,3 @@
+Prop asset. {_transparent}
+Props are placed apart, not touching, all at the same scale. Each one is complete with plenty of empty space around it, never cut off by the frame edge or by another object. <<prop_view>>
+Props: {prop}
