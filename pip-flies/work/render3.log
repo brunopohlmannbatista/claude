@@ -1,0 +1,33 @@
+film (with sound): /home/user/claude/pip-flies/out/pip.mp4
+sound check: -14.1 LUFS, true peak -1.7 dBTP, OK
+/home/user/claude/pip-flies/out/pip.mp4
+hero size: shot 0 "lesson" wide fills 35.9% of the short side (needs >= 33.0%)
+hero size: shot 1 "stool" medium fills 38.0% of the short side (needs >= 33.0%)
+hero size: shot 2 "run" medium fills 44.9% of the short side (needs >= 30.0%)
+hero size: shot 3 "window" medium-close fills 64.3% of the short side (needs >= 60.0%)
+hero size: shot 4 "hill" wide fills 39.8% of the short side (needs >= 30.0%)
+hero size: shot 5 "landing" medium-close fills 69.5% of the short side (needs >= 60.0%)
+length 40.00s, 480 drawings, 1920×1080, style Needle-felt Stop-motion
+  beat "setup": 66 drawings, 8 distinct cells
+  beat "try1": 60 drawings, 10 distinct cells
+  beat "try2": 64 drawings, 8 distinct cells
+  beat "try3": 86 drawings, 10 distinct cells
+  beat "low": 53 drawings, 2 distinct cells
+  beat "turn": 33 drawings, 2 distinct cells
+  beat "payoff": 88 drawings, 8 distinct cells
+  beat "button": 30 drawings, 4 distinct cells
+Timesheet.lint: OK (no hold longer than 2.0s)
+Timesheet.lint: note: from 0.00s for 10.50s standing still (x unchanged), body switching back and forth between look_0, look_1, look_2, look_3, look_4, look_5, look_6, look_7, flap_0, flap_1, flap_2, flap_3, flap_4, flap_5, flap_6, flap_7: reads as rocking. Play through once in order and hold the last drawing (face-only ~ variants do not count)
+Timesheet.lint: note: from 23.00s for 7.17s standing still (x unchanged), body switching back and forth between sad_0, sad_1, sad_2, sad_3: reads as rocking. Play through once in order and hold the last drawing (face-only ~ variants do not count)
+shots_lint: shot 4->5 (37.5s) backgrounds "hill_wide" and "hill_bottom" are almost the same camera position (similarity 0.86): checked by eye (checked the cut sheet: hero goes from a small slider on the slope to a big lying close-up (about 2x), camera down at snow level at the bottom; reads as arriving, not a zoom)
+shots_lint: OK (6 shots, sizes medium, medium-close, wide)
+repeat_report: from 0.0s shot 0 "look" loops for 6.1 s (2 laps): checked by eye (watching the owl twice, around one bounce; not a loop)
+repeat_report: from 16.7s shot 2 "run" loops for 6.3 s (15 laps): checked by eye (run-up crossing the whole floor)
+repeat_report: from 23.0s shot 3 "sad" loops for 7.2 s (2 laps): checked by eye (one sigh-blink then a long sigh; not a loop)
+repeat_report: from 30.2s shot 4 "slide" loops for 7.3 s (11 laps): checked by eye (slide cycle: travelling across the whole slope)
+repeat_report: OK (8 actions, no unchanged replays or overlong loops)
+shot list: work/shots.json (sound.json can time cues by shot)
+size_report: OK (hero size matches across adjacent shots)
+liveness: [WARN] 2.75s from 8.58s the picture barely moves (0.032); see work/liveness.png. Over 2 s needs a local move (blink, ear, tail), a supporting character or the environment (a slow push alone does not count); fix it or list it with review.py add --known
+liveness: [WARN] 2.00s from 22.00s the picture barely moves (0.031); see work/liveness.png. Over 2 s needs a local move (blink, ear, tail), a supporting character or the environment (a slow push alone does not count); fix it or list it with review.py add --known
+liveness: [WARN] 2.83s from 25.00s the picture barely moves (0.011); see work/liveness.png. Over 2 s needs a local move (blink, ear, tail), a supporting character or the environment (a slow push alone does not count); fix it or list it with review.py add --known

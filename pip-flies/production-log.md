@@ -108,6 +108,37 @@ mirror is safe) and Pip faces right in every shot.
 
 ## 3. Review rounds
 
-## 4. Must-pass verdicts
+- **v1**: liveness warnings at 8.5–12 s (Pip sitting, then standing on stool), 14.4–16.7 s (lying after flop),
+  22.3–28.4 s (end of slide + sad window). Fix: owl "try again" gesture, shorter holds, bigger snow behind the window,
+  a sigh-blink in the sad beat, determination beat before the run.
+- **v2**: run shot opened with Pip cut by the left frame edge (cut sheet). Window idea held 2.4 s. Fix: start x moved
+  right, window shot shortened (30.2 s), hill shot lengthened, Pip leans toward the window on the idea.
+- **v3** (delivered): remaining liveness WARNs, all mild and listed as known: 8.6–11.3 s (puzzled sit, owl gesture,
+  Pip on the stool), 22.0–24.0 s (stopped at the wall → sad start), 25.0–27.8 s (the deliberate quiet low point before
+  the turn; score silent by design).
+
+## 4. Must-pass verdicts (v3)
+
+| # | Item | Verdict |
+|---|---|---|
+| 1 | Shots | pass — 6 shots, wide/medium/medium-close, shots_lint OK |
+| 2 | Hero size | pass — 35.9 / 38.0 (min .33, lying half the shot) / 44.9 / 64.3 / 39.8 / 69.5 % |
+| 3 | No dead holds | known issue — 3 mild liveness WARNs listed above; Timesheet.lint OK, repeat_report OK |
+| 4 | Effects generated | pass — puff, spray, snow all fx sheets |
+| 5 | No glitches | pass on selfcheck sheets (stool fixed as one prop; facing right throughout) |
+| 6 | Sound | pass (measured) — -14.1 LUFS, TP -1.7 dBTP, score + 44 foley cues on contact drawings. Listening: not listened by the agent |
+| 7 | Subtitles | n/a (no narration) |
+| 8 | Length | pass — 40.00 s, 960 frames, audio track present |
+| 9 | No AI text/logos | pass — blank chalkboard, clock without numbers |
+| 10 | Reviewed and fixed | pass — 3 rounds above |
+| 11 | No jump/zoom cuts | pass — hill→landing checked by eye (cut_ok), classroom views all different directions |
+| 12 | Payoff readable | pass — medium-close of Pip lying in the snow beaming, owl landing behind |
+| 13 | Enough assets | pass — 6 backgrounds, 7 action sheets, 2 close-up sheets, 3 fx, 1 prop (21 images) |
+| 14 | Visible | pass — too dark: none |
+| 15 | Text | n/a (no cards) |
+| 16 | No placeholders | pass — out/pip.mp4 is the final render |
 
 ## 5. Self-assessment
+
+4/5. Least happy with: the slide cells read a little upright (sheet drawn level, rotated 15° in code); the window low
+point is quiet for ~2.8 s; the owl's flapping is a simple two-cell hover.
