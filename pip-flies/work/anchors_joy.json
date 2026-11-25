@@ -1,0 +1,101 @@
+{
+ "prefix": "joy",
+ "median_h": 661.0,
+ "median_bottom_w": 723.0,
+ "order": [
+  "joy_0",
+  "joy_1",
+  "joy_2",
+  "joy_3"
+ ],
+ "cells": {
+  "joy_0": {
+   "bbox": [
+    29,
+    172,
+    981,
+    812
+   ],
+   "foot_y": 812,
+   "body_x": 506.79,
+   "bottom_x": 467.5,
+   "bottom_w": 631,
+   "bbox_cx": 505.0,
+   "height": 640,
+   "width": 952,
+   "area": 391801,
+   "size": [
+    1010,
+    890
+   ],
+   "base_x": 367.5,
+   "name": "joy_0"
+  },
+  "joy_1": {
+   "bbox": [
+    27,
+    174,
+    983,
+    812
+   ],
+   "foot_y": 812,
+   "body_x": 495.48,
+   "bottom_x": 450.5,
+   "bottom_w": 667,
+   "bbox_cx": 505.0,
+   "height": 638,
+   "width": 956,
+   "area": 394780,
+   "size": [
+    1010,
+    890
+   ],
+   "base_x": 362.0,
+   "name": "joy_1"
+  },
+  "joy_2": {
+   "bbox": [
+    24,
+    24,
+    986,
+    812
+   ],
+   "foot_y": 812,
+   "body_x": 577.89,
+   "bottom_x": 452.5,
+   "bottom_w": 779,
+   "bbox_cx": 505.0,
+   "height": 788,
+   "width": 962,
+   "area": 488607,
+   "size": [
+    1010,
+    890
+   ],
+   "base_x": 487.5,
+   "name": "joy_2"
+  },
+  "joy_3": {
+   "bbox": [
+    24,
+    130,
+    986,
+    812
+   ],
+   "foot_y": 812,
+   "body_x": 558.7,
+   "bottom_x": 517.0,
+   "bottom_w": 918,
+   "bbox_cx": 505.0,
+   "height": 682,
+   "width": 962,
+   "area": 438690,
+   "size": [
+    1010,
+    890
+   ],
+   "base_x": 464.5,
+   "name": "joy_3"
+  }
+ }
+}

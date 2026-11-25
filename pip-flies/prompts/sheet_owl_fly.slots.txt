@@ -1,0 +1,10 @@
+[character] a round needle-felted owl teacher, about one and a half times as tall as a small penguin chick: soft grey-brown body, a pale cream heart-shaped face disc, big black bead eyes, small round spectacles made of black yarn, a tiny folded ochre beak, two small ear tufts, broad wings that can open wide, a mustard-yellow knitted vest, small ochre feet.
+[action] the owl teacher demonstrates flying, facing right (three-quarter view toward the right), camera at eye level, the owl the same size in every pose; the 8 poses are one continuous action.
+1 standing on the floor, wings folded, looking right
+2 knees bent, body sinking, wings starting to open
+3 wings spread wide up above the head, feet just leaving the ground
+4 wings pushed down hard below the body, feet tucked up, airborne
+5 wings spread wide up again, airborne, beak slightly raised proudly
+6 wings half folded, feet reaching down to land
+7 landed, knees bent, wings folding to the sides, settling
+8 standing, the right wing stretched out forward to the right, pointing at someone in front of it, looking right

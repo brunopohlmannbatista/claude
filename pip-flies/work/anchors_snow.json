@@ -1,0 +1,193 @@
+{
+ "prefix": "snow",
+ "median_h": 231.5,
+ "median_bottom_w": 246.0,
+ "order": [
+  "snow_0",
+  "snow_1",
+  "snow_2",
+  "snow_3",
+  "snow_4",
+  "snow_5",
+  "snow_6",
+  "snow_7"
+ ],
+ "cells": {
+  "snow_0": {
+   "bbox": [
+    170,
+    329,
+    290,
+    443
+   ],
+   "foot_y": 443,
+   "body_x": 229.72,
+   "bottom_x": 228.0,
+   "bottom_w": 96,
+   "bbox_cx": 230.0,
+   "height": 114,
+   "width": 120,
+   "area": 10560,
+   "size": [
+    460,
+    486
+   ],
+   "base_x": 225.5,
+   "name": "snow_0"
+  },
+  "snow_1": {
+   "bbox": [
+    105,
+    229,
+    356,
+    443
+   ],
+   "foot_y": 443,
+   "body_x": 235.3,
+   "bottom_x": 230.5,
+   "bottom_w": 227,
+   "bbox_cx": 230.5,
+   "height": 214,
+   "width": 251,
+   "area": 39820,
+   "size": [
+    460,
+    486
+   ],
+   "base_x": 201.0,
+   "name": "snow_1"
+  },
+  "snow_2": {
+   "bbox": [
+    63,
+    122,
+    397,
+    443
+   ],
+   "foot_y": 443,
+   "body_x": 216.57,
+   "bottom_x": 218.0,
+   "bottom_w": 310,
+   "bbox_cx": 230.0,
+   "height": 321,
+   "width": 334,
+   "area": 85596,
+   "size": [
+    460,
+    486
+   ],
+   "base_x": 211.5,
+   "name": "snow_2"
+  },
+  "snow_3": {
+   "bbox": [
+    24,
+    24,
+    436,
+    443
+   ],
+   "foot_y": 443,
+   "body_x": 213.35,
+   "bottom_x": 210.0,
+   "bottom_w": 372,
+   "bbox_cx": 230.0,
+   "height": 419,
+   "width": 412,
+   "area": 135254,
+   "size": [
+    460,
+    486
+   ],
+   "base_x": 271.0,
+   "name": "snow_3"
+  },
+  "snow_4": {
+   "bbox": [
+    53,
+    145,
+    406,
+    443
+   ],
+   "foot_y": 443,
+   "body_x": 233.55,
+   "bottom_x": 229.5,
+   "bottom_w": 311,
+   "bbox_cx": 229.5,
+   "height": 298,
+   "width": 353,
+   "area": 79301,
+   "size": [
+    460,
+    486
+   ],
+   "base_x": 174.5,
+   "name": "snow_4"
+  },
+  "snow_5": {
+   "bbox": [
+    80,
+    194,
+    379,
+    443
+   ],
+   "foot_y": 443,
+   "body_x": 233.85,
+   "bottom_x": 225.5,
+   "bottom_w": 265,
+   "bbox_cx": 229.5,
+   "height": 249,
+   "width": 299,
+   "area": 54154,
+   "size": [
+    460,
+    486
+   ],
+   "base_x": 193.0,
+   "name": "snow_5"
+  },
+  "snow_6": {
+   "bbox": [
+    129,
+    267,
+    331,
+    443
+   ],
+   "foot_y": 443,
+   "body_x": 230.56,
+   "bottom_x": 224.5,
+   "bottom_w": 169,
+   "bbox_cx": 230.0,
+   "height": 176,
+   "width": 202,
+   "area": 26380,
+   "size": [
+    460,
+    486
+   ],
+   "base_x": 205.5,
+   "name": "snow_6"
+  },
+  "snow_7": {
+   "bbox": [
+    170,
+    330,
+    291,
+    444
+   ],
+   "foot_y": 444,
+   "body_x": 230.95,
+   "bottom_x": 228.5,
+   "bottom_w": 97,
+   "bbox_cx": 230.5,
+   "height": 114,
+   "width": 121,
+   "area": 10544,
+   "size": [
+    460,
+    486
+   ],
+   "base_x": 224.0,
+   "name": "snow_7"
+  }
+ }
+}

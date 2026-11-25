@@ -1,0 +1,193 @@
+{
+ "prefix": "slide",
+ "median_h": 384.5,
+ "median_bottom_w": 344.5,
+ "order": [
+  "slide_0",
+  "slide_1",
+  "slide_2",
+  "slide_3",
+  "slide_4",
+  "slide_5",
+  "slide_6",
+  "slide_7"
+ ],
+ "cells": {
+  "slide_0": {
+   "bbox": [
+    25,
+    53,
+    500,
+    421
+   ],
+   "foot_y": 421,
+   "body_x": 272.54,
+   "bottom_x": 228.5,
+   "bottom_w": 407,
+   "bbox_cx": 262.5,
+   "height": 368,
+   "width": 475,
+   "area": 120128,
+   "size": [
+    524,
+    476
+   ],
+   "base_x": 229.5,
+   "name": "slide_0"
+  },
+  "slide_1": {
+   "bbox": [
+    31,
+    36,
+    494,
+    421
+   ],
+   "foot_y": 421,
+   "body_x": 266.82,
+   "bottom_x": 202.0,
+   "bottom_w": 342,
+   "bbox_cx": 262.5,
+   "height": 385,
+   "width": 463,
+   "area": 124480,
+   "size": [
+    524,
+    476
+   ],
+   "base_x": 214.5,
+   "name": "slide_1"
+  },
+  "slide_2": {
+   "bbox": [
+    28,
+    42,
+    496,
+    421
+   ],
+   "foot_y": 421,
+   "body_x": 264.5,
+   "bottom_x": 215.5,
+   "bottom_w": 321,
+   "bbox_cx": 262.0,
+   "height": 379,
+   "width": 468,
+   "area": 120813,
+   "size": [
+    524,
+    476
+   ],
+   "base_x": 233.5,
+   "name": "slide_2"
+  },
+  "slide_3": {
+   "bbox": [
+    35,
+    24,
+    489,
+    421
+   ],
+   "foot_y": 421,
+   "body_x": 270.77,
+   "bottom_x": 219.0,
+   "bottom_w": 296,
+   "bbox_cx": 262.0,
+   "height": 397,
+   "width": 454,
+   "area": 126331,
+   "size": [
+    524,
+    476
+   ],
+   "base_x": 231.0,
+   "name": "slide_3"
+  },
+  "slide_4": {
+   "bbox": [
+    35,
+    37,
+    490,
+    421
+   ],
+   "foot_y": 421,
+   "body_x": 285.1,
+   "bottom_x": 275.0,
+   "bottom_w": 428,
+   "bbox_cx": 262.5,
+   "height": 384,
+   "width": 455,
+   "area": 121400,
+   "size": [
+    524,
+    476
+   ],
+   "base_x": 244.0,
+   "name": "slide_4"
+  },
+  "slide_5": {
+   "bbox": [
+    37,
+    26,
+    488,
+    421
+   ],
+   "foot_y": 421,
+   "body_x": 272.84,
+   "bottom_x": 208.5,
+   "bottom_w": 337,
+   "bbox_cx": 262.5,
+   "height": 395,
+   "width": 451,
+   "area": 122136,
+   "size": [
+    524,
+    476
+   ],
+   "base_x": 217.0,
+   "name": "slide_5"
+  },
+  "slide_6": {
+   "bbox": [
+    30,
+    35,
+    495,
+    421
+   ],
+   "foot_y": 421,
+   "body_x": 271.89,
+   "bottom_x": 204.5,
+   "bottom_w": 347,
+   "bbox_cx": 262.5,
+   "height": 386,
+   "width": 465,
+   "area": 121375,
+   "size": [
+    524,
+    476
+   ],
+   "base_x": 222.0,
+   "name": "slide_6"
+  },
+  "slide_7": {
+   "bbox": [
+    30,
+    51,
+    495,
+    421
+   ],
+   "foot_y": 421,
+   "body_x": 272.95,
+   "bottom_x": 250.0,
+   "bottom_w": 418,
+   "bbox_cx": 262.5,
+   "height": 370,
+   "width": 465,
+   "area": 119778,
+   "size": [
+    524,
+    476
+   ],
+   "base_x": 205.5,
+   "name": "slide_7"
+  }
+ }
+}

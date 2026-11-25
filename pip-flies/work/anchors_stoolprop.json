@@ -1,0 +1,32 @@
+{
+ "prefix": "stoolprop",
+ "median_h": 889.0,
+ "median_bottom_w": 912.0,
+ "order": [
+  "stoolprop_0"
+ ],
+ "cells": {
+  "stoolprop_0": {
+   "bbox": [
+    24,
+    24,
+    1035,
+    913
+   ],
+   "foot_y": 913,
+   "body_x": 528.95,
+   "bottom_x": 520.0,
+   "bottom_w": 912,
+   "bbox_cx": 529.5,
+   "height": 889,
+   "width": 1011,
+   "area": 565545,
+   "size": [
+    1060,
+    1008
+   ],
+   "base_x": 534.0,
+   "name": "stoolprop_0"
+  }
+ }
+}

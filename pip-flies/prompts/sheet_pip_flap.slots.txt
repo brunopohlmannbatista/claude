@@ -1,0 +1,10 @@
+[character] a small round needle-felted penguin chick: charcoal-grey back and head, a large cream-white belly and face patch, small black bead eyes, a short orange beak, small orange flat feet, short stubby flipper wings; a warm red knitted scarf wrapped once around the neck with two short ends hanging on the left side of the neck. Body about as wide as it is tall; head and body one round shape.
+[action] the penguin chick tries to fly by flapping his short flippers as hard as he can, facing right (three-quarter view toward the right), camera at eye level, the same size in every pose; one continuous action; scarf ends lag one beat behind.
+1 standing, eyes squeezed shut in effort, flippers held stiffly out to the sides
+2 crouching low, knees bent, flippers pulled back behind the body
+3 flippers sweeping up high above the head, rising on tiptoe
+4 flippers slammed down, a tiny hop: both feet just a little off the ground, scarf ends flying up
+5 flippers up again, still only a tiny bit off the ground, straining
+6 dropping back down, feet touching the ground, body squashed
+7 plopped down sitting on his bottom on the floor, legs sticking out forward, flippers limp at the sides
+8 sitting on the floor, eyes blinking, looking down at his own flippers, puzzled

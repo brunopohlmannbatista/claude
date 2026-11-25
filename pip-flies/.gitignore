@@ -1,0 +1,10 @@
+frames/
+work/cells/
+work/board*
+work/prev/
+work/check_*.jpg
+work/cells_*.jpg
+work/_silent.mp4
+work/still_*.png
+work/liveness.png
+audio/stem_*.wav

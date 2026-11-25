@@ -1,0 +1,101 @@
+{
+ "prefix": "sad",
+ "median_h": 939.0,
+ "median_bottom_w": 662.0,
+ "order": [
+  "sad_0",
+  "sad_1",
+  "sad_2",
+  "sad_3"
+ ],
+ "cells": {
+  "sad_0": {
+   "bbox": [
+    61,
+    92,
+    753,
+    1004
+   ],
+   "foot_y": 1004,
+   "body_x": 424.34,
+   "bottom_x": 412.0,
+   "bottom_w": 682,
+   "bbox_cx": 407.0,
+   "height": 912,
+   "width": 692,
+   "area": 495364,
+   "size": [
+    814,
+    1104
+   ],
+   "base_x": 418.0,
+   "name": "sad_0"
+  },
+  "sad_1": {
+   "bbox": [
+    49,
+    124,
+    766,
+    1004
+   ],
+   "foot_y": 1004,
+   "body_x": 424.17,
+   "bottom_x": 413.5,
+   "bottom_w": 703,
+   "bbox_cx": 407.5,
+   "height": 880,
+   "width": 717,
+   "area": 488253,
+   "size": [
+    814,
+    1104
+   ],
+   "base_x": 413.5,
+   "name": "sad_1"
+  },
+  "sad_2": {
+   "bbox": [
+    53,
+    38,
+    760,
+    1004
+   ],
+   "foot_y": 1004,
+   "body_x": 402.65,
+   "bottom_x": 383.0,
+   "bottom_w": 642,
+   "bbox_cx": 406.5,
+   "height": 966,
+   "width": 707,
+   "area": 526377,
+   "size": [
+    814,
+    1104
+   ],
+   "base_x": 407.0,
+   "name": "sad_2"
+  },
+  "sad_3": {
+   "bbox": [
+    24,
+    24,
+    789,
+    1004
+   ],
+   "foot_y": 1004,
+   "body_x": 392.8,
+   "bottom_x": 388.0,
+   "bottom_w": 624,
+   "bbox_cx": 406.5,
+   "height": 980,
+   "width": 765,
+   "area": 534972,
+   "size": [
+    814,
+    1104
+   ],
+   "base_x": 413.5,
+   "name": "sad_3"
+  }
+ }
+}

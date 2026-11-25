@@ -1,0 +1,99 @@
+{
+ "style": "felt",
+ "dur": 40.0,
+ "name": "pip",
+ "lang": "en",
+ "foley_auto": true,
+ "music": {
+  "sections": [
+   {
+    "t": 0,
+    "energy": 0.3
+   },
+   {
+    "t": "lesson+5.5",
+    "energy": 0.5
+   },
+   {
+    "t": "stool",
+    "energy": 0.55
+   },
+   {
+    "t": "run",
+    "energy": 0.72
+   },
+   {
+    "t": "window",
+    "energy": 0.12
+   },
+   {
+    "t": "hill",
+    "energy": 0.95
+   },
+   {
+    "t": "landing",
+    "energy": 0.45,
+    "end": true
+   }
+  ],
+  "hits": [
+   {
+    "t": "lesson+3.6",
+    "kind": "accent"
+   },
+   {
+    "t": "lesson+8.0",
+    "kind": "stop"
+   },
+   {
+    "t": "stool+3.3",
+    "kind": "thud"
+   },
+   {
+    "t": "run+3.55",
+    "kind": "thud"
+   },
+   {
+    "t": "window+4.4",
+    "kind": "sparkle"
+   },
+   {
+    "t": "hill",
+    "kind": "boom"
+   },
+   {
+    "t": "hill+0.4",
+    "kind": "sparkle"
+   },
+   {
+    "t": "landing",
+    "kind": "accent"
+   }
+  ],
+  "silences": [
+   [
+    "window+2.6",
+    "window+4.3"
+   ]
+  ]
+ },
+ "foley": [
+  {
+   "t": "window+0.2",
+   "kind": "rub",
+   "v": 0.3,
+   "d": 0.8
+  },
+  {
+   "t": "window+2.4",
+   "kind": "rub",
+   "v": 0.25,
+   "d": 1.2
+  },
+  {
+   "t": "window+4.4",
+   "kind": "sparkle",
+   "v": 0.45
+  }
+ ]
+}
