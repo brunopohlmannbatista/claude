@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Aceleradora EDU · vitrine de produtos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;800&display=swap">
+<style>
+body{margin:0;background:#0a0514}
+a{color:#ff7fb2;text-decoration:none}a:hover{color:#ffc933}
+.c{flex:1 1 300px;min-width:0;box-sizing:border-box;background:#180f30;border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.w{flex:1 1 100%;flex-direction:row;flex-wrap:wrap;gap:28px;align-items:center;padding:28px}
+.w>div{flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.sc{min-height:170px;box-sizing:border-box;background:#0f0820;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;justify-content:center;font-size:13px;overflow:hidden}
+.k{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#ffb35c}
+.t{margin:0;font-family:Sora,sans-serif;font-weight:800;font-size:22px;color:#f3eefe;line-height:1.2}
+.d{margin:0;color:#c6bce6;font-size:15px;line-height:1.55}
+.f{display:flex;flex-wrap:wrap;gap:8px}
+.f span{font-size:13px;color:#e6defb;background:rgba(255,255,255,.07);border-radius:999px;padding:6px 12px}
+.ft{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;font-size:14px;color:#c6bce6}
+.ft b{color:#f3eefe;font-family:Sora,sans-serif}
+.go{font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+.g{margin:56px 0 18px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.g h2{margin:0;font-family:Sora,sans-serif;font-weight:800;font-size:26px;color:#f3eefe}
+.g span{color:#b9aedd;font-size:15px}
+.r{display:flex;flex-wrap:wrap;gap:22px}
+.chip{font:600 15px Inter,sans-serif;min-height:46px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,.16);cursor:pointer}
+.b{border-radius:10px;padding:9px 12px;line-height:1.4;max-width:86%}
+.h{flex-basis:420px}
+@keyframes pop{0%{opacity:0;transform:translateY(10px)}10%,88%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes flt{50%{transform:translateY(-8px)}}
+@keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+@keyframes spin3{0%,100%{transform:rotateY(-32deg) rotateX(4deg)}50%{transform:rotateY(32deg) rotateX(-4deg)}}
+@keyframes pan{to{background-position:200px 0,0 0}}
+@keyframes turn{to{transform:rotateY(360deg)}}
+.seq>div{animation:pop 7s both infinite}.seq>div:nth-child(2){animation-delay:1s}.seq>div:nth-child(3){animation-delay:2s}.seq>div:nth-child(4){animation-delay:3s}.seq>div:nth-child(5){animation-delay:4s}
+.flo>span{animation:flt 3s ease-in-out infinite}.flo>span:nth-child(2n){animation-delay:-1s}.flo>span:nth-child(3n){animation-delay:-2s}
+.led>span{animation:blink 1.6s infinite}.led>span:nth-child(2){animation-delay:.4s}.led>span:nth-child(3){animation-delay:.8s}.led>span:nth-child(4){animation-delay:1.2s}
+.b3{animation:spin3 6s ease-in-out infinite;box-shadow:10px 12px 24px rgba(0,0,0,.55)}.b3:nth-child(2){animation-delay:-2s}.b3:nth-child(3){animation-delay:-4s}
+.fl1{animation:flt 3s ease-in-out infinite}
+.hd{display:flex;align-items:center;gap:14px}
+.hd>div{min-width:0;display:flex;flex-direction:column;gap:6px}
+.ic{width:96px;height:96px;flex:none;mix-blend-mode:screen;animation:flt 4s ease-in-out infinite;-webkit-mask-image:radial-gradient(circle,#000 56%,transparent 72%);mask-image:radial-gradient(circle,#000 56%,transparent 72%)}
+.ic+.ic{margin-left:-30px;animation-delay:-2s}
+.w .ic{width:128px;height:128px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="font-family: Inter, sans-serif; color: #f3eefe; background: #0a0514; min-height: 100vh">
+
+<div style="border-bottom: 1px solid rgba(238,42,123,.25)">
+<div style="max-width: 1150px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center">
+<div style="font-family: Sora, sans-serif; font-weight: 800; font-size: 18px; letter-spacing: .02em; margin-right: auto">ACELERADORA <span style="color: #c77dff">EDU</span></div>
+<a href="#produtos" style="color: #f3eefe; font-weight: 600; font-size: 15px">Produtos</a>
+<a href="#como" style="color: #c6bce6; font-size: 15px">Como funciona</a>
+<a href="https://fabricadeautores.com.br/" style="color: #c6bce6; font-size: 15px">Fábrica de Autores</a>
+<a href="https://wa.me/5581951687966" style="background: linear-gradient(135deg,#ee2a7b,#8a2be2); color: #ffffff; font-weight: 600; font-size: 15px; padding: 12px 20px; border-radius: 999px">Diagnóstico gratuito</a>
+</div>
+</div>
+
+<div id="produtos" style="max-width: 1150px; margin: 0 auto; padding: 64px 24px 80px">
+
+<div class="k">Nossos produtos</div>
+<h1 style="margin: 10px 0 14px; font-family: Sora, sans-serif; font-weight: 800; font-size: clamp(2rem, 4.4vw, 3.3rem); line-height: 1.1; max-width: 820px">O que a sua escola quer <span style="color: #ff5c9d">resolver primeiro?</span></h1>
+<p style="margin: 0 0 28px; color: #c6bce6; font-size: 18px; line-height: 1.55; max-width: 680px">Escolha o objetivo e veja só o que serve para ele. Tudo aqui já roda no nosso próprio colégio.</p>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button class="chip" onClick="{{ pickAll }}" style="background: {{ bgAll }}; color: {{ fgAll }}">Tudo · 11</button>
+<button class="chip" onClick="{{ pickCap }}" style="background: {{ bgCap }}; color: {{ fgCap }}">Encher as turmas</button>
+<button class="chip" onClick="{{ pickSala }}" style="background: {{ bgSala }}; color: {{ fgSala }}">Inovar na sala de aula</button>
+<button class="chip" onClick="{{ pickLer }}" style="background: {{ bgLer }}; color: {{ fgLer }}">Leitura e valores</button>
+<button class="chip" onClick="{{ pickOp }}" style="background: {{ bgOp }}; color: {{ fgOp }}">Receita e operação</button>
+</div>
+
+<sc-if value="{{ showCap }}" hint-placeholder-val="{{ true }}">
+<div>
+<div class="g"><h2>Encher as turmas</h2><span>Captação e matrícula · 3 produtos</span></div>
+<div class="r">
+
+<div class="c w">
+<div>
+<div class="hd"><img class="ic" src="/_blob/cf1b9dbeebed308729876fba3e54e44d" alt=""><div><div class="k">Mais procurado · atendimento 24h</div>
+<h3 class="t" style="font-size: 30px">Agentes IA</h3></div></div>
+<p class="d">Funcionários digitais que respondem no WhatsApp da escola: matrículas, rematrícula, cobrança e secretaria. A família pergunta às 21h47 e não fica sem resposta.</p>
+<div class="f"><span>Resposta em menos de 1 min</span><span>No ar em 7 dias</span><span>Garantia de 7 dias</span></div>
+<div class="ft"><span>A partir de <b>R$ 590/mês</b></span><a class="go" href="https://aceleradoraedu.club/#servicos">Ver planos e calculadora →</a></div>
+</div>
+<div class="sc seq" aria-hidden="true">
+<div style="color: #b9aedd; font-size: 12px">WhatsApp da escola · 21:47</div>
+<div class="b" style="background: #241a44; color: #f3eefe">Boa noite! Ainda tem vaga para o 3º ano?</div>
+<div class="b" style="background: #0f5a43; color: #eafff6; align-self: flex-end">Boa noite! Tem sim. Quer que eu agende uma visita para amanhã?</div>
+<div class="b" style="background: #241a44; color: #f3eefe">Quero, pode ser às 10h.</div>
+<div style="align-self: flex-end; color: #6ee7b7; font-size: 12px">Agente de Matrículas · respondendo agora</div>
+</div>
+</div>
+
+<div class="c">
+<div class="sc seq" aria-hidden="true">
+<div style="background: #241a44; border-radius: 999px; padding: 9px 14px; color: #c6bce6">escola particular perto de mim</div>
+<div style="background: #241a44; border: 1px solid #ffc933; border-radius: 10px; padding: 10px 12px"><b style="color: #ffc933">1º</b> &nbsp;Sua escola &nbsp;<span style="color: #ffc933">★★★★★</span></div>
+<div style="padding: 4px 12px; color: #8f85b3">2º &nbsp;Outra escola do bairro</div>
+<div style="padding: 4px 12px; color: #8f85b3">3º &nbsp;Outra escola do bairro</div>
+</div>
+<div class="hd"><img class="ic" src="/_blob/48be4bc22efb0667b897cab922488f11" alt=""><div><div class="k">SEO local</div>
+<h3 class="t">1º no Google</h3></div></div>
+<p class="d">Sua escola aparecendo quando o pai busca no bairro: ficha do Google completa, avaliações toda semana e uma página por busca.</p>
+<div class="f"><span>Resultados em 4 a 12 semanas</span><span>3 níveis</span></div>
+<div class="ft"><span><b>Sob medida</b></span><a class="go" href="https://aceleradoraedu.club/#seo">Descobrir minha posição →</a></div>
+</div>
+
+<div class="c">
+<div class="sc" aria-hidden="true" style="align-items: center; perspective: 500px; background: repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 36px,transparent 36px 100px), linear-gradient(180deg,#2a1a55 0%,#3a1d5e 55%,#14301f 56%,#0f2417 100%); animation: pan 6s linear infinite">
+<div style="width: 86px; height: 86px; border-radius: 50%; border: 2px solid #f3eefe; background: rgba(10,5,20,.55); animation: turn 7s linear infinite; display: flex; align-items: center; justify-content: center; font-family: Sora, sans-serif; font-weight: 800; font-size: 22px; color: #f3eefe">360°</div>
+<div style="color: #f3eefe">← arraste para explorar →</div>
+</div>
+<div class="hd"><img class="ic" src="/_blob/f5f42648069f047b2152006d8bd7fc9a" alt=""><div><div class="k">Tour virtual</div>
+<h3 class="t">Fotos 360°</h3></div></div>
+<p class="d">O pai visita a escola pelo celular antes de marcar a visita. Passeio virtual publicado direto no site do colégio.</p>
+<div class="f"><span>Sessão de fotos</span><span>Montagem</span><span>Publicação</span></div>
+<div class="ft"><span><b>Sob proposta</b></span><a class="go" href="https://aceleradoraedu.club/#fotos360">Ver tour de exemplo →</a></div>
+</div>
+
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showSala }}" hint-placeholder-val="{{ true }}">
+<div>
+<div class="g"><h2>Inovar na sala de aula</h2><span>Tecnologia que o pai enxerga · 3 produtos</span></div>
+<div class="r">
+
+<div class="c w">
+<div>
+<div class="hd"><img class="ic" src="/_blob/bf19f16144410e0b815c010b56a7ce0f" alt=""><div><div class="k">A base de tudo · toda a escola</div>
+<h3 class="t" style="font-size: 30px">Google for Education</h3></div></div>
+<p class="d">A escola inteira na nuvem do Google, com a IA do Gemini para cada aluno e professor, Classroom funcionando e equipe treinada.</p>
+<div class="f"><span>Implantação em 3 a 4 semanas</span><span>3 pacotes por nº de alunos</span><span>Treinamento incluso</span></div>
+<div class="ft"><span><b>Sob medida</b></span><a class="go" href="https://aceleradoraedu.club/#google">Ver pacotes →</a></div>
+</div>
+<div class="sc flo" aria-hidden="true" style="flex-direction: row; flex-wrap: wrap; align-content: center; gap: 10px">
+<span style="background: #1e3a2a; color: #a7f3c4; padding: 10px 14px; border-radius: 10px">Classroom</span>
+<span style="background: #2b2057; color: #d6c8ff; padding: 10px 14px; border-radius: 10px">Gemini</span>
+<span style="background: #3a2a12; color: #ffd591; padding: 10px 14px; border-radius: 10px">NotebookLM</span>
+<span style="background: #12304a; color: #a8d8ff; padding: 10px 14px; border-radius: 10px">Drive</span>
+<span style="background: #3d1730; color: #ffb3d1; padding: 10px 14px; border-radius: 10px">Meet</span>
+<span style="background: #2b2057; color: #d6c8ff; padding: 10px 14px; border-radius: 10px">Forms</span>
+<span style="background: #12304a; color: #a8d8ff; padding: 10px 14px; border-radius: 10px">Docs · Sheets · Slides</span>
+</div>
+</div>
+
+<div class="c">
+<div class="sc seq" aria-hidden="true" style="align-items: flex-start">
+<div style="background: #ffc933; color: #241400; padding: 8px 14px; border-radius: 8px; font-weight: 600">quando clicar em iniciar</div>
+<div style="background: #4c7dff; color: #ffffff; padding: 8px 14px; border-radius: 8px; margin-left: 14px">mover 10 passos</div>
+<div style="background: #ff8a2a; color: #241400; padding: 8px 14px; border-radius: 8px; margin-left: 14px">repetir 4 vezes</div>
+<div style="background: #8a2be2; color: #ffffff; padding: 8px 14px; border-radius: 8px; margin-left: 28px">perguntar à IA</div>
+</div>
+<div class="hd"><img class="ic" src="/_blob/e48e5c36ad6cbeaed621118d2e24e9b4" alt=""><div><div class="k">1º ao 5º ano · horário curricular</div>
+<h3 class="t">Robótica</h3></div></div>
+<p class="d">Programação com Scratch, inteligência artificial e ferramentas Google dentro da grade, com apostila para cada ano.</p>
+<div class="f"><span>30 projetos por ano</span><span>5 apostilas</span><span>BNCC</span></div>
+<div class="ft"><span style="background: linear-gradient(90deg,#ff3b5c,#ff8a2a,#ffc933); color: #241400; font-weight: 600; padding: 6px 12px; border-radius: 999px">Bônus: Google + Gemini</span><a class="go" href="https://aceleradoraedu.club/#robotica">Ver apostilas →</a></div>
+</div>
+
+<div class="c">
+<div class="sc" aria-hidden="true" style="align-items: center">
+<div class="led" style="display: flex; gap: 14px">
+<span style="width: 26px; height: 26px; border-radius: 50%; background: #ff3b5c; box-shadow: 0 0 18px #ff3b5c"></span>
+<span style="width: 26px; height: 26px; border-radius: 50%; background: #ff8a2a; box-shadow: 0 0 18px #ff8a2a"></span>
+<span style="width: 26px; height: 26px; border-radius: 50%; background: #ffc933; box-shadow: 0 0 18px #ffc933"></span>
+<span style="width: 26px; height: 26px; border-radius: 50%; background: #6ee7b7; box-shadow: 0 0 18px #6ee7b7"></span>
+</div>
+<div style="width: 70%; height: 2px; background: #5b4a8a"></div>
+<div style="color: #c6bce6">circuitos · LEDs · arte · impressão 3D</div>
+</div>
+<div class="hd"><img class="ic" src="/_blob/10c8625fd1008d1f3e1c3c7ebbdffa6e" alt=""><div><div class="k">1º ao 5º ano · contraturno</div>
+<h3 class="t">Programa Maker</h3></div></div>
+<p class="d">Mão na massa à tarde: o aluno monta, erra, conserta e leva o projeto para casa. Com guia e capacitação para o professor.</p>
+<div class="f"><span>20 projetos</span><span>Apostila de 70 páginas</span><span>Impressora 3D</span></div>
+<div class="ft"><span><b>Sob proposta</b></span><a class="go" href="https://aceleradoraedu.club/#maker">Ver apostilas →</a></div>
+</div>
+
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showLer }}" hint-placeholder-val="{{ true }}">
+<div>
+<div class="g"><h2>Leitura e valores</h2><span>Livros que viram projeto · 4 produtos</span></div>
+<div class="r">
+
+<div class="c h">
+<div class="sc" aria-hidden="true" style="flex-direction: row; align-items: flex-end; justify-content: center; gap: 14px; perspective: 600px; font-family: Sora, sans-serif; font-weight: 600; font-size: 11px; line-height: 1.25">
+<div class="b3" style="width: 78px; height: 112px; background: #ff8a2a; color: #241400; border-radius: 4px 8px 8px 4px; padding: 8px; box-sizing: border-box">Meu Primeiro Bitcoin</div>
+<div class="b3" style="width: 78px; height: 128px; background: #ee2a7b; color: #ffffff; border-radius: 4px 8px 8px 4px; padding: 8px; box-sizing: border-box">A Fábrica de Sentimentos</div>
+<div class="b3" style="width: 78px; height: 112px; background: #6ee7b7; color: #062b1d; border-radius: 4px 8px 8px 4px; padding: 8px; box-sizing: border-box">O Mapa do Tesouro Financeiro</div>
+</div>
+<div class="hd"><img class="ic" src="/_blob/ebb1a5f052c4f397f709deef4af635bb" alt=""><div><div class="k">1º ao 7º ano · paradidáticos</div>
+<h3 class="t">Livros com Projetos</h3></div></div>
+<p class="d">Leitura ilustrada com projeto pronto para aplicar: educação financeira, inteligência emocional e vida digital.</p>
+<div class="f"><span>Coleção com 4 livros</span><span>Títulos avulsos</span></div>
+<div class="ft"><span><b>Amostras grátis</b></span><a class="go" href="https://aceleradoraedu.club/#livros">Pedir amostras →</a></div>
+</div>
+
+<div class="c h">
+<div class="sc" aria-hidden="true" style="align-items: center">
+<div class="fl1" style="font-family: Sora, sans-serif; font-weight: 800; font-size: 54px; line-height: 1; color: #ffc933">52</div>
+<div style="color: #f3eefe">lições, uma por semana</div>
+<div style="color: #b9aedd; font-size: 12px">jan · fev · mar · abr · mai · jun · jul · ago · set · out · nov · dez</div>
+</div>
+<div class="hd"><img class="ic" src="/_blob/95a64c3d2d4021b1009caa703fe5e4a5" alt=""><div><div class="k">Edição 2027 · devocional anual</div>
+<h3 class="t">Meu Pão Diário com Jesus</h3></div></div>
+<p class="d">Um tema por mês e uma lição por semana, em duas versões: Educação Infantil e Fundamental 1.</p>
+<div class="f"><span>Infantil · 157 páginas</span><span>Fund. 1 · 121 páginas</span></div>
+<div class="ft"><span><b>Sob proposta</b></span><a class="go" href="https://aceleradoraedu.club/#pao">Folhear o livro →</a></div>
+</div>
+
+<div class="c h">
+<div class="sc" aria-hidden="true" style="align-items: center; perspective: 600px">
+<div class="b3" style="width: 104px; height: 132px; background: linear-gradient(135deg,#ee2a7b,#8a2be2); border-radius: 4px 10px 10px 4px; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; color: #ffffff"><span style="font-family: Sora, sans-serif; font-weight: 800; font-size: 14px; line-height: 1.2">A história do seu aluno</span><span style="font-size: 11px">Escrito por: ele mesmo</span></div>
+</div>
+<div class="hd"><img class="ic" src="/_blob/43be7d4d51bb55a6921294343f8582d0" alt=""><div><div class="k">Alinhado à BNCC · site próprio</div>
+<h3 class="t">Fábrica de Autores</h3></div></div>
+<p class="d">Cada aluno escreve e recebe o próprio livro impresso, com game da história e festa de autógrafos para as famílias.</p>
+<div class="f"><span>Livro impresso</span><span>Game</span><span>Festa de autógrafos</span></div>
+<div class="ft"><span><b>Sob proposta</b></span><a class="go" href="https://fabricadeautores.com.br/">Abrir o site →</a></div>
+</div>
+
+<div class="c h">
+<div class="sc" aria-hidden="true" style="flex-direction: row; align-items: center; justify-content: center; gap: 22px; perspective: 600px; background: radial-gradient(circle at 50% 60%,#16381f 0%,#0f0820 70%)">
+<div class="b3" style="width: 104px; height: 136px; background: #1c4a26; border: 1px solid #7dff9a; border-radius: 4px 10px 10px 4px; padding: 10px; box-sizing: border-box; color: #d9ffe2; font-family: Sora, sans-serif; font-weight: 800; font-size: 12px; line-height: 1.25">O Apocalipse Zumbi Começou na Minha Escola</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+<div class="fl1" style="width: 64px; height: 64px; border-radius: 8px; border: 4px solid #d9ffe2; background: repeating-linear-gradient(90deg,#d9ffe2 0 8px,transparent 8px 16px), repeating-linear-gradient(0deg,#d9ffe2 0 8px,#0f0820 8px 16px)"></div>
+<div style="color: #7dff9a; font-size: 12px">QR Code · lição 3D</div>
+</div>
+</div>
+<div class="hd"><img class="ic" src="/_blob/d9d48a59dcea49ca0b36b61fd255a0cd" alt=""><div><div class="k">A partir de 11 anos · em breve</div>
+<h3 class="t">O Apocalipse Zumbi Começou na Minha Escola</h3></div></div>
+<p class="d">Aventura de sobrevivência que puxa Ciências, Geografia e Português para dentro da história. O aluno aponta o celular para o QR Code e abre uma lição em 3D, sem instalar nada.</p>
+<div class="f"><span>23 capítulos</span><span>14 manuais de sobrevivência</span><span>Compra para turmas</span></div>
+<div class="ft"><span><b>Lançamento pelo Catarse</b></span><a class="go" href="https://zumbinaescola.com.br/">Ver trailer e amostra →</a></div>
+</div>
+
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showOp }}" hint-placeholder-val="{{ true }}">
+<div>
+<div class="g"><h2>Receita e operação</h2><span>Dinheiro novo sem fila na secretaria · 1 produto</span></div>
+<div class="r">
+
+<div class="c w">
+<div>
+<div class="hd"><img class="ic" src="/_blob/472d1e35ed311e4045615ac9ef75440d" alt=""><img class="ic" src="/_blob/430ed91088e3633c77383022c7da18ec" alt=""><div><div class="k">Loja + cantina + PDV no balcão</div>
+<h3 class="t" style="font-size: 30px">E-commerce &amp; Cantina Online</h3></div></div>
+<p class="d">Uniforme, material e livros vendidos online. Na cantina, o pai recarrega o saldo e o aluno pede antes do recreio.</p>
+<div class="f"><span>Sem percentual sobre vendas</span><span>Sem taxa de recarga</span><span>Pix · cartão · boleto</span></div>
+<div class="ft"><span><b>R$ 150/mês</b> + R$ 990 de implantação</span><a class="go" href="https://aceleradoraedu.club/#ecommerce">Ver a loja real funcionando →</a></div>
+</div>
+<div class="sc seq" aria-hidden="true">
+<div style="display: flex; justify-content: space-between; color: #b9aedd; font-size: 12px"><span>Cantina · pedido antecipado</span><span style="color: #6ee7b7">Saldo recarregado</span></div>
+<div style="background: #241a44; border-radius: 10px; padding: 10px 12px; display: flex; justify-content: space-between"><span>Lanche do recreio</span><span style="color: #ffc933">Pedido feito</span></div>
+<div style="background: #241a44; border-radius: 10px; padding: 10px 12px; display: flex; justify-content: space-between"><span>Uniforme · camisa</span><span style="color: #ffc933">Pago no Pix</span></div>
+<div style="background: #241a44; border-radius: 10px; padding: 10px 12px; display: flex; justify-content: space-between"><span>Kit de material</span><span style="color: #ffc933">Retirar na escola</span></div>
+</div>
+</div>
+
+</div>
+</div>
+</sc-if>
+
+<div id="como" style="margin-top: 72px; background: #180f30; border: 1px solid rgba(238,42,123,.35); border-radius: 26px; padding: 40px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 420px; min-width: 0">
+<h2 style="margin: 0 0 10px; font-family: Sora, sans-serif; font-weight: 800; font-size: 28px; line-height: 1.2">Não sabe por onde começar?</h2>
+<p class="d" style="font-size: 17px">No diagnóstico gratuito a gente olha a sua escola e diz qual destes produtos traz resultado primeiro. Sem compromisso.</p>
+</div>
+<a href="https://wa.me/5581951687966" style="background: linear-gradient(135deg,#ee2a7b,#8a2be2); color: #ffffff; font-family: Sora, sans-serif; font-weight: 600; font-size: 17px; padding: 18px 28px; border-radius: 999px">Pedir diagnóstico no WhatsApp</a>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3850}}'>
+class Component extends DCLogic {
+renderVals() {
+const f = (this.state && this.state.f) || 'all';
+const on = (k) => f === k;
+const bg = (k) => on(k) ? '#c81e66' : 'rgba(255,255,255,.05)';
+const fg = (k) => on(k) ? '#ffffff' : '#e6defb';
+const pick = (k) => () => this.setState({ f: k });
+return {
+showCap: f === 'all' || f === 'cap', showSala: f === 'all' || f === 'sala',
+showLer: f === 'all' || f === 'ler', showOp: f === 'all' || f === 'op',
+pickAll: pick('all'), pickCap: pick('cap'), pickSala: pick('sala'), pickLer: pick('ler'), pickOp: pick('op'),
+bgAll: bg('all'), bgCap: bg('cap'), bgSala: bg('sala'), bgLer: bg('ler'), bgOp: bg('op'),
+fgAll: fg('all'), fgCap: fg('cap'), fgSala: fg('sala'), fgLer: fg('ler'), fgOp: fg('op')
+};
+}
+}
+</script>
+</body>
+</html>
